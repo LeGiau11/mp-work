@@ -1,5 +1,9 @@
+import { FC } from "react";
+
 import styles from "./Sidebar.module.scss";
 
-export default function Sidebar() {
+const Sidebar: FC = () => {
   return <div className={styles.sidebar}>This is Side bar</div>;
-}
+};
+
+export default Sidebar;

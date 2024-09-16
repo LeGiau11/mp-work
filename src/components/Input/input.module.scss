@@ -1,0 +1,14 @@
+$border-radius: 2px;
+
+.input {
+  padding: $border-radius * 3;
+
+  width: 100%;
+
+  border: $border-radius - 1 solid;
+  border-radius: $border-radius;
+
+  &:focus-visible{
+    outline: none;
+  }
+}

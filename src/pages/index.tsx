@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import styles from "@/styles/Layout.module.scss";
 // import Login from "./Login";
 import { Header, Footer, Sidebar } from "@/components";
+import Login from "./Login";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,6 +28,7 @@ export default function Layout() {
       <div
         className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
       >
+        <Login/>
         <Header />
         <main className={styles.main}>
           <Sidebar />
