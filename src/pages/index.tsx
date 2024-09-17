@@ -1,8 +1,8 @@
 import Head from "next/head";
 import localFont from "next/font/local";
 import styles from "@/styles/Layout.module.scss";
-// import Login from "./Login";
-import { Header, Footer, Sidebar } from "@/components";
+
+// import { Header, Footer, Sidebar } from "@/components";
 import Login from "./Login";
 
 const geistSans = localFont({
@@ -29,16 +29,16 @@ export default function Layout() {
         className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
       >
         <Login/>
-        <Header />
+        {/* <Header />
         <main className={styles.main}>
           <Sidebar />
-          {/* <Login /> */}
+          <Login />
           <section className={styles.content}>
-            {/**Do something */}
+   
             This is content
           </section>
         </main>
-        <Footer />
+        <Footer /> */}
       </div>
     </>
   );
