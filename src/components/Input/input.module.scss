@@ -1,31 +1,20 @@
 $border-radius: 2px;
 
-.input {
-  padding: $border-radius * 3;
-
-  width: 100%;
-
-  border: $border-radius - 1 solid;
-  border-radius: $border-radius;
-
-  &:focus-visible {
-    outline: none;
-  }
-}
-
 .inputPrefix {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border: 1px solid #ddd;
-  padding: $border-radius + 1;
   border-radius: $border-radius;
-  transition: all .3s;
+  padding: $border-radius + 1 $border-radius * 2;
+  transition: all 0.3s;
+
+  width: 100%;
+  height: auto;
 
   .prefix {
     display: inline-flex;
-    margin-left: $border-radius;
 
     width: $border-radius * 13;
     height: $border-radius * 13;
@@ -34,18 +23,26 @@ $border-radius: 2px;
   input {
     border: none;
     outline: none;
-    padding: 0;
-    margin-right: $border-radius;
+    padding: $border-radius * 3 0;
+
+    font-size: $border-radius * 8;
   }
 
   &:hover {
     border-color: #40a9ff;
   }
 
-  &:focus{
+  &:focus {
     border-color: #40a9ff;
     box-shadow: 0 0 0 2px #cce7ff;
     outline: 0;
     z-index: 1;
   }
+}
+
+.inputPrefixFocus {
+  border-color: #40a9ff;
+  box-shadow: 0 0 0 2px #cce7ff;
+  outline: 0;
+  z-index: 1;
 }

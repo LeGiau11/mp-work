@@ -1,10 +1,10 @@
-import { InputPassword } from "@/components";
+import { Button } from "@/components";
 
 export default function Login() {
   return (
-    <div>
-      {/* <Input
-        prefix={
+    <>
+      <Button
+        icon={
           <svg
             className="w-6 h-6 text-gray-800 dark:text-white"
             aria-hidden="true"
@@ -16,15 +16,16 @@ export default function Login() {
           >
             <path
               stroke="currentColor"
-              strokeWidth="0.9"
-              d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+              stroke-linecap="round"
+              stroke-width="2"
+              d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"
             />
           </svg>
         }
-        type="email"
-        placeholder="abc@gmail.com"
-      /> */}
-      <InputPassword />
-    </div>
+        type="button"
+      >
+        Hello
+      </Button>
+    </>
   );
 }

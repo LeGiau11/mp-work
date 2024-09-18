@@ -1,0 +1,37 @@
+$color-blue: #1967d2;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+
+  padding: 6px 8px;
+  min-width: 64px;
+  height: auto;
+
+  font-size: 16px;
+}
+
+.buttonText {
+  border: none;
+
+  border-radius: 2px;
+  background: none;
+  color: $color-blue;
+
+  &:hover {
+    background-color: rgba(25, 118, 210, 0.04);
+  }
+}
+
+.icon {
+  margin-right: 8px;
+}
+
+.disabled {
+}

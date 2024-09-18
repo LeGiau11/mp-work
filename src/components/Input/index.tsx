@@ -1,4 +1,5 @@
-import React, { FC, Fragment, createElement, ReactNode } from "react";
+import React, { FC, useState } from "react";
+import clsx from "clsx";
 
 import { InputProps } from "./interface";
 import styles from "./input.module.scss";
@@ -8,23 +9,36 @@ const Input: FC<InputProps> = ({
   htmlFor = "myInput",
   className = "",
   prefix,
-  ...rest
+  style,
+  value = "",
+  type = "text",
+  placeholder = "",
+  onChange = () => {},
 }) => {
-  const Wrapper: FC<{ children?: ReactNode }> = prefix
-    ? (props) =>
-        createElement("span", { className: styles.inputPrefix, ...props })
-    : Fragment;
+  const [isFocus, setIsFocus] = useState<boolean>(false);
+
+  const handleBlur = () => setIsFocus(!isFocus);
+  const handleFocus = () => setIsFocus(!isFocus);
 
   return (
-    <Wrapper>
+    <span
+      className={clsx(className, styles.inputPrefix, {
+        [styles.inputPrefixFocus]: isFocus,
+      })}
+      style={style}
+    >
       {prefix ? <span className={styles.prefix}>{prefix}</span> : null}
       {label ? <label htmlFor={htmlFor}>{label}:</label> : null}
       <input
+        type={type}
         id={label ? htmlFor : ""}
-        className={className ? className : styles.input}
-        {...rest}
+        onChange={onChange}
+        value={value}
+        placeholder={placeholder}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
       />
-    </Wrapper>
+    </span>
   );
 };
 

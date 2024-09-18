@@ -1,3 +1,9 @@
-interface Props extends React.InputHTMLAttributes<HTMLInputElement> {}
+import { ChangeEvent, CSSProperties } from "react";
 
-export interface InputPassWordProps extends Omit<Props, "type"> {}
+export interface InputPassWordProps {
+  value?: string;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  styles?: CSSProperties;
+  placeholder?: string;
+  className?: string;
+}
