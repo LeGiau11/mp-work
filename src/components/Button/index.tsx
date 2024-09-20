@@ -9,7 +9,7 @@ const Button: FC<ButtonProps> = ({
   children,
   className = "",
   style,
-  type = "submit",
+  type = "button",
   icon,
   disabled = false,
   variant = "text",
@@ -22,6 +22,10 @@ const Button: FC<ButtonProps> = ({
       className={clsx(styles.button, className, {
         [styles.disabled]: disabled,
         [styles.buttonText]: variant === "text",
+        [styles.buttonContainer]: variant === "contained",
+        [styles.buttonOutline]: variant === "outlined",
+        [styles.disabledText]: variant === "text" && disabled,
+        [styles.disabledOutline]: variant === "outlined" && disabled,
       })}
       type={type}
       disabled={disabled}

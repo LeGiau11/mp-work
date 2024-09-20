@@ -1,4 +1,11 @@
 $color-blue: #1967d2;
+$color-blue-dark: #1565c0;
+$border-radius: 4px;
+$color-white: #fff;
+$color-blue-less-light: rgba(25, 118, 210, 0.5);
+$color-blue-outline-bg: rgba(25, 118, 210, 0.04);
+$color-light-black: rgba(0, 0, 0, 0.12);
+$color-light-black-disable: rgba(0, 0, 0, 0.26);
 
 .button {
   display: inline-flex;
@@ -9,18 +16,20 @@ $color-blue: #1967d2;
     border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+  border-radius: $border-radius;
 
-  padding: 6px 8px;
-  min-width: 64px;
+  line-height: 1.6;
+  min-width: $border-radius * 16;
   height: auto;
 
-  font-size: 16px;
+  font-size: $border-radius * 4;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 500;
 }
 
 .buttonText {
   border: none;
-
-  border-radius: 2px;
+  padding: $border-radius + 2 $border-radius * 2;
   background: none;
   color: $color-blue;
 
@@ -29,9 +38,59 @@ $color-blue: #1967d2;
   }
 }
 
+.buttonContainer {
+  background-color: $color-blue;
+  color: $color-white;
+  border: none;
+  padding: $border-radius + 2 $border-radius * 4;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  letter-spacing: 0.45712px;
+
+  &:hover {
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+      0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+    background-color: $color-blue-dark;
+  }
+}
+
+.buttonOutline {
+  padding: $border-radius + 1 $border-radius * 2+1;
+  color: $color-blue;
+  border: 1px solid currentColor;
+  border-color: $color-blue-less-light;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+  &:hover {
+    background-color: $color-blue-outline-bg;
+    border-color: $color-blue;
+  }
+}
+
 .icon {
-  margin-right: 8px;
+  margin-right: $border-radius * 2;
 }
 
 .disabled {
+  background-color: $color-light-black;
+  cursor: default;
+  pointer-events: none;
+  color: $color-light-black-disable;
+  border: none;
+  outline: none;
+  user-select: none;
+  padding: 6px 16px;
+}
+
+.disabledText{
+  background-color: unset;
+}
+
+.disabledOutline{
+  background-color: unset;
+  border: 1px solid currentColor;
+  border-color: $color-light-black-disable;
 }
