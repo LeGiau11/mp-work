@@ -1,0 +1,72 @@
+@use "@/styles/--variable" as variable;
+
+$bg-dropdown: rgba(25, 118, 210, 0.08);
+$bg-dropdown-hover: rgba(25, 118, 210, 0.12);
+$grey: #777;
+$width: 200px;
+
+.container {
+  position: relative;
+  width: $width;
+}
+
+.input {
+  padding: variable.$border-radius * 2 + 2;
+  border: 1px solid #ccc;
+  border-radius: variable.$border-radius;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  padding-right: variable.$border-radius * 2;
+
+  font-size: variable.$font-size;
+}
+
+.dropdown {
+  width: 100%;
+  max-height: 224px;
+
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  border: 1px solid #ccc;
+  border-radius: variable.$border-radius;
+  background: variable.$white;
+  z-index: 10;
+  overflow-y: overlay;
+  overflow-x: hidden;
+}
+
+.rotated {
+  transform: rotate(180deg);
+}
+
+.option {
+  padding: variable.$border-radius * 2 + 2;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $bg-dropdown;
+  }
+}
+
+.selected {
+  background-color: $bg-dropdown-hover;
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+  color: $grey;
+}
+
+.search {
+  margin-bottom: variable.$border-radius;
+}

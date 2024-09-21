@@ -1,11 +1,55 @@
+@use "@/styles/--variable" as variable;
+
 $light-black: rgba(0, 0, 0, 0.23);
+$border-radius: variable.$border-radius;
+$font-size: variable.$font-size;
+$white: variable.$white;
+
+.selectContainer {
+  position: relative;
+  width: 200px;
+
+  &:focus-within ~ .arrow {
+    transform: translateY(-50%) rotate(180deg);
+  }
+}
 
 .select {
   width: 100%;
-  min-width: 100px;
 
   padding: 6px 16px;
   outline: none;
   border: 1px solid $light-black;
-  border-radius: 4px;
+  border-radius: $border-radius;
+  appearance: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: none;
+  background-color: $white;
+
+  font-size: $font-size;
+
+  &:focus {
+    border-color: #3f51b5;
+    box-shadow: 0 $border-radius - 2 $border-radius * 2 rgba(63, 81, 181, 0.2);
+
+    .arrow {
+      transform: translateY(-50%) rotate(180deg);
+    }
+  }
+}
+
+.arrow {
+  content: "▼";
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: $font-size - 4;
+  color: #777;
+  pointer-events: none;
+  transition: transform 0.2s ease;
+}
+
+.arrow.rotated {
+  transform: translateY(-50%) rotate(180deg);
 }

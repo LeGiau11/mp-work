@@ -7,6 +7,7 @@ import Select from "./Select";
 import Option from "./Option";
 import SearchSelect from "./SearchSelect";
 import InputPassword from "./InputPassword";
+import MultipleSelect from "./MultipleSelect";
 
 export {
   Input,
@@ -18,4 +19,5 @@ export {
   Select,
   Option,
   SearchSelect,
+  MultipleSelect,
 };

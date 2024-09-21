@@ -1,6 +1,9 @@
+@use "@/styles/--variable" as variable;
+
 $color-blue: #1967d2;
 $color-blue-dark: #1565c0;
-$border-radius: 4px;
+$border-radius: variable.$border-radius;
+$font-family: variable.$font-family;
 $color-white: #fff;
 $color-blue-less-light: rgba(25, 118, 210, 0.5);
 $color-blue-outline-bg: rgba(25, 118, 210, 0.04);
@@ -23,7 +26,7 @@ $color-light-black-disable: rgba(0, 0, 0, 0.26);
   height: auto;
 
   font-size: $border-radius * 4;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-family: $font-family;
   font-weight: 500;
 }
 
@@ -85,11 +88,11 @@ $color-light-black-disable: rgba(0, 0, 0, 0.26);
   padding: 6px 16px;
 }
 
-.disabledText{
+.disabledText {
   background-color: unset;
 }
 
-.disabledOutline{
+.disabledOutline {
   background-color: unset;
   border: 1px solid currentColor;
   border-color: $color-light-black-disable;

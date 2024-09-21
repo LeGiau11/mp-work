@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { ChangeEvent, FC, useState } from "react";
 import clsx from "clsx";
 
 import { InputProps } from "./interface";
@@ -20,6 +20,9 @@ const Input: FC<InputProps> = ({
   const handleBlur = () => setIsFocus(!isFocus);
   const handleFocus = () => setIsFocus(!isFocus);
 
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) =>
+    onChange(event);
+
   return (
     <span
       className={clsx(className, styles.inputPrefix, {
@@ -32,7 +35,7 @@ const Input: FC<InputProps> = ({
       <input
         type={type}
         id={label ? htmlFor : ""}
-        onChange={onChange}
+        onChange={handleChange}
         value={value}
         placeholder={placeholder}
         onBlur={handleBlur}

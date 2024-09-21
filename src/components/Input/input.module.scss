@@ -1,4 +1,6 @@
-$border-radius: 2px;
+@use "@/styles/--variable" as variable;
+
+$border-radius: variable.$border-radius;
 
 .inputPrefix {
   position: relative;
