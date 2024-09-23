@@ -1,22 +1,13 @@
-import { MultipleSelect } from "@/components";
-import { useEffect, useState } from "react";
-import { Options } from "@/components/MultipleSelect/interface";
+import { SearchSelect } from "@/components";
+import { Option } from "@/common/interface";
 
 export default function Login() {
-  const [data, setData] = useState<string[]>([]);
-  const [options, setOptions] = useState<Options[]>([]);
-
-  const handleChange = (value: string[]) => {
-    setData(value);
-  };
-
-  useEffect(() => {
-    const options: Options[] = [];
-    for (let i = 0; i < 10; i++) {
-      options.push({ value: `option${i + 1}`, label: `Option${i + 1}` });
-    }
-    setOptions(options);
-  }, []);
+  const data: Option[] = [
+    { label: "Good", value: "1" },
+    { label: "Very good", value: "2" },
+    { label: "Excellent", value: "3" },
+    { label: "Bad", value: "4" },
+  ];
 
   return (
     <div
@@ -27,12 +18,7 @@ export default function Login() {
         padding: "10px",
       }}
     >
-      <MultipleSelect
-        options={options}
-        onChange={handleChange}
-        selectedValues={data}
-        searchPlaceHolder="tìm kiếm..."
-      />
+      <SearchSelect value={data[0]} options={data} />
     </div>
   );
 }
