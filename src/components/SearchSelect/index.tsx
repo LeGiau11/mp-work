@@ -68,6 +68,7 @@ const SearchSelect: FC<SearchSelectProps> = ({
       onChange(option);
       setIsDropdownOpen(!isDropdownOpen);
       setSearchItem(option.label);
+      setIsFocus(false);
     };
 
   return (
