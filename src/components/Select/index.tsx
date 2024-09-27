@@ -55,4 +55,4 @@ const Select: FC<SelectProps> = ({
   );
 };
 
-export default Select;
+export { Select };

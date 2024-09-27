@@ -112,4 +112,5 @@ const SearchSelect: FC<SearchSelectProps> = ({
   );
 };
 
-export default SearchSelect;
+export { SearchSelect };
+export type { Option };

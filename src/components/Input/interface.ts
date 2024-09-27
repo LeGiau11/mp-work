@@ -1,4 +1,4 @@
-import { ChangeEvent, CSSProperties } from "react";
+import { ChangeEvent, CSSProperties, HTMLInputTypeAttribute } from "react";
 
 export interface InputProps {
   label?: string;
@@ -7,7 +7,8 @@ export interface InputProps {
   className?: string;
   style?: CSSProperties;
   value?: string;
-  type?: string;
+  type?: HTMLInputTypeAttribute;
   placeholder?: string;
+  inputStyle?: CSSProperties;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }

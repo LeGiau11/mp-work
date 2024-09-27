@@ -13,6 +13,7 @@ const Input: FC<InputProps> = ({
   value = "",
   type = "text",
   placeholder = "",
+  inputStyle,
   onChange = () => {},
 }) => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
@@ -40,6 +41,7 @@ const Input: FC<InputProps> = ({
         placeholder={placeholder}
         onBlur={handleBlur}
         onFocus={handleFocus}
+        style={inputStyle}
       />
     </span>
   );

@@ -1,14 +1,11 @@
 import { WithId, Document } from "mongodb";
 
-import clientPromise from "@/libs/mongodb";
+import { connect, disconnect } from "@/libs/mongodb";
 import { User } from "@/models/User";
 
 export default async function GetUsersService() {
-  const client = await clientPromise;
+  const db = await connect();
   try {
-    const db = client.db("my_work");
-    console.log("Connected to MongoDB successfully");
-
     const usersWithId: WithId<Document>[] = await db
       .collection("users")
       .find()
@@ -29,6 +26,6 @@ export default async function GetUsersService() {
     console.log("ex", ex);
     return { success: false, error: "Unable to fetch user" };
   } finally {
-    client.close();
+    disconnect();
   }
 }

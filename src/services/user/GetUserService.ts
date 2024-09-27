@@ -1,33 +1,40 @@
-import { WithId, Document } from "mongodb";
+import { WithId } from "mongodb";
 
-import clientPromise from "@/libs/mongodb";
+import { connect, disconnect } from "@/libs/mongodb";
 import { User } from "@/models/User";
 
 export default async function GetUserService(field: string, key: string) {
-  const client = await clientPromise;
+  const db = await connect();
+  let user: User = {
+    id: "",
+    username: "",
+    password: "",
+    isActive: false,
+    name: "",
+  };
   try {
     if (!field) throw new Error("Chưa có field. Hãy nhập vào");
 
     if (!key) throw new Error("Chưa có key. Hãy nhập vào");
 
-    const db = client.db("my_work");
-    console.log("Connected to MongoDB successfully");
-
     const query = { [field]: key };
 
-    const data: WithId<Document> | null = await db
-      .collection("users")
-      .findOne(query);
+    const data = await db.collection("users").findOne<WithId<User>>(query);
 
     if (!data) throw new Error("Không tìm thấy User");
 
-    const user: User = {
-      id: data._id.toString(),
-      username: data.username,
-      password: data.password,
-      isActive: data.isActive,
-      name: data.name,
-    };
+    for (const item in data) {
+      if (item === "_id") {
+        user.id = data[item].toString() || "";
+      } else if (item in user) {
+        const key = item as keyof User; // Ensure item is a key of User
+        const value = data[key]; // Get the value from data
+        const obj = {
+          [key]: value,
+        };
+        user = Object.assign(user, obj);
+      }
+    }
 
     return { success: true, data: user };
   } catch (ex) {
@@ -36,8 +43,9 @@ export default async function GetUserService(field: string, key: string) {
     return {
       success: false,
       error: ex instanceof Error ? ex.message : "Unable to fetch user",
+      data: user,
     };
   } finally {
-    client.close();
+    disconnect();
   }
 }

@@ -3,9 +3,9 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Sidebar from "./Sidebar";
 import Button from "./Button";
-import Select from "./Select";
+import { Select } from "./Select";
 import Option from "./Option";
-import SearchSelect from "./SearchSelect";
+import { SearchSelect, Option as OptionType } from "./SearchSelect";
 import InputPassword from "./InputPassword";
 import MultipleSelect from "./MultipleSelect";
 
@@ -21,3 +21,5 @@ export {
   SearchSelect,
   MultipleSelect,
 };
+
+export type { OptionType };

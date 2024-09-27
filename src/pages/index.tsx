@@ -1,20 +1,19 @@
 import Head from "next/head";
-import localFont from "next/font/local";
-import styles from "@/styles/Layout.module.scss";
+// import styles from "@/styles/Layout.module.scss";
 
 // import { Header, Footer, Sidebar } from "@/components";
 import Login from "./Login";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+// const geistSans = localFont({
+//   src: "./fonts/GeistVF.woff",
+//   variable: "--font-geist-sans",
+//   weight: "100 900",
+// });
+// const geistMono = localFont({
+//   src: "./fonts/GeistMonoVF.woff",
+//   variable: "--font-geist-mono",
+//   weight: "100 900",
+// });
 
 export default function Layout() {
   return (
@@ -25,11 +24,11 @@ export default function Layout() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div
-        className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
+      <Login/>
+      {/* <div
+        className={`${styles.page}`}
       >
-        <Login/>
-        {/* <Header />
+        <Header />
         <main className={styles.main}>
           <Sidebar />
           <Login />
@@ -38,8 +37,8 @@ export default function Layout() {
             This is content
           </section>
         </main>
-        <Footer /> */}
-      </div>
+        <Footer />
+      </div> */}
     </>
   );
 }

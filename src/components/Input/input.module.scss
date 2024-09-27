@@ -1,6 +1,7 @@
 @use "@/styles/--variable" as variable;
 
 $border-radius: variable.$border-radius;
+$font-size: variable.$font-size;
 
 .inputPrefix {
   position: relative;
@@ -27,7 +28,9 @@ $border-radius: variable.$border-radius;
     outline: none;
     padding: $border-radius * 3 0;
 
-    font-size: $border-radius * 8;
+    font-size: $font-size;
+
+    width: 100%;
   }
 
   &:hover {

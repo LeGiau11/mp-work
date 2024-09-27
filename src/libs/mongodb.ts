@@ -1,31 +1,31 @@
-import { MongoClient } from "mongodb";
+import { MongoClient, Db } from "mongodb";
 
 const uri: string = process.env.MONGODB_URI!;
 const option = {};
-let client: MongoClient;
-let clientPromise: Promise<MongoClient>;
+let client: MongoClient | null = null;
+let db: Db | null = null;
 
-if (!process.env.MONGODB_URI) {
-  throw new Error("Thêm biến MONGODB_URI trong tệp .env");
-}
+export const connect = async (): Promise<Db> => {
+  if (db) return db;
 
-if (process.env.NODE_ENV === "development") {
-  const globalWithMongoClientPromise = global as typeof globalThis & {
-    _mongoClientPromise: Promise<MongoClient>;
-  };
+  console.log("creating connect...");
 
-  if (!globalWithMongoClientPromise._mongoClientPromise) {
+  if (!client) {
     client = new MongoClient(uri, option);
-    globalWithMongoClientPromise._mongoClientPromise = client.connect();
+    console.log("waiting connect...");
+    await client.connect();
+    console.log("connect successfully!");
   }
 
-  clientPromise = globalWithMongoClientPromise._mongoClientPromise;
-} else {
-  client = new MongoClient(uri);
-  clientPromise = client.connect().catch((error) => {
-    console.error("Failed to connect to MongoDB:", error);
-    throw new Error("MongoDB connection failed");
-  });
-}
+  db = client.db();
+  return db;
+};
 
-export default clientPromise;
+export const disconnect = () => {
+  if (!client) return;
+
+  client.close();
+  console.log("disconnected!");
+  client = null;
+  db = null;
+};
