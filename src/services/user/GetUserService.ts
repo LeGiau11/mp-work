@@ -18,7 +18,7 @@ export default async function GetUserService(field: string, key: string) {
     if (!key) throw new Error("Chưa có key. Hãy nhập vào");
 
     const query = { [field]: key };
-
+    
     const data = await db.collection("users").findOne<WithId<User>>(query);
 
     if (!data) throw new Error("Không tìm thấy User");

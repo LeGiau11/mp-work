@@ -1,41 +1,42 @@
-import { useEffect } from "react";
-// import clsx from "clsx";
+import { useRouter } from "next/router";
+import { useFormik } from "formik";
 
 import { Button, Input, InputPassword } from "@/components";
+import { RequestLogin } from "./interface";
 import styles from "./Login.module.scss";
+import { ResponseData } from "@/common";
 
 export default function Login() {
-  useEffect(() => {
-    fetchUser();
-  }, []);
+  const router = useRouter();
+  const formik = useFormik({
+    initialValues: {
+      username: "",
+      password: "",
+    },
+    onSubmit: (values, { setSubmitting }) => {
+      setSubmitting(false);
+      handlelogIn(values);
+    },
+  });
 
-  const fetchUser = async () => {};
+  const handlelogIn = async (data: RequestLogin) => {
+    const res: ResponseData<string> = await fetch("/api/auth/Login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((res) => res.json());
 
-  // const handleCreateUser = async () => {
-  //   const userData = {
-  //     user_name: "john_doe",
-  //     password: "password123",
-  //   };
-
-  //   const res = await fetch("/api/create", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(userData),
-  //   });
-
-  //   if (res.ok) {
-  //     const data = await res.json();
-  //     console.log("User created successfully:", data);
-  //   } else {
-  //     console.error("Failed to create user:", res.statusText);
-  //   }
-  // };
+    if (res.success) {
+      localStorage.setItem("token", JSON.stringify(res.data));
+      router.push("/");
+    }
+  };
 
   return (
     <section className={styles.container}>
-      <form action="#">
+      <form onSubmit={formik.handleSubmit}>
         <div className={styles.wrapper}>
           <div className={styles.loginTitle}>
             <h1>Login</h1>
@@ -46,13 +47,26 @@ export default function Login() {
               placeholder="Enter Username"
               className={styles.username}
               type="text"
+              name="username"
+              value={formik.values.username}
+              onChange={formik.handleChange}
             />
-            <InputPassword className={styles.password} placeholder="Enter Password" />
+            <InputPassword
+              className={styles.password}
+              placeholder="Enter Password"
+              name="password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+            />
             <Button variant="text" type="button">
               Having trouble in sign in?
             </Button>
           </div>
-          <Button variant="contained" type="submit">
+          <Button
+            disabled={formik.isSubmitting}
+            variant="contained"
+            type="submit"
+          >
             Sign in
           </Button>
           <span>Or sign in width</span>

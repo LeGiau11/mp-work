@@ -6,4 +6,6 @@ export interface InputPassWordProps {
   styles?: CSSProperties;
   placeholder?: string;
   className?: string;
+  name?: string;
+  id?: string;
 }

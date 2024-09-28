@@ -33,10 +33,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         username
       );
 
-      if (!data.success)
-        return res
-          .status(401)
-          .json({ message: "Invalid username or password" });
+      if (!data.success) return res.status(401).json({ message: data.error });
 
       const user: User = data.data;
 
@@ -51,7 +48,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         expiresIn: EXPIRE,
       });
 
-      return res.status(200).json({ token });
+      const result: ResponseData<string> = {
+        success: true,
+        data: token,
+      };
+
+      return res.status(200).json(result);
     } catch (ex) {
       console.log("Error->message:", ex);
       return res.status(500).json({

@@ -10,6 +10,7 @@ const Input: FC<InputProps> = ({
   className = "",
   prefix,
   style,
+  name = "inputText",
   value = "",
   type = "text",
   placeholder = "",
@@ -37,6 +38,7 @@ const Input: FC<InputProps> = ({
         type={type}
         id={label ? htmlFor : ""}
         onChange={handleChange}
+        name={name}
         value={value}
         placeholder={placeholder}
         onBlur={handleBlur}

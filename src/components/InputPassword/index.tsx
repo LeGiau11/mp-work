@@ -9,6 +9,8 @@ const InputPassword: FC<InputPassWordProps> = ({
   value = "",
   placeholder = "",
   className = "",
+  name = "inputPassword",
+  id = "",
   onChange = () => {},
 }) => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -26,6 +28,8 @@ const InputPassword: FC<InputPassWordProps> = ({
         })}
       >
         <input
+          id={id}
+          name={name}
           value={value}
           onChange={onChange}
           placeholder={placeholder}
@@ -38,7 +42,7 @@ const InputPassword: FC<InputPassWordProps> = ({
           id="togglePassword"
           className={styles.toggleIcon}
         >
-          {showPassword ? <EyeSlash /> : <Eye />}
+          {showPassword ? <Eye /> : <EyeSlash />}
         </span>
       </span>
     </>
