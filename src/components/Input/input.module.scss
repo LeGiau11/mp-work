@@ -2,13 +2,18 @@
 
 $border-radius: variable.$border-radius;
 $font-size: variable.$font-size;
+$padding: variable.$padding;
+$border-color: variable.$border-color;
+$border-color-hover: variable.$primary-color-first;
+$border-color-shadow: variable.$primary-color-first-disabled;
+
 
 .inputPrefix {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #ddd;
+  border: 1px solid $border-color;
   border-radius: $border-radius;
   padding: $border-radius + 1 $border-radius * 2;
   transition: all 0.3s;
@@ -34,20 +39,20 @@ $font-size: variable.$font-size;
   }
 
   &:hover {
-    border-color: #40a9ff;
+    border-color: $border-color-hover;
   }
 
   &:focus {
-    border-color: #40a9ff;
-    box-shadow: 0 0 0 2px #cce7ff;
+    border-color: $border-color-hover;
+    box-shadow: 0 0 0 2px $border-color-shadow;
     outline: 0;
     z-index: 1;
   }
 }
 
 .inputPrefixFocus {
-  border-color: #40a9ff;
-  box-shadow: 0 0 0 2px #cce7ff;
+  border-color: $border-color-hover;
+  box-shadow: 0 0 0 2px $border-color-shadow;
   outline: 0;
   z-index: 1;
 }
