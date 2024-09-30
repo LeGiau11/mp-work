@@ -3,12 +3,13 @@
 $primary-color: variable.$primary-color-first;
 $primary-color-hover: variable.$primary-color-first-hover;
 $border-radius: variable.$border-radius;
+$font-size: variable.$font-size;
 $font-family: variable.$font-family;
 $line-height: variable.$line-height;
 $border-color-outline-btn: variable.$border-color;
 $bg-color-outline-btn: variable.$white;
 $background-color: variable.$primary-color-first-disabled;
-$txt-color-disable: variable.$txt-btn-default;
+$txt-btn-default: variable.$txt-btn-default;
 $color-button-container: variable.$primary-color-second;
 $txt-color-outline-btn: variable.$txt-btn-disabled;
 $border-color-outline-btn-disabled: variable.$border-color-disabled;
@@ -18,7 +19,9 @@ $gap: variable.$gap;
 $bg-danger-btn: variable.$button-danger;
 $bg-danger-btn-hover: variable.$btn-hover-danger;
 $bg-danger-btn-disabled: variable.$btn-disabled-danger;
-$txt-daner-btn-disabled:variable.$white-disabled;
+$txt-daner-btn-disabled: variable.$white-disabled;
+$box-shadow: 2px;
+$min-width:64px;
 
 .button {
   outline: none;
@@ -31,23 +34,22 @@ $txt-daner-btn-disabled:variable.$white-disabled;
     border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  border-radius: ($border-radius * 2)+1;
+  border-radius: $border-radius;
   padding: $padding $padding * 2;
 
   line-height: $line-height;
-  min-width: $border-radius * 16;
+  min-width: $min-width;
   height: auto;
 
-  font-size: $border-radius * 4;
+  font-size: $font-size;
   font-family: $font-family;
   font-weight: 700;
 }
 
 .buttonText {
   border: none;
-  padding: $border-radius + 2 $border-radius * 2;
   background: none;
-  color: $txt-color-disable;
+  color: $txt-btn-default;
 
   &:hover {
     color: $primary-color;
@@ -58,8 +60,8 @@ $txt-daner-btn-disabled:variable.$white-disabled;
   background-color: $primary-color;
   color: $color-button-container;
   border: none;
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
-    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px $box-shadow + 1 $box-shadow - 1 $box-shadow - 4 rgba(0, 0, 0, 0.2),
+    0px $box-shadow $box-shadow 0px rgba(0, 0, 0, 0.14), 0px $box-shadow - 1 ((2 * $box-shadow) + 1) 0px rgba(0, 0, 0, 0.12);
   letter-spacing: 0.45712px;
 
   &:hover {
@@ -70,7 +72,7 @@ $txt-daner-btn-disabled:variable.$white-disabled;
 }
 
 .buttonOutline {
-  color: $txt-color-outline-btn;
+  color: $txt-btn-default;
   border: 1px solid $txt-color-outline-btn;
   background-color: $bg-color-outline-btn;
   border-color: $border-color-outline-btn;
@@ -97,14 +99,14 @@ $txt-daner-btn-disabled:variable.$white-disabled;
 }
 
 .icon {
-  margin-right: $border-radius * 2;
+  line-height: $padding - 1;
 }
 
 .disabled {
   background-color: $background-color;
   cursor: default;
   pointer-events: none;
-  color: $txt-color-disable;
+  color: $txt-btn-default;
   border: none;
   outline: none;
   user-select: none;
@@ -113,6 +115,7 @@ $txt-daner-btn-disabled:variable.$white-disabled;
 
 .disabledText {
   background-color: unset;
+  color: $txt-outline-btn-disabled;
 }
 
 .disabledOutline {
@@ -121,7 +124,7 @@ $txt-daner-btn-disabled:variable.$white-disabled;
   color: $txt-outline-btn-disabled;
 }
 
-.disabledDanger{
+.disabledDanger {
   background-color: $bg-danger-btn-disabled;
   color: $txt-daner-btn-disabled;
 }
