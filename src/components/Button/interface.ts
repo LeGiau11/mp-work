@@ -8,6 +8,6 @@ export interface ButtonProps {
   style?: CSSProperties;
   type?: "button" | "reset" | "submit";
   disabled?: boolean;
-  variant?: "text" | "contained" | "outlined";
+  variant?: "text" | "contained" | "outlined" | "danger";
   onClick?: () => void;
 }

@@ -24,8 +24,10 @@ const Button: FC<ButtonProps> = ({
         [styles.buttonText]: variant === "text",
         [styles.buttonContainer]: variant === "contained",
         [styles.buttonOutline]: variant === "outlined",
+        [styles.buttonDanger]: variant === "danger",
         [styles.disabledText]: variant === "text" && disabled,
         [styles.disabledOutline]: variant === "outlined" && disabled,
+        [styles.disabledDanger]: variant === "danger" && disabled,
       })}
       type={type}
       disabled={disabled}

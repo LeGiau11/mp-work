@@ -6,17 +6,6 @@ import styles from "@/styles/Layout.module.scss";
 import { Button, Input } from "@/components";
 import Login from "./login";
 
-// const geistSans = localFont({
-//   src: "./fonts/GeistVF.woff",
-//   variable: "--font-geist-sans",
-//   weight: "100 900",
-// });
-// const geistMono = localFont({
-//   src: "./fonts/GeistMonoVF.woff",
-//   variable: "--font-geist-mono",
-//   weight: "100 900",
-// });
-
 export default function Layout() {
   const [token, setToken] = useState<string | null>("");
   const router = useRouter();
@@ -57,8 +46,8 @@ export default function Layout() {
       </Head>
       {!token ? <Login /> : null}
       {token ? (
-        <div className={`${styles.page}`}>
-          <Button variant="contained" type="button" onClick={handleClick}>
+        <div className={`${styles.page}`}>ß
+          <Button  variant="danger" type="button" onClick={handleClick}>
             Logout
           </Button>
           <br/>
