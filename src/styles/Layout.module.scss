@@ -1,19 +1,18 @@
+@use "@/styles/--variable" as variable;
+
+$font-family: variable.$font-family;
+$padding: variable.$padding;
+$screen-height: variable.$screen-height;
+
 .page {
-  --gray-rgb: 0, 0, 0;
-  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
-  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-
   display: grid;
   grid-template-rows: 80px 1fr 40px;
   align-items: center;
   justify-items: center;
-  min-height: 100svh;
-  padding: 8px;
+  min-height: $screen-height;
+  padding: $padding;
   row-gap: 0;
-  font-family: var(--font-geist-sans);
+  font-family: $font-family;
 }
 
 .main {
