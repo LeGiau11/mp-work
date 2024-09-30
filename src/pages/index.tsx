@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import styles from "@/styles/Layout.module.scss";
 
-import { Button } from "@/components";
+import { Button, Input } from "@/components";
 import Login from "./login";
 
 // const geistSans = localFont({
@@ -61,7 +61,9 @@ export default function Layout() {
           <Button variant="contained" type="button" onClick={handleClick}>
             Logout
           </Button>
-          {/* <Header />
+          <br/>
+          <Input/>
+          {/* <Header /> 
         <main className={styles.main}>
           <Sidebar />
           <section className={styles.content}>
