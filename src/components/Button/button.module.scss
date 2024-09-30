@@ -18,7 +18,7 @@ $gap: variable.$gap;
 $bg-danger-btn: variable.$button-danger;
 $bg-danger-btn-hover: variable.$btn-hover-danger;
 $bg-danger-btn-disabled: variable.$btn-disabled-danger;
-$txt-daner-btn-disabled: variable.$white-disabled;
+$txt-daner-btn-disabled:variable.$white-disabled;
 
 .button {
   outline: none;
@@ -97,7 +97,7 @@ $txt-daner-btn-disabled: variable.$white-disabled;
 }
 
 .icon {
-  line-height: $padding-1;
+  margin-right: $border-radius * 2;
 }
 
 .disabled {
@@ -121,7 +121,7 @@ $txt-daner-btn-disabled: variable.$white-disabled;
   color: $txt-outline-btn-disabled;
 }
 
-.disabledDanger {
+.disabledDanger{
   background-color: $bg-danger-btn-disabled;
   color: $txt-daner-btn-disabled;
 }
