@@ -1,13 +1,14 @@
 import Input from "./Input";
 import Header from "./Header";
 import Footer from "./Footer";
-import Sidebar from "./Sidebar";
 import Button from "./Button";
-import { Select } from "./Select";
 import Option from "./Option";
-import { SearchSelect, Option as OptionType } from "./SearchSelect";
+import Sidebar from "./Sidebar";
+import { Select } from "./Select";
+import { Loading1, Loading } from "./Loading";
 import InputPassword from "./InputPassword";
 import MultipleSelect from "./MultipleSelect";
+import { SearchSelect, Option as OptionType } from "./SearchSelect";
 
 export {
   Input,
@@ -20,6 +21,8 @@ export {
   Option,
   SearchSelect,
   MultipleSelect,
+  Loading1,
+  Loading,
 };
 
 export type { OptionType };
