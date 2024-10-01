@@ -49,7 +49,7 @@ $border-color-focus: variable.$primary-color-first-disabled;
 }
 
 .inputPrefixFocus {
-  border-color: #40a9ff;
+  border-color: $border-color-hover;
   box-shadow: 0 0 0 2px $border-color-focus;
   outline: 0;
   z-index: 1;

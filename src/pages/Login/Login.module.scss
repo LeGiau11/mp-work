@@ -2,17 +2,22 @@
 
 $font-family: variable.$font-family;
 $font-size: variable.$font-size;
+$bg-login-color: variable.$bg-login-color;
 
 .container {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 100vh;
 
-  background-image: url("../../../public/login_image.png");
-  background: left / contain url("../../../public/login_image.png") no-repeat;
-  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: $bg-login-color;
+  position: relative;
+
+  // background-image: url("../../../public/login_image.png");
+  // background: left / contain url("../../../public/login_image.png") no-repeat;
+  // background-size: cover;
 }
 .wrapper {
   width: 470px;
@@ -68,4 +73,43 @@ $font-size: variable.$font-size;
 
 .password {
   padding: 0px 8px;
+}
+
+.logo {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 20px 80px;
+}
+
+.logoRight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 20px;
+}
+
+.image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  left: -20px;
+}
+
+.social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }

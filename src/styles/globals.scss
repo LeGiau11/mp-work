@@ -5,6 +5,7 @@ html,
 body {
   max-width: variable.$screen-width;
   overflow-x: hidden;
+  box-sizing: border-box;
 
   font-size: variable.$font-size;
   font-family: variable.$font-family;
