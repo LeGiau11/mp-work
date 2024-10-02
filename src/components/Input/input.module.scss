@@ -5,6 +5,7 @@ $font-size: variable.$font-size;
 $border-color: variable.$border-color;
 $border-color-hover: variable.$primary-color-first;
 $border-color-focus: variable.$primary-color-first-disabled;
+$padding: variable.$padding;
 
 .inputPrefix {
   position: relative;
@@ -29,7 +30,7 @@ $border-color-focus: variable.$primary-color-first-disabled;
   input {
     border: none;
     outline: none;
-    padding: $border-radius * 3 0;
+    padding: $padding + 3 $padding + 15;
 
     font-size: $font-size;
 
@@ -49,7 +50,7 @@ $border-color-focus: variable.$primary-color-first-disabled;
 }
 
 .inputPrefixFocus {
-  border-color: #40a9ff;
+  border-color: $border-color-hover;
   box-shadow: 0 0 0 2px $border-color-focus;
   outline: 0;
   z-index: 1;

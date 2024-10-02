@@ -42,17 +42,17 @@ export default function Layout() {
     router.push("/login");
   };
 
-  if (loading) return <Loading/>;
+  if (loading) return <Loading />;
 
   return (
     <>
       <Head>
         <title>Home Page - My Next.js App</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="Welcome to my awesome Next.js app!" />
       </Head>
       {!token ? <Login /> : null}
       {token ? (
-        
         <div className={styles.page}>
           <Button variant="outlined" type="button" onClick={handleClick}>
             Logout

@@ -44,12 +44,20 @@ $min-width:64px;
   font-size: $font-size;
   font-family: $font-family;
   font-weight: 700;
+
+  &:hover{
+    span {
+      color: $primary-color;
+    }
+  }
 }
 
 .buttonText {
   border: none;
   background: none;
   color: $txt-btn-default;
+  padding: 0;
+  min-width: 0;
 
   &:hover {
     color: $primary-color;

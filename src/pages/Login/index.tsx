@@ -1,10 +1,12 @@
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
+import Image from "next/image";
 
 import { Button, Input, InputPassword } from "@/components";
 import { RequestLogin } from "./interface";
 import styles from "./Login.module.scss";
 import { ResponseData } from "@/common";
+import { Apple, Facebook, Google, Language } from "@/svg";
 
 export default function Login() {
   const router = useRouter();
@@ -36,30 +38,71 @@ export default function Login() {
 
   return (
     <section className={styles.container}>
-      <form onSubmit={formik.handleSubmit}>
-        <div className={styles.wrapper}>
+      <div className={styles.logo}>
+        <div className="left">
+          <Image
+            width={140}
+            height={40}
+            src="/images/logo.png"
+            alt="logo.png"
+          />
+        </div>
+        <div className={styles.logoRight}>
+          <Button variant="text" type="button" icon={<Language />} />
+          <Button variant="text" type="button">
+            Sign up
+          </Button>
+          <Button variant="contained" type="button">
+            Request Demo
+          </Button>
+        </div>
+      </div>
+      <div className={styles.image}>
+        <Image
+          width={1255}
+          height={500}
+          src="/images/login.png"
+          alt="login.png"
+        />
+      </div>
+      <div className={styles.content}>
+        <form onSubmit={formik.handleSubmit}>
           <div className={styles.loginTitle}>
-            <h1>Login</h1>
+            <h1>Welcome back!</h1>
             <p>Hey, Enter your detail to get sign in to your account</p>
           </div>
           <div className={styles.loginInput}>
-            <Input
-              placeholder="Enter Username"
-              className={styles.username}
-              type="text"
-              name="username"
-              value={formik.values.username}
-              onChange={formik.handleChange}
-            />
-            <InputPassword
-              className={styles.password}
-              placeholder="Enter Password"
-              name="password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-            />
-            <Button variant="text" type="button">
-              Having trouble in sign in?
+            <div>
+              <Input
+                placeholder="Enter Username"
+                className={styles.username}
+                type="text"
+                name="username"
+                value={formik.values.username}
+                onChange={formik.handleChange}
+              />
+              <span className={styles.errorMessage}>
+                Tên người dùng không được để trống.
+              </span>
+            </div>
+            <div>
+              <InputPassword
+                className={styles.password}
+                placeholder="Enter Password"
+                name="password"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+              />
+              <span className={styles.errorMessage}>
+                Tên người dùng không được để trống.
+              </span>
+            </div>
+            <Button
+              className={styles.forgotPassword}
+              variant="text"
+              type="button"
+            >
+              Forgot password?
             </Button>
           </div>
           <Button
@@ -69,20 +112,28 @@ export default function Login() {
           >
             Sign in
           </Button>
-          <span>Or sign in width</span>
-          <div className="referenceSocial">
-            <Button type="button">Google</Button>
-            <Button type="button">Apple ID</Button>
-            <Button type="button">Facebook</Button>
-          </div>
-          <div>
-            Don&apos;t have an account?
-            <Button variant="text" type="button">
-              <strong>Request Now</strong>
+          <span className={styles.signInWith}>Or sign in with</span>
+          <div className={styles.social}>
+            <Button variant="outlined" icon={<Google />} type="button">
+              Google
+            </Button>
+
+            <Button variant="outlined" icon={<Apple />} type="button">
+              Apple
+            </Button>
+
+            <Button variant="outlined" icon={<Facebook />} type="button">
+              Facebook
             </Button>
           </div>
-        </div>
-      </form>
+          <div className={styles.haveAnAccount}>
+            Don&apos;t have an account?
+            <Button variant="text" type="button">
+              Request Now
+            </Button>
+          </div>
+        </form>
+      </div>
     </section>
   );
 }
