@@ -41,8 +41,8 @@ export default function Login() {
       <div className={styles.logo}>
         <div className="left">
           <Image
-            width={220}
-            height={48}
+            width={140}
+            height={40}
             src="/images/logo.png"
             alt="logo.png"
           />
@@ -59,7 +59,7 @@ export default function Login() {
       </div>
       <div className={styles.image}>
         <Image
-          width={1200}
+          width={1255}
           height={500}
           src="/images/login.png"
           alt="login.png"
@@ -67,12 +67,12 @@ export default function Login() {
       </div>
       <div className={styles.content}>
         <form onSubmit={formik.handleSubmit}>
-          <div className={styles.wrapper}>
-            <div className={styles.loginTitle}>
-              <h1>Welcome back!</h1>
-              <p>Hey, Enter your detail to get sign in to your account</p>
-            </div>
-            <div className={styles.loginInput}>
+          <div className={styles.loginTitle}>
+            <h1>Welcome back!</h1>
+            <p>Hey, Enter your detail to get sign in to your account</p>
+          </div>
+          <div className={styles.loginInput}>
+            <div>
               <Input
                 placeholder="Enter Username"
                 className={styles.username}
@@ -81,6 +81,11 @@ export default function Login() {
                 value={formik.values.username}
                 onChange={formik.handleChange}
               />
+              <span className={styles.errorMessage}>
+                Tên người dùng không được để trống.
+              </span>
+            </div>
+            <div>
               <InputPassword
                 className={styles.password}
                 placeholder="Enter Password"
@@ -88,37 +93,44 @@ export default function Login() {
                 value={formik.values.password}
                 onChange={formik.handleChange}
               />
-              <Button variant="text" type="button">
-                Having trouble in sign in?
-              </Button>
+              <span className={styles.errorMessage}>
+                Tên người dùng không được để trống.
+              </span>
             </div>
             <Button
-              disabled={formik.isSubmitting}
-              variant="contained"
-              type="submit"
+              className={styles.forgotPassword}
+              variant="text"
+              type="button"
             >
-              Sign in
+              Forgot password?
             </Button>
-            <span>Or sign in width</span>
-            <div className={styles.social}>
-              <Button variant="outlined" icon={<Google />} type="button">
-                Google
-              </Button>
+          </div>
+          <Button
+            disabled={formik.isSubmitting}
+            variant="contained"
+            type="submit"
+          >
+            Sign in
+          </Button>
+          <span className={styles.signInWith}>Or sign in with</span>
+          <div className={styles.social}>
+            <Button variant="outlined" icon={<Google />} type="button">
+              Google
+            </Button>
 
-              <Button variant="outlined" icon={<Apple />} type="button">
-                Apple
-              </Button>
+            <Button variant="outlined" icon={<Apple />} type="button">
+              Apple
+            </Button>
 
-              <Button variant="outlined" icon={<Facebook />} type="button">
-                Facebook
-              </Button>
-            </div>
-            <div>
-              Don&apos;t have an account?
-              <Button variant="text" type="button">
-                <strong>Request Now</strong>
-              </Button>
-            </div>
+            <Button variant="outlined" icon={<Facebook />} type="button">
+              Facebook
+            </Button>
+          </div>
+          <div className={styles.haveAnAccount}>
+            Don&apos;t have an account?
+            <Button variant="text" type="button">
+              Request Now
+            </Button>
           </div>
         </form>
       </div>

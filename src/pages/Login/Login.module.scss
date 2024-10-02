@@ -3,10 +3,19 @@
 $font-family: variable.$font-family;
 $font-size: variable.$font-size;
 $bg-login-color: variable.$bg-login-color;
+$white: variable.$white;
+$padding: variable.$padding;
+$gap: variable.$gap;
+$ms-error-color: variable.$ms-error-color;
+$md-font-size: variable.$md-font-size;
+$font-weight: 400;
+$width: 15px;
+$local-color: rgba(0, 0, 0, 0.65);
 
 .container {
   width: 100%;
   height: 100vh;
+  max-height: 100vh;
 
   display: flex;
   flex-direction: column;
@@ -14,23 +23,6 @@ $bg-login-color: variable.$bg-login-color;
 
   background-color: $bg-login-color;
   position: relative;
-
-  // background-image: url("../../../public/login_image.png");
-  // background: left / contain url("../../../public/login_image.png") no-repeat;
-  // background-size: cover;
-}
-.wrapper {
-  width: 470px;
-  height: auto;
-
-  padding: 30px 45px;
-
-  background-color: white;
-  border-radius: 16px;
-
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
 }
 
 .loginTitle {
@@ -38,19 +30,19 @@ $bg-login-color: variable.$bg-login-color;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: $gap;
 
   h1 {
-    font-size: 24px;
+    font-size: $font-size + 8;
     font-family: $font-family;
   }
 
   p {
     font-family: $font-family;
-    font-size: 18px;
+    font-size: $font-size + 2;
 
     text-align: center;
-    font-weight: 400;
+    font-weight: $font-weight;
     padding: 0px 15%;
     color: rgba(0, 0, 0, 0.75);
   }
@@ -59,12 +51,12 @@ $bg-login-color: variable.$bg-login-color;
 .loginInput {
   display: flex;
   flex-direction: column;
-  align-items: baseline;
-  gap: 12px;
+  align-items: flex-end;
+  gap: $gap;
 }
 
 .username {
-  padding: 0px 12px;
+  padding: 0;
 
   input {
     font-size: $font-size;
@@ -72,7 +64,8 @@ $bg-login-color: variable.$bg-login-color;
 }
 
 .password {
-  padding: 0px 8px;
+  padding: 0;
+  padding-right: $padding - 1;
 }
 
 .logo {
@@ -82,7 +75,7 @@ $bg-login-color: variable.$bg-login-color;
   align-items: center;
   justify-content: space-between;
 
-  padding: 20px 80px;
+  padding: 15px 70px;
 }
 
 .logoRight {
@@ -90,7 +83,13 @@ $bg-login-color: variable.$bg-login-color;
   align-items: center;
   justify-content: center;
 
-  gap: 20px;
+  gap: $gap * 2;
+}
+
+.forgotPassword {
+  font-weight: $font-weight;
+  font-style: italic;
+  font-size: $md-font-size;
 }
 
 .image {
@@ -105,11 +104,81 @@ $bg-login-color: variable.$bg-login-color;
   position: relative;
   z-index: 2;
   left: -20px;
+
+  overflow: hidden;
+  background-color: $white;
+  padding: 25px 50px;
+  border-radius: 38px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $gap;
+
+  max-width: 450px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
+
+  form {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: $gap + 5;
+  }
+}
+
+.signInWith {
+  text-align: center;
+  position: relative;
+
+  &::before {
+    display: inline-block;
+
+    content: "";
+    border: 1px solid $local-color;
+    position: absolute;
+    top: 50%;
+    left: 27%;
+    transform: rotate(180deg);
+
+    width: $width;
+  }
+
+  &::after {
+    display: inline-block;
+
+    content: "";
+    border: 1px solid $local-color;
+    position: absolute;
+    top: 50%;
+    right: 27%;
+    transform: rotate(180deg);
+
+    width: $width;
+  }
 }
 
 .social {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: $gap;
+}
+
+.haveAnAccount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $gap - 6;
+
+  font-size: $md-font-size + 1;
+}
+
+.errorMessage {
+  color: $ms-error-color;
+
+  font-size: $md-font-size;
 }
