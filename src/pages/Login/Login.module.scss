@@ -20,9 +20,20 @@ $local-color: rgba(0, 0, 0, 0.65);
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 30px;
+  padding: 30px;
 
   background-color: $bg-login-color;
+
   position: relative;
+}
+
+.logo {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .loginTitle {
@@ -68,16 +79,6 @@ $local-color: rgba(0, 0, 0, 0.65);
   padding-right: $padding - 1;
 }
 
-.logo {
-  width: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 15px 70px;
-}
-
 .logoRight {
   display: flex;
   align-items: center;
@@ -93,11 +94,28 @@ $local-color: rgba(0, 0, 0, 0.65);
 }
 
 .image {
+  width: 100%;
+
   position: absolute;
   top: 50%;
   left: 50%;
   z-index: 1;
   transform: translate(-50%, -50%);
+
+  img {
+    width: 100%;
+  }
+}
+
+.wrapper {
+  width: 100%;
+  height: calc(100vh - 139px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
 }
 
 .content {
