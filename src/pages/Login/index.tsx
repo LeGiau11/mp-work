@@ -70,7 +70,7 @@ export default function Login() {
           <form onSubmit={formik.handleSubmit}>
             <div className={styles.loginTitle}>
               <h1>Welcome back!</h1>
-              <p>Hey, Enter your detail to get sign in to your account</p>
+              <p>Please enter your details </p>
             </div>
             <div className={styles.loginInput}>
               <div>
@@ -115,17 +115,23 @@ export default function Login() {
             </Button>
             <span className={styles.signInWith}>Or sign in with</span>
             <div className={styles.social}>
-              <Button variant="outlined" icon={<Google />} type="button">
-                Google
-              </Button>
+              <Button
+                variant="outlined"
+                icon={<Google />}
+                type="button"
+              ></Button>
 
-              <Button variant="outlined" icon={<Apple />} type="button">
-                Apple
-              </Button>
+              <Button
+                variant="outlined"
+                icon={<Apple />}
+                type="button"
+              ></Button>
 
-              <Button variant="outlined" icon={<Facebook />} type="button">
-                Facebook
-              </Button>
+              <Button
+                variant="outlined"
+                icon={<Facebook />}
+                type="button"
+              ></Button>
             </div>
             <div className={styles.haveAnAccount}>
               Don&apos;t have an account?

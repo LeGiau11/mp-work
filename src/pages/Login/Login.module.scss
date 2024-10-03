@@ -20,8 +20,8 @@ $local-color: rgba(0, 0, 0, 0.65);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
-  padding: 30px;
+  gap: 20px;
+  padding: 20px;
 
   background-color: $bg-login-color;
 
@@ -36,12 +36,53 @@ $local-color: rgba(0, 0, 0, 0.65);
   justify-content: space-between;
 }
 
+.wrapper {
+  width: 100%;
+  height: calc(100vh - 119px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+
+  overflow: hidden;
+  background-color: $white;
+  padding: 30px 20px;
+  border-radius: 38px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $gap;
+
+  max-width: 400px;
+  height: 100%;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
+
+  form {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: $gap + 5;
+  }
+}
+
 .loginTitle {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: $gap;
+  gap: $gap - 5;
 
   h1 {
     font-size: $font-size + 8;
@@ -95,6 +136,7 @@ $local-color: rgba(0, 0, 0, 0.65);
 
 .image {
   width: 100%;
+  height: inherit;
 
   position: absolute;
   top: 50%;
@@ -104,47 +146,7 @@ $local-color: rgba(0, 0, 0, 0.65);
 
   img {
     width: 100%;
-  }
-}
-
-.wrapper {
-  width: 100%;
-  height: calc(100vh - 139px);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  position: relative;
-}
-
-.content {
-  position: relative;
-  z-index: 2;
-  left: -20px;
-
-  overflow: hidden;
-  background-color: $white;
-  padding: 25px 50px;
-  border-radius: 38px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: $gap;
-
-  max-width: 450px;
-
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
-
-  form {
-    width: 100%;
     height: 100%;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: $gap + 5;
   }
 }
 
