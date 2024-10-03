@@ -38,7 +38,7 @@ $local-color: rgba(0, 0, 0, 0.65);
 
 .wrapper {
   width: 100%;
-  height: calc(100vh - 119px);
+  height: calc(100vh - 109px);
 
   display: flex;
   align-items: center;
@@ -107,19 +107,6 @@ $local-color: rgba(0, 0, 0, 0.65);
   gap: $gap;
 }
 
-.username {
-  padding: 0;
-
-  input {
-    font-size: $font-size;
-  }
-}
-
-.password {
-  padding: 0;
-  padding-right: $padding - 1;
-}
-
 .logoRight {
   display: flex;
   align-items: center;
@@ -130,7 +117,6 @@ $local-color: rgba(0, 0, 0, 0.65);
 
 .forgotPassword {
   font-weight: $font-weight;
-  font-style: italic;
   font-size: $md-font-size;
 }
 
