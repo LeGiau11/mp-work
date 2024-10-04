@@ -2,137 +2,158 @@
 
 $font-family: variable.$font-family;
 $font-size: variable.$font-size;
+$sm-font-size: variable.$sm-font-size;
 $bg-login-color: variable.$bg-login-color;
 $white: variable.$white;
 $padding: variable.$padding;
 $gap: variable.$gap;
 $ms-error-color: variable.$ms-error-color;
 $md-font-size: variable.$md-font-size;
-$font-weight: 400;
+$font-weight-400: 400;
+$font-weight-700: 700;
 $width: 15px;
 $local-color: rgba(0, 0, 0, 0.65);
+$primary-color-second: variable.$primary-color-second;
+$screen-width: variable.$screen-width;
+$screen-height: variable.$screen-height;
+$padding-local: 10px;
 
 .container {
+  box-sizing: border-box;
+
+  padding: $padding-local * 3;
+
+  display: flex;
+
+  width: $screen-width;
+  height: $screen-height;
+}
+
+.left {
   width: 100%;
-  height: 100vh;
-  max-height: 100vh;
+  height: 100%;
 
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  padding: 20px;
+  flex: 0 1 auto;
+  gap: $gap * 4;
 
-  background-color: $bg-login-color;
-
-  position: relative;
+  box-sizing: border-box;
 }
 
-.logo {
+.loginForm {
   width: 100%;
+  height: 100%;
 
   display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  gap: $gap * 3;
+
+  form {
+    height: 100%;
+  }
+}
+
+.title {
+  display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  flex-direction: column;
+  gap: $gap / 2;
+
+  padding: $padding-local $padding-local / 2;
+
+  h1,
+  h3 {
+    font-family: $font-family;
+    line-height: normal;
+  }
+
+  h1 {
+    font-size: 34px;
+    font-weight: $font-weight-700;
+
+    color: $primary-color-second;
+  }
+
+  h3 {
+    font-size: 22px;
+    font-weight: $font-weight-400;
+
+    color: $primary-color-second;
+  }
 }
 
 .wrapper {
-  width: 100%;
-  height: calc(100vh - 109px);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  position: relative;
-}
-
-.content {
-  position: relative;
-  z-index: 2;
-
-  overflow: hidden;
-  background-color: $white;
-  padding: 30px 20px;
-  border-radius: 38px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: $gap;
-
-  max-width: 400px;
   height: 100%;
 
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
-
-  form {
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: $gap + 5;
-  }
-}
-
-.loginTitle {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: $gap - 5;
-
-  h1 {
-    font-size: $font-size + 8;
-    font-family: $font-family;
-  }
-
-  p {
-    font-family: $font-family;
-    font-size: $font-size + 2;
-
-    text-align: center;
-    font-weight: $font-weight;
-    padding: 0px 15%;
-    color: rgba(0, 0, 0, 0.75);
-  }
-}
-
-.loginInput {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: $gap;
-}
-
-.logoRight {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   gap: $gap * 2;
+
+  padding: 0 137px;
+
+  box-sizing: border-box;
 }
 
-.forgotPassword {
-  font-weight: $font-weight;
-  font-size: $md-font-size;
-}
+.inputs {
+  box-sizing: border-box;
 
-.image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: $gap / 2;
+
   width: 100%;
-  height: inherit;
+}
 
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 1;
-  transform: translate(-50%, -50%);
+.wrapperInput {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: $gap - 7;
 
-  img {
+  label {
+    font-size: $font-size;
+    font-family: $font-family;
+    font-weight: $font-weight-700;
+
+    color: $primary-color-second;
+  }
+}
+
+.errorMessage {
+  font-size: $sm-font-size;
+  font-weight: $font-weight-400;
+
+  color: $ms-error-color;
+}
+
+.rememberMe {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: $gap / 2;
+
+  width: 100%;
+
+  button {
+    font-size: $md-font-size;
+    font-family: $font-family;
+    font-weight: $font-weight-400;
+  }
+}
+
+.submit {
+  width: 100%;
+
+  display: flex;
+
+  button {
     width: 100%;
-    height: 100%;
   }
 }
 
@@ -147,7 +168,7 @@ $local-color: rgba(0, 0, 0, 0.65);
     border: 1px solid $local-color;
     position: absolute;
     top: 50%;
-    left: 27%;
+    left: -25%;
     transform: rotate(180deg);
 
     width: $width;
@@ -160,7 +181,7 @@ $local-color: rgba(0, 0, 0, 0.65);
     border: 1px solid $local-color;
     position: absolute;
     top: 50%;
-    right: 27%;
+    right: -25%;
     transform: rotate(180deg);
 
     width: $width;
@@ -169,22 +190,49 @@ $local-color: rgba(0, 0, 0, 0.65);
 
 .social {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: $gap;
+  gap: $gap * 2;
 }
 
-.haveAnAccount {
+.signUp {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: $gap - 6;
-
-  font-size: $md-font-size + 1;
-}
-
-.errorMessage {
-  color: $ms-error-color;
+  gap: $gap;
 
   font-size: $md-font-size;
+}
+
+.right {
+  width: 100%;
+
+  display: flex;
+
+  padding: $padding-local * 4 $padding-local * 2;
+  box-sizing: border-box;
+  background-color: $bg-login-color;
+  border-radius: $padding-local * 3;
+  flex: 0 1 auto;
+}
+
+.wrappImg {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+@media (max-height: 699px) {
+  /* CSS cho màn hình mobile */
+  .left {
+    gap: $gap * 2;
+  }
 }

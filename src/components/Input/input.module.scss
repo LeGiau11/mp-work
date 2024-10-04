@@ -6,6 +6,7 @@ $border-color: variable.$border-color;
 $border-color-hover: variable.$primary-color-first;
 $border-color-focus: variable.$primary-color-first-disabled;
 $padding: variable.$padding;
+$text-placeholder: variable.$text-placeholder;
 
 .inputPrefix {
   position: relative;
@@ -18,7 +19,7 @@ $padding: variable.$padding;
   border-radius: $border-radius;
   padding: $border-radius + 1 $border-radius * 2;
   transition: all 0.3s;
-  padding: $padding  $padding * 2;
+  padding: $padding $padding * 2;
 
   width: 100%;
   height: auto;
@@ -33,11 +34,14 @@ $padding: variable.$padding;
   input {
     border: none;
     outline: none;
-    
 
     font-size: $font-size;
 
     width: 100%;
+
+    &::placeholder {
+      color: $text-placeholder;
+    }
   }
 
   &:hover {

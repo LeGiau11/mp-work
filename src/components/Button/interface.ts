@@ -9,5 +9,6 @@ export interface ButtonProps {
   type?: "button" | "reset" | "submit";
   disabled?: boolean;
   variant?: "text" | "contained" | "outlined" | "danger";
+  rounded?: boolean;
   onClick?: () => void;
 }
