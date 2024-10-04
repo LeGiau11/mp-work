@@ -12,6 +12,7 @@ const Button: FC<ButtonProps> = ({
   type = "button",
   icon,
   disabled = false,
+  rounded = false,
   variant = "text",
   onClick = () => {},
 }) => {
@@ -25,6 +26,7 @@ const Button: FC<ButtonProps> = ({
         [styles.buttonContainer]: variant === "contained",
         [styles.buttonOutline]: variant === "outlined",
         [styles.buttonDanger]: variant === "danger",
+        [styles.buttonRounded]: rounded,
         [styles.disabledText]: variant === "text" && disabled,
         [styles.disabledOutline]: variant === "outlined" && disabled,
         [styles.disabledDanger]: variant === "danger" && disabled,
