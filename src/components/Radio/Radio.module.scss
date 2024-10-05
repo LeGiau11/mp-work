@@ -1,0 +1,57 @@
+@use "@/styles/--variable" as variable;
+
+$gap: variable.$gap;
+$font-size: variable.$font-size;
+$font-family: variable.$font-family;
+$primary-color-second: variable.$primary-color-second;
+$white-disabled: variable.$white-disabled;
+$white: variable.$white;
+$border-color-disabled: variable.$border-color-disabled;
+$txt-btn-disabled: variable.$txt-btn-disabled;
+$checked-radio-color: variable.$checked-radio-color;
+$disabled-checke-radio-color: variable.$disabled-checke-radio-color;
+
+.container {
+  display: flex;
+  gap: $gap - 7;
+
+  cursor: pointer;
+
+  input {
+    display: none;
+  }
+
+  label {
+    user-select: none;
+    cursor: pointer;
+  }
+
+  span {
+    line-height: 0;
+  }
+}
+
+.containerDisabled {
+  cursor: no-drop;
+
+  label {
+    color: $txt-btn-disabled;
+    cursor: no-drop;
+  }
+}
+
+.uncheck {
+  color: $primary-color-second;
+}
+
+.check {
+  color: $checked-radio-color;
+}
+
+.uncheckDisabled {
+  color: $border-color-disabled;
+}
+
+.checkDisabled {
+  color: $disabled-checke-radio-color;
+}

@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import Image from "next/image";
 
-import { Button, Input, InputPassword } from "@/components";
+import { Button, Checkbox, Input, InputPassword } from "@/components";
 import { RequestLogin } from "./interface";
 import styles from "./Login.module.scss";
 import { ResponseData } from "@/common";
@@ -14,6 +14,7 @@ export default function Login() {
     initialValues: {
       username: "",
       password: "",
+      remember: false,
     },
     onSubmit: (values, { setSubmitting }) => {
       setSubmitting(false);
@@ -58,7 +59,7 @@ export default function Login() {
                 <div className={styles.wrapperInput}>
                   <label>Email Address</label>
                   <Input
-                    placeholder="Enter Username"
+                    placeholder="Enter your email address"
                     className={styles.username}
                     type="text"
                     name="username"
@@ -71,7 +72,7 @@ export default function Login() {
                   <label>Password</label>
                   <InputPassword
                     className={styles.password}
-                    placeholder="Enter Password"
+                    placeholder="Enter your password"
                     name="password"
                     value={formik.values.password}
                     onChange={formik.handleChange}
@@ -80,7 +81,13 @@ export default function Login() {
                 </div>
               </div>
               <div className={styles.rememberMe}>
-                <span>Remember</span>
+                <Checkbox
+                  name="remember"
+                  checked={formik.values.remember}
+                  label="Remember me"
+                  onChange={formik.handleChange}
+                />
+
                 <Button
                   className={styles.forgotPassword}
                   variant="text"
@@ -101,18 +108,21 @@ export default function Login() {
               <span className={styles.signInWith}>Or sign in with</span>
               <div className={styles.social}>
                 <Button
+                  rounded
                   variant="outlined"
                   icon={<Google />}
                   type="button"
                 ></Button>
 
                 <Button
+                  rounded
                   variant="outlined"
                   icon={<Apple />}
                   type="button"
                 ></Button>
 
                 <Button
+                  rounded
                   variant="outlined"
                   icon={<Facebook />}
                   type="button"
