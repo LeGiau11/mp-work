@@ -21,7 +21,7 @@ $bg-danger-btn-hover: variable.$btn-hover-danger;
 $bg-danger-btn-disabled: variable.$btn-disabled-danger;
 $txt-daner-btn-disabled: variable.$white-disabled;
 $box-shadow: 2px;
-$min-width:64px;
+$min-width: 20px;
 
 .button {
   outline: none;
@@ -37,7 +37,7 @@ $min-width:64px;
   border-radius: $border-radius;
   padding: $padding $padding * 2;
 
-  line-height: $line-height;
+  line-height: inherit;
   min-width: $min-width;
   height: auto;
 
@@ -45,7 +45,7 @@ $min-width:64px;
   font-family: $font-family;
   font-weight: 700;
 
-  &:hover{
+  &:hover {
     span {
       color: $primary-color;
     }
@@ -68,8 +68,10 @@ $min-width:64px;
   background-color: $primary-color;
   color: $color-button-container;
   border: none;
-  box-shadow: 0px $box-shadow + 1 $box-shadow - 1 $box-shadow - 4 rgba(0, 0, 0, 0.2),
-    0px $box-shadow $box-shadow 0px rgba(0, 0, 0, 0.14), 0px $box-shadow - 1 ((2 * $box-shadow) + 1) 0px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px $box-shadow + 1 $box-shadow - 1 $box-shadow - 4
+      rgba(0, 0, 0, 0.2),
+    0px $box-shadow $box-shadow 0px rgba(0, 0, 0, 0.14),
+    0px $box-shadow - 1 ((2 * $box-shadow) + 1) 0px rgba(0, 0, 0, 0.12);
   letter-spacing: 0.45712px;
 
   &:hover {
@@ -106,8 +108,9 @@ $min-width:64px;
   }
 }
 
-.buttonRounded{
-  
+.buttonRounded {
+  padding: $padding + 1;
+  border-radius: 50%;
 }
 
 .icon {

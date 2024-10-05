@@ -1,0 +1,53 @@
+@use "@/styles/--variable" as variable;
+
+$gap: variable.$gap;
+$font-size: variable.$font-size;
+$font-family: variable.$font-family;
+$primary-color-second: variable.$primary-color-second;
+$white-disabled: variable.$white-disabled;
+$white: variable.$white;
+$border-color-disabled: variable.$border-color-disabled;
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $gap - 7;
+
+  cursor: pointer;
+
+  input {
+    display: none;
+  }
+
+  label {
+    user-select: none;
+    cursor: pointer;
+    color: $primary-color-second;
+
+    font-size: inherit;
+    font-family: $font-family;
+  }
+
+  span{
+    line-height: 0;
+  }
+}
+
+.containerDisabled {
+  cursor: no-drop;
+
+  background-color: $white;
+
+  label {
+    cursor: no-drop;
+  }
+}
+
+.uncheck {
+  color: $primary-color-second;
+}
+
+.uncheckDisable {
+  color: $border-color-disabled;
+}

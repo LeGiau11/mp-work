@@ -1,3 +1,4 @@
+import Radio from "./Radio";
 import Input from "./Input";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -5,6 +6,7 @@ import Button from "./Button";
 import Option from "./Option";
 import Sidebar from "./Sidebar";
 import { Select } from "./Select";
+import Checkbox from "./Checkbox";
 import { Loading1, Loading } from "./Loading";
 import InputPassword from "./InputPassword";
 import MultipleSelect from "./MultipleSelect";
@@ -23,6 +25,8 @@ export {
   MultipleSelect,
   Loading1,
   Loading,
+  Checkbox,
+  Radio,
 };
 
 export type { OptionType };

@@ -64,6 +64,8 @@ $padding-local: 10px;
 
   padding: $padding-local $padding-local / 2;
 
+  margin-bottom: $gap;
+
   h1,
   h3 {
     font-family: $font-family;
@@ -133,6 +135,8 @@ $padding-local: 10px;
 }
 
 .rememberMe {
+  font-size: $md-font-size;
+  
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -191,6 +195,7 @@ $padding-local: 10px;
 .social {
   display: flex;
   gap: $gap * 2;
+  flex-shrink: 0;
 }
 
 .signUp {
@@ -212,6 +217,8 @@ $padding-local: 10px;
   background-color: $bg-login-color;
   border-radius: $padding-local * 3;
   flex: 0 1 auto;
+  user-select: none;
+  pointer-events: none;
 }
 
 .wrappImg {
@@ -231,8 +238,7 @@ $padding-local: 10px;
 }
 
 @media (max-height: 699px) {
-  /* CSS cho màn hình mobile */
   .left {
-    gap: $gap * 2;
+    gap: 0;
   }
 }
