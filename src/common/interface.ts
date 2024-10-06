@@ -17,3 +17,7 @@ export interface InputProps
     InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   > {}
+export interface User {
+  username: string;
+  password: string;
+}

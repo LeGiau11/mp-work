@@ -42,6 +42,18 @@ body {
   font-family: variable.$font-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  // xử lý auto fill input
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset; /* Màu nền mặc định */
+    -webkit-text-fill-color: black; /* Màu chữ */
+  }
+
+  /* Xử lý màu nền khi được chọn */
+  input:-webkit-autofill:-internal-autofill-selected {
+    background-color: transparent !important; /* Hoặc màu cụ thể bạn muốn */
+    color: black !important; /* Màu chữ bạn muốn */
+  }
 }
 
 /* Mobile (dưới 576px) */

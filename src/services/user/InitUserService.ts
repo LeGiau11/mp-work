@@ -31,16 +31,17 @@ const initUser = async (password: string) => {
         password: user.password,
         isActive: user.isActive,
         name: user.name,
+        remember: false,
       };
     });
 
-    const isExsit = users.find((x) => x.username === "admin");
+    const isExsit = users.find((x) => x.username === "admin@mpwork");
 
     if (!isExsit) {
       const hashedPassword = await bcrypt.hash(password, 10);
 
       const initUser: User = {
-        username: "admin",
+        username: "admin@mpwork",
         password: hashedPassword,
         isActive: true,
         name: "Administrator",

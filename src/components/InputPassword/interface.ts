@@ -8,4 +8,5 @@ export interface InputPassWordProps {
   className?: string;
   name?: string;
   id?: string;
+  isError?: boolean;
 }
