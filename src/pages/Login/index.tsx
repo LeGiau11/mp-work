@@ -1,14 +1,14 @@
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
-import { Button, Checkbox, Input, InputPassword } from "@/components";
-import { RequestLogin } from "./interface";
-import styles from "./Login.module.scss";
 import { ResponseData } from "@/common";
+import { ILogin, RequestLogin } from "./interface";
 import { Apple, Facebook, Google } from "@/svg";
-import useUser from "@/hooks/useUser";
+import { Button, Checkbox, Input, InputPassword } from "@/components";
+import styles from "./Login.module.scss";
 
 // const loginErrorMessagesSchema = Yup.object({
 //   username: Yup.string()
@@ -25,18 +25,16 @@ import useUser from "@/hooks/useUser";
 // });
 
 export default function Login() {
+  const [initialUser, setInitialUser] = useState<ILogin>({});
   const router = useRouter();
-  const user = useUser();
 
   const formik = useFormik({
     initialValues: {
-      username: user?.username || "",
-      password: user?.password || "",
-      remember:
-        typeof localStorage !== "undefined"
-          ? !!localStorage.getItem("user")
-          : false,
+      username: initialUser.username || "",
+      password: initialUser.password || "",
+      remember: initialUser.remember || false,
     },
+    enableReinitialize: true,
     validationSchema: Yup.object().shape({
       username: Yup.string()
         .email("Invalid email address")
@@ -72,6 +70,24 @@ export default function Login() {
     },
   });
 
+  useEffect(() => {
+    const savedUser = localStorage.getItem("user");
+    if (savedUser) {
+      const parsedUser: Omit<ILogin, "remember"> = JSON.parse(savedUser);
+      setInitialUser({
+        username: parsedUser.username,
+        password: parsedUser.password,
+        remember: true,
+      });
+      formik.setFieldValue("username", parsedUser.username);
+      formik.setFieldValue("password", parsedUser.password);
+      formik.setFieldValue("remember", true);
+    }
+    () => {
+      formik.resetForm();
+    };
+  }, []);
+
   const handlelogIn = async (data: RequestLogin) => {
     const res: ResponseData<string> = await fetch("/api/auth/Login", {
       method: "POST",
@@ -88,6 +104,15 @@ export default function Login() {
     }
 
     return res;
+  };
+
+  const isDisableSubmitBtn = (): boolean => {
+    return (
+      formik.isSubmitting ||
+      !formik.isValid ||
+      formik.values.username == "" ||
+      formik.values.password == ""
+    );
   };
 
   return (
@@ -157,9 +182,7 @@ export default function Login() {
               </div>
               <div className={styles.submit}>
                 <Button
-                  disabled={
-                    formik.isSubmitting || !formik.isValid || !formik.dirty
-                  }
+                  disabled={isDisableSubmitBtn()}
                   variant="contained"
                   type="submit"
                 >
