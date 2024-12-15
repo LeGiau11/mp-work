@@ -1,0 +1,83 @@
+@use "@/styles/--variable" as variable;
+
+$font-family: variable.$font-family;
+$font-size: variable.$font-size;
+$sm-font-size: variable.$sm-font-size;
+$bg-login-color: variable.$bg-login-color;
+$white: variable.$white;
+$padding: variable.$padding;
+$gap: variable.$gap;
+$ms-error-color: variable.$ms-error-color;
+$md-font-size: variable.$md-font-size;
+$font-weight-400: 400;
+$font-weight-700: 700;
+$width: 15px;
+$local-color: rgba(0, 0, 0, 0.65);
+$primary-color-second: variable.$primary-color-second;
+$screen-width: variable.$screen-width;
+$screen-height: variable.$screen-height;
+$padding-local: 10px;
+
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	height: 100vh;
+	width: auto;
+
+	padding: 0 30%;
+
+	form {
+		width: 100%;
+	}
+}
+
+.content {
+	display: flex;
+	gap: 40px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.inputs {
+	box-sizing: border-box;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: $gap / 2;
+
+	width: 100%;
+}
+
+.wrapperInput {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: $gap - 7;
+
+	label {
+		font-size: $font-size;
+		font-family: $font-family;
+		font-weight: $font-weight-700;
+
+		color: $primary-color-second;
+	}
+}
+
+.errorMessage {
+	font-size: $sm-font-size;
+	font-weight: $font-weight-400;
+
+	color: $ms-error-color;
+}
+
+.submit {
+	width: 100%;
+
+	button {
+		width: inherit;
+	}
+}

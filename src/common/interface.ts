@@ -12,6 +12,10 @@ export interface ResponseData<T> {
   message?: string;
 }
 
+export interface Response<T> extends Omit<ResponseData<T>,"data">{
+
+}
+
 export interface InputProps
   extends DetailedHTMLProps<
     InputHTMLAttributes<HTMLInputElement>,

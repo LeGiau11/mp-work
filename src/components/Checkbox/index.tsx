@@ -1,8 +1,8 @@
-import { forwardRef, MouseEventHandler, useRef } from "react";
 import clsx from "clsx";
+import { forwardRef, MouseEventHandler, useRef } from "react";
 
-import { CheckboxProps } from "./interface";
 import styles from "./Checkbox.module.scss";
+import { CheckboxProps } from "./interface";
 
 const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   (

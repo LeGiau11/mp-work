@@ -37,7 +37,7 @@ export default function Layout() {
     }
   };
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     localStorage.removeItem("token");
     router.push("/login");
   };

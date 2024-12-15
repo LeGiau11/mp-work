@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import Image from "next/image";
-import * as Yup from "yup";
+import { useRouter } from "next/router";
 import { useFormik } from "formik";
+import * as Yup from "yup";
 
 import { ResponseData } from "@/common";
 import { ILogin, RequestLogin } from "./interface";
@@ -88,6 +88,17 @@ export default function Login() {
     };
   }, []);
 
+  /**
+   * 
+   * handlelogIn
+   * 
+   * @param data { RequestLogin }
+   * @returns { ResponseData<string> }
+   * 
+   * Step 1: gọi api: /api/auth/Login
+   * Step 2:  nếu gọi đúng user/password thì chuyển sang trang home
+   * 
+   */
   const handlelogIn = async (data: RequestLogin) => {
     const res: ResponseData<string> = await fetch("/api/auth/Login", {
       method: "POST",
@@ -106,6 +117,15 @@ export default function Login() {
     return res;
   };
 
+  /**
+   * 
+   * isDisableSubmitBtn
+   * 
+   * @returns {boolean}
+   * 
+   * Step: kiểm tra trường password/user
+   * 
+   */
   const isDisableSubmitBtn = (): boolean => {
     return (
       formik.isSubmitting ||
@@ -114,6 +134,18 @@ export default function Login() {
       formik.values.password == ""
     );
   };
+
+  /**
+   * handleSignup
+   * 
+   * @returns {void}
+   * 
+   * Step: chuyển sang trang Đăng ký
+   * 
+   */
+  const handleSignup = (): void =>{
+    router.push("/signup");
+  }
 
   return (
     <div className={styles.container}>
@@ -214,7 +246,7 @@ export default function Login() {
               </div>
               <span className={styles.signUp}>
                 Don&apos;t have an account?
-                <Button variant="text" type="button">
+                <Button variant="text" type="button" onClick={handleSignup}>
                   Sign Up
                 </Button>
               </span>

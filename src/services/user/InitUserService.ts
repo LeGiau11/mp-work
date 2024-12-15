@@ -1,8 +1,9 @@
 import { WithId, Document } from "mongodb";
 import bcrypt from "bcrypt";
 
-import { connect } from "@/libs/mongodb";
 import { User } from "@/models/User";
+import { Response } from "@/common";
+import { connect } from "@/libs/mongodb";
 
 /**
  * Create Init User
@@ -15,46 +16,52 @@ import { User } from "@/models/User";
  *
  * @returns {success, message}
  */
-const initUser = async (password: string) => {
-  const db = await connect();
+const initUser = async (password: string): Promise<Response<unknown>> => {
+	const db = await connect();
 
-  try {
-    const userCollection = db.collection("users");
-    if (!userCollection) throw new Error("User's table not found");
+	try {
+		const userCollection = db.collection("users");
+		if (!userCollection) throw new Error("User's table not found");
 
-    const data: WithId<Document>[] = await userCollection.find().toArray();
+		const data: WithId<Document>[] = await userCollection.find().toArray();
 
-    const users: User[] = data.map((user) => {
-      return {
-        id: user._id.toString(),
-        username: user.username,
-        password: user.password,
-        isActive: user.isActive,
-        name: user.name,
-        remember: false,
-      };
-    });
+		const users: User[] = data.map((user) => {
+			return {
+				id: user._id.toString(),
+				username: user.username,
+				password: user.password,
+				isActive: user.isActive,
+				name: user.name,
+				remember: false,
+			};
+		});
 
-    const isExsit = users.find((x) => x.username === "admin@mpwork");
+		const isExsit = users.find((x) => x.username === "admin@mpwork");
 
-    if (!isExsit) {
-      const hashedPassword = await bcrypt.hash(password, 10);
+		if (!isExsit) {
+			const hashedPassword = await bcrypt.hash(password, 10);
 
-      const initUser: User = {
-        username: "admin@mpwork",
-        password: hashedPassword,
-        isActive: true,
-        name: "Administrator",
-      };
+			const initUser: User = {
+				username: "admin@mpwork",
+				password: hashedPassword,
+				isActive: true,
+				name: "Administrator",
+			};
 
-      await userCollection.insertOne(initUser);
-    }
+			await userCollection.insertOne(initUser);
+		}
 
-    return { success: true, message: "Ok" };
-  } catch (ex) {
-    console.log("ex", ex);
-    return { success: false, error: "Create user is Failure" };
-  }
+		const result: Response<unknown> = { success: true, message: "Ok" };
+
+		return result;
+	} catch (ex) {
+		console.log("ex", ex);
+		const result: Response<unknown> = {
+			success: false,
+			error: "Create user is Failure",
+		};
+		return result;
+	}
 };
 
 export default initUser;
