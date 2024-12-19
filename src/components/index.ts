@@ -10,23 +10,25 @@ import Checkbox from "./Checkbox";
 import { Loading1, Loading } from "./Loading";
 import InputPassword from "./InputPassword";
 import MultipleSelect from "./MultipleSelect";
+import Typography from "./Typography";
 import { SearchSelect, Option as OptionType } from "./SearchSelect";
 
 export {
-  Input,
-  Header,
-  Footer,
-  Sidebar,
-  InputPassword,
-  Button,
-  Select,
-  Option,
-  SearchSelect,
-  MultipleSelect,
-  Loading1,
-  Loading,
-  Checkbox,
-  Radio,
+	Input,
+	Header,
+	Footer,
+	Sidebar,
+	InputPassword,
+	Button,
+	Select,
+	Option,
+	SearchSelect,
+	MultipleSelect,
+	Loading1,
+	Loading,
+	Checkbox,
+	Radio,
+	Typography,
 };
 
 export type { OptionType };
