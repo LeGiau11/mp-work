@@ -24,48 +24,52 @@ const EXPIRE = "1h";
  *
  */
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method === "POST") {
-    const { username, password } = req.body;
+	if (req.method === "POST") {
+		const { username, password } = req.body;
 
-    try {
-      const data: ResponseData<User> = await GetUserService(
-        "username",
-        username
-      );
+		try {
+			const data: ResponseData<User> = await GetUserService(
+				"username",
+				username,
+			);
 
-      if (!data.success) return res.status(401).json({ message: data.error });
+			if (!data.success) return res.status(401).json({ message: data.error });
 
-      const user: User = data.data;
+			const user: User = data.data;
 
-      const isValidPassword = await bcrypt.compare(password, user.password);
+			let isValidPassword = false;
 
-      if (!isValidPassword)
-        return res
-          .status(401)
-          .json({ message: "Invalid username or password" });
+			if (user) {
+				isValidPassword = await bcrypt.compare(password, user.password);
+			}
 
-      const token = jwt.sign({ username: user.username }, JWT_SECRET, {
-        expiresIn: EXPIRE,
-      });
+			if (!isValidPassword)
+				return res
+					.status(401)
+					.json({ message: "Invalid username or password" });
 
-      const result: ResponseData<string> = {
-        success: true,
-        data: token,
-      };
+			const token = jwt.sign({ username: user.username }, JWT_SECRET, {
+				expiresIn: EXPIRE,
+			});
 
-      return res.status(200).json(result);
-    } catch (ex) {
-      console.log("Error->message:", ex);
-      return res.status(500).json({
-        message: ex instanceof Error ? ex.message : "Internal Server Error",
-      });
-    } finally {
-      disconnect();
-    }
-  } else {
-    res.setHeader("Allow", "POST");
-    res.status(405).end(`Method ${req.method} Not Allowed`);
-  }
+			const result: ResponseData<string> = {
+				success: true,
+				data: token,
+			};
+
+			return res.status(200).json(result);
+		} catch (ex) {
+			console.log("Error->message:", ex);
+			return res.status(500).json({
+				message: ex instanceof Error ? ex.message : "Internal Server Error",
+			});
+		} finally {
+			disconnect();
+		}
+	} else {
+		res.setHeader("Allow", "POST");
+		res.status(405).end(`Method ${req.method} Not Allowed`);
+	}
 };
 
 export default handler;

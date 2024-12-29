@@ -7,6 +7,7 @@ $border-color-hover: variable.$primary-color-first;
 $border-color-focus: variable.$primary-color-first-disabled;
 $padding: variable.$padding;
 $text-placeholder: variable.$text-placeholder;
+$button-danger: variable.$button-danger;
 
 .inputPrefix {
   position: relative;
@@ -50,9 +51,13 @@ $text-placeholder: variable.$text-placeholder;
 
   &:focus {
     border-color: $border-color-hover;
-    box-shadow: 0 0 0 2px #cce7ff;
+    box-shadow: 0 0 0 2px $border-color-hover;
     outline: 0;
     z-index: 1;
+  }
+
+  &:focus-visible {
+    outline: 0;
   }
 }
 
@@ -61,4 +66,12 @@ $text-placeholder: variable.$text-placeholder;
   box-shadow: 0 0 0 2px $border-color-focus;
   outline: 0;
   z-index: 1;
+}
+
+.inputError {
+  border-color: $button-danger;
+
+  &:hover {
+    border-color: $button-danger;
+  }
 }

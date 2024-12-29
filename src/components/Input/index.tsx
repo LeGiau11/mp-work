@@ -15,6 +15,7 @@ const Input: FC<InputProps> = ({
   type = "text",
   placeholder = "",
   inputStyle,
+  isError = false,
   onChange = () => {},
 }) => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
@@ -22,13 +23,14 @@ const Input: FC<InputProps> = ({
   const handleBlur = () => setIsFocus(!isFocus);
   const handleFocus = () => setIsFocus(!isFocus);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) =>
+  const handleChange = (event?: ChangeEvent<HTMLInputElement>) =>
     onChange(event);
 
   return (
     <span
       className={clsx(className, styles.inputPrefix, {
         [styles.inputPrefixFocus]: isFocus,
+        [styles.inputError]: isError,
       })}
       style={style}
     >

@@ -3,8 +3,6 @@
 $primary-color: variable.$primary-color-first;
 $primary-color-hover: variable.$primary-color-first-hover;
 $border-radius: variable.$border-radius;
-$font-size: variable.$font-size;
-$font-family: variable.$font-family;
 $line-height: variable.$line-height;
 $border-color-outline-btn: variable.$border-color;
 $bg-color-outline-btn: variable.$white;
@@ -15,131 +13,269 @@ $txt-color-outline-btn: variable.$txt-btn-disabled;
 $border-color-outline-btn-disabled: variable.$border-color-disabled;
 $txt-outline-btn-disabled: variable.$txt-btn-default-disabled;
 $padding: variable.$padding;
-$gap: variable.$gap;
 $bg-danger-btn: variable.$button-danger;
 $bg-danger-btn-hover: variable.$btn-hover-danger;
 $bg-danger-btn-disabled: variable.$btn-disabled-danger;
 $txt-daner-btn-disabled: variable.$white-disabled;
 $box-shadow: 2px;
 $min-width: 20px;
+// gap
+$gap: variable.$gap;
+// font-family
+$font-family: variable.$font-family;
+// font-size
+$font-size-xl: variable.$font-size-xl;
+$font-size: variable.$font-size;
+$font-size-md: variable.$font-size-md;
+$font-size-sm: variable.$font-size-sm;
+$font-size-xm: variable.$font-size-xm;
+// icon-color
+$icon-grey: variable.$icon-grey;
+$icon-white: variable.$icon-white;
+// text-color
+$text-primary-black: variable.$text-primary-black;
+$text-primary-white: variable.$text-primary-white;
+$text-disabled: variable.$text-disabled;
+$text-accent: variable.$text-accent;
+// font-weight
+$SemiBold: variable.$SemiBold;
+$radius-sm: variable.$radius-sm;
+// color
+$primary-50: variable.$primary-50;
+$primary-100: variable.$primary-100;
+$primary-500: variable.$primary-500;
+$primary-600: variable.$primary-600;
+$primary-700: variable.$primary-700;
+$grey-200: variable.$grey-200;
+$white: variable.$white;
+$box-shadow-primary: variable.$box-shadow-primary;
+// spacing
+$spacing-xm: variable.$spacing-xm;
+$spacing-sm: variable.$spacing-sm;
+$spacing-md: variable.$spacing-md;
+$spacing-xl: variable.$spacing-xl;
+$spacing-xxl: variable.$spacing-xxl;
+$spacing-xxxl: variable.$spacing-xxxl;
 
+/////////////////////////////////////////////////////// BUTTON ///////////////////////////////////////////////////////
 .button {
-  outline: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: $gap;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  border-radius: $border-radius;
-  padding: $padding $padding * 2;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: $gap;
 
-  line-height: inherit;
-  min-width: $min-width;
-  height: auto;
+	transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+		box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+		border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+		color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+	cursor: pointer;
+	border-radius: $border-radius;
+	border: none;
+	outline: none;
+	padding: $spacing-sm;
 
-  font-size: $font-size;
-  font-family: $font-family;
-  font-weight: 700;
+	line-height: inherit;
+	min-width: $min-width;
+	height: auto;
 
-  &:hover {
-    span {
-      color: $primary-color;
-    }
-  }
-}
+	font-family: $font-family;
+	font-weight: $SemiBold;
+	font-style: normal;
 
-.buttonText {
-  border: none;
-  background: none;
-  color: $txt-btn-default;
-  padding: 0;
-  min-width: 0;
-
-  &:hover {
-    color: $primary-color;
-  }
-}
-
-.buttonContainer {
-  background-color: $primary-color;
-  color: $color-button-container;
-  border: none;
-  box-shadow: 0px $box-shadow + 1 $box-shadow - 1 $box-shadow - 4
-      rgba(0, 0, 0, 0.2),
-    0px $box-shadow $box-shadow 0px rgba(0, 0, 0, 0.14),
-    0px $box-shadow - 1 ((2 * $box-shadow) + 1) 0px rgba(0, 0, 0, 0.12);
-  letter-spacing: 0.45712px;
-
-  &:hover {
-    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
-      0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
-    background-color: $primary-color-hover;
-  }
-}
-
-.buttonOutline {
-  color: $txt-btn-default;
-  border: 1px solid $txt-color-outline-btn;
-  background-color: $bg-color-outline-btn;
-  border-color: $border-color-outline-btn;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-
-  &:hover {
-    background-color: $bg-color-outline-btn;
-    border-color: $primary-color;
-    color: $primary-color;
-  }
-}
-
-.buttonDanger {
-  background-color: $bg-danger-btn;
-  color: $bg-color-outline-btn;
-  border: 1px solid $bg-danger-btn;
-
-  &:hover {
-    background-color: $bg-danger-btn-hover;
-  }
-}
-
-.buttonRounded {
-  padding: $padding + 1;
-  border-radius: 50%;
+	&:disabled {
+		cursor: not-allowed;
+	}
 }
 
 .icon {
-  line-height: $padding - 1;
+	line-height: $padding - 1;
+	width: 24px;
+	height: 24px;
+	overflow: hidden;
 }
 
-.disabled {
-  background-color: $background-color;
-  cursor: default;
-  pointer-events: none;
-  color: $txt-btn-default;
-  border: none;
-  outline: none;
-  user-select: none;
-  padding: $padding $padding * 2;
+/////////////////////////////// CONTAINER ///////////////////////////////
+.container {
+	background-color: $primary-500;
+	color: $text-primary-white;
+	border-radius: $radius-sm;
+
+	&:hover {
+		background-color: $primary-600;
+	}
+
+	&:focus {
+		background-color: $primary-500;
+	}
+
+	&:active {
+		background-color: $primary-700;
+	}
+
+	&:disabled {
+		background-color: $grey-200;
+		color: $text-disabled;
+
+		span {
+			color: $icon-grey;
+		}
+	}
+}
+
+/////////////////////////////// OUTLINED ///////////////////////////////
+.outlined {
+	border: 1.5px solid $primary-500;
+	color: $text-accent;
+	background-color: $white;
+
+	&:hover {
+		background-color: $primary-50;
+	}
+
+	&:focus {
+		box-shadow: 0px 0px 0px 3px $box-shadow-primary;
+	}
+
+	&:active {
+		background-color: $primary-100;
+		box-shadow: none;
+	}
+}
+
+.giant {
+	font-size: $font-size-xl;
+
+	padding: $spacing-xl $spacing-xxl;
+	line-height: 114.286%;
+}
+
+.large {
+	font-size: $font-size;
+
+	padding: $spacing-md $spacing-xl + 4;
+	height: 48px;
+	line-height: 133.333%;
+}
+
+.medium {
+	font-size: $font-size-md;
+
+	padding: $spacing-sm $spacing-xl;
+	height: 40px;
+	line-height: 114.286%;
+}
+
+.small {
+	font-size: $font-size-sm;
+
+	padding: $spacing-xm $spacing-sm;
+	height: 32px;
+	line-height: 114.286%;
+
+	span {
+		width: 12px;
+		height: 12px;
+	}
+}
+
+.tiny {
+	font-size: $font-size-xm;
+
+	padding: $spacing-xm - 2 $spacing-xm;
+	height: 24px;
+	line-height: 114.286%;
+
+	span {
+		width: 10px;
+		height: 10px;
+	}
+}
+
+.iconContainer {
+	color: $icon-white;
+}
+
+.buttonText {
+	border: none;
+	background: none;
+	color: $txt-btn-default;
+	padding: 0;
+	min-width: 0;
+
+	&:hover {
+		color: $primary-color;
+	}
+}
+
+.buttonDanger {
+	background-color: $bg-danger-btn;
+	color: $bg-color-outline-btn;
+	border: 1px solid $bg-danger-btn;
+
+	&:hover {
+		background-color: $bg-danger-btn-hover;
+	}
+}
+
+.buttonRounded {
+	padding: $padding + 1;
+	border-radius: 50%;
 }
 
 .disabledText {
-  background-color: unset;
-  color: $txt-outline-btn-disabled;
+	background-color: unset;
+	color: $txt-outline-btn-disabled;
 }
 
 .disabledOutline {
-  background-color: unset;
-  border: 1px solid $border-color-outline-btn-disabled;
-  color: $txt-outline-btn-disabled;
+	background-color: unset;
+	border: 1px solid $border-color-outline-btn-disabled;
+	color: $txt-outline-btn-disabled;
 }
 
 .disabledDanger {
-  background-color: $bg-danger-btn-disabled;
-  color: $txt-daner-btn-disabled;
+	background-color: $bg-danger-btn-disabled;
+	color: $txt-daner-btn-disabled;
+}
+
+/*************************************************************************************************************************************/
+
+/////////////////////////////////////////////////////// BUTTON-ICON ///////////////////////////////////////////////////////
+
+/////////////////////////////// CONTAINER ///////////////////////////////
+
+.buttonIcon {
+	display: flex;
+	align-items: center;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+		box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+		border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+		color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+	&:disabled {
+		cursor: not-allowed;
+	}
+}
+
+.giantBIcon {
+	padding: $spacing-xl;
+}
+
+.largeBIcon {
+	padding: $spacing-sm;
+}
+
+.mediumBIcon {
+	padding: $spacing-xm;
+}
+
+.smallBIcon {
+	padding: $spacing-xm / 2;
+}
+
+.tinyBIcon {
+	padding: $spacing-xm / 2;
 }

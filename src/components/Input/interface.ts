@@ -11,5 +11,6 @@ export interface InputProps {
   placeholder?: string;
   inputStyle?: CSSProperties;
   name?: string;
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  isError?: boolean;
+  onChange?: (event?: ChangeEvent<HTMLInputElement>) => void;
 }

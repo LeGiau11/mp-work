@@ -11,6 +11,7 @@ const InputPassword: FC<InputPassWordProps> = ({
   className = "",
   name = "inputPassword",
   id = "",
+  isError = false,
   onChange = () => {},
 }) => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -25,6 +26,7 @@ const InputPassword: FC<InputPassWordProps> = ({
       <span
         className={clsx(className, styles.container, {
           [styles.containerFocus]: isFocus,
+          [styles.inputError]: isError,
         })}
       >
         <input

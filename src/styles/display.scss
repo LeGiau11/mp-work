@@ -1,4 +1,4 @@
-$font-size: 16px;
+
 $sm-font-size: 13px;
 $md-font-size: 14px;
 $border-radius: 5px;
@@ -7,4 +7,25 @@ $screen-width: 100vw;
 $screen-height: 100vh;
 $line-height: 1.6;
 $padding: 9px;
-$gap: 10px;
+$gap: 8px;
+/////////////////////////////// FONT-SIZE ///////////////////////////////
+$font-size-xl: 18px;
+$font-size: 16px;
+$font-size-md: 14px;
+$font-size-sm: 12px;
+$font-size-xm: 10px;
+/////////////////////////////// FONT-WEIGHT ///////////////////////////////
+$Bold: 700;
+$SemiBold: 600;
+$Medium: 500;
+$Regular: 400;
+/////////////////////////////// SPACING ///////////////////////////////
+$spacing-xxxl: 32px;
+$spacing-xxl: 24px;
+$spacing-xl: 16px;
+$spacing-md: 14px;
+$spacing-sm: 12px;
+$spacing-xm: 8px;
+/////////////////////////////// RADIUS ///////////////////////////////
+$radius-sm: 12px;
+$radius-xm: 8px;
