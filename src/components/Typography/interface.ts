@@ -1,17 +1,24 @@
-import { ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
 
-export interface TypographyProps {
+interface TypoProps {
 	children?: ReactNode;
+	level?: 1 | 2;
+	className?: string;
+	style?: CSSProperties;
 }
 
-export interface TypographyHeadingProps extends TypographyProps {
+export interface TypographyProps extends TypoProps {
+	type?: "Regular" | "Medium";
+}
+
+export interface TypographyHeadingProps extends Omit<TypoProps, "level"> {
 	level?: 1 | 2 | 3 | 4 | 5 | 6;
 }
 
-export interface TypographySubtitleProps extends TypographyProps {
-	level?: 1 | 2;
+export interface TypographySubtitleProps extends TypoProps {}
+
+export interface TypographyCaptionProps extends TypoProps {
+	type?: "Regular" | "Medium";
 }
 
-export interface TypographyCaptionProps extends TypographyProps {
-	level?: 1 | 2;
-}
+export interface TypographyLabelProps extends Omit<TypoProps, "level"> {}
