@@ -1,6 +1,6 @@
 import { Button } from "@/components";
 
-// const { BIcon } = Button;
+const { BIcon } = Button;
 
 export default function Layout() {
 	return (
@@ -10,9 +10,11 @@ export default function Layout() {
 				alignItems: "center",
 				justifyContent: "center",
 				height: "100vh",
+				backgroundColor: "black",
+				gap: "10px",
 			}}
 		>
-			{/* <BIcon>
+			<BIcon variant="contained" size="Medium" disabled>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="24"
@@ -49,9 +51,13 @@ export default function Layout() {
 						stroke-linejoin="round"
 					/>
 				</svg>
-			</BIcon> */}
+			</BIcon>
 			<br />
 			<Button
+			disabled
+				type="button"
+				variant="contained"
+				size="Medium"
 				iconLeft={
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -77,16 +83,16 @@ export default function Layout() {
 						<path
 							d="M15 12L22 12"
 							stroke="currentColor"
-							stroke-width="1.5"
-							stroke-linecap="round"
-							stroke-linejoin="round"
+							strokeWidth="1.5"
+							strokeLinecap="round"
+							strokeLinejoin="round"
 						/>
 						<path
 							d="M3 15L8.00001 15L8.00001 21H3"
 							stroke="currentColor"
-							stroke-width="1.5"
-							stroke-linecap="round"
-							stroke-linejoin="round"
+							strokeWidth="1.5"
+							strokeLinecap="round"
+							strokeLinejoin="round"
 						/>
 					</svg>
 				}
@@ -115,22 +121,19 @@ export default function Layout() {
 						<path
 							d="M15 12L22 12"
 							stroke="currentColor"
-							stroke-width="1.5"
-							stroke-linecap="round"
-							stroke-linejoin="round"
+							strokeWidth="1.5"
+							strokeLinecap="round"
+							strokeLinejoin="round"
 						/>
 						<path
 							d="M3 15L8.00001 15L8.00001 21H3"
 							stroke="currentColor"
-							stroke-width="1.5"
-							stroke-linecap="round"
-							stroke-linejoin="round"
+							strokeWidth="1.5"
+							strokeLinecap="round"
+							strokeLinejoin="round"
 						/>
 					</svg>
 				}
-				type="button"
-				variant="outlined"
-				size="Medium"
 			>
 				Tao
 			</Button>
