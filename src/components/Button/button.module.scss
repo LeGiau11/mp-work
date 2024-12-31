@@ -29,6 +29,7 @@ $radius-xm: variable.$radius-xm;
 // color
 $primary-50: variable.$primary-50;
 $primary-100: variable.$primary-100;
+$primary-200: variable.$primary-200;
 $primary-500: variable.$primary-500;
 $primary-600: variable.$primary-600;
 $primary-700: variable.$primary-700;
@@ -141,6 +142,7 @@ $spacing-xxxl: variable.$spacing-xxxl;
 
 	&:focus {
 		background-color: $primary-500;
+		border: 3px solid $primary-200;
 	}
 
 	&:active {

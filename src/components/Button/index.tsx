@@ -33,7 +33,7 @@ const Button: FC<ButtonProps> & {
 				[styles.small]: size === "Small",
 				[styles.tiny]: size === "Tiny",
 				[styles.container]: variant === "contained",
-				[styles.outlined]: variant === "outlined",
+				[styles.outlined]: variant === "outline",
 				[styles.text]: variant === "text",
 			})}
 			type={type}
@@ -76,7 +76,7 @@ const BIcon: FC<ButtonIconProps> = ({
 			onClick={onClick}
 			className={clsx(className, styles.buttonIcon, {
 				[styles.container]: variant === "contained",
-				[styles.outlined]: variant === "outlined",
+				[styles.outlined]: variant === "outline",
 				[styles.text]: variant === "text",
 				[styles.giantBIcon]: size === "Giant",
 				[styles.largeBIcon]: size === "Large",

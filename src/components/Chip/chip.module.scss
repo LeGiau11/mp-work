@@ -1,0 +1,197 @@
+@use "@/styles/--variable" as variable;
+
+// gap
+$gap: variable.$gap;
+// font-family
+$font-family: variable.$font-family;
+// spacing
+$spacing-sm: variable.$spacing-sm;
+$spacing-xm: variable.$spacing-xm;
+// font-size
+$font-size-md: variable.$font-size-md;
+$font-size-sm: variable.$font-size-sm;
+$font-size-xm: variable.$font-size-xm;
+// color
+$red-500: variable.$red-500;
+$red-50: variable.$red-50;
+$red-400: variable.$red-400;
+$yellow-500: variable.$yellow-500;
+$yellow-50: variable.$yellow-50;
+$yellow-400: variable.$yellow-400;
+$blue-500: variable.$blue-500;
+$blue-50: variable.$blue-50;
+$blue-400: variable.$blue-400;
+$green-500: variable.$green-500;
+$green-50: variable.$green-50;
+$green-400: variable.$green-400;
+$primary-500: variable.$primary-500;
+$primary-400: variable.$primary-400;
+$primary-50: variable.$primary-50;
+$white-800: variable.$white-800;
+// radius
+$radius-sm: variable.$radius-sm;
+$radius-xm: variable.$radius-xm;
+// text-color
+$text-primary-white: variable.$text-primary-white;
+$text-success: variable.$text-success;
+$text-accent: variable.$text-accent;
+$text-info: variable.$text-info;
+$text-warning: variable.$text-warning;
+$text-error: variable.$text-error;
+
+.chip {
+	font-family: $font-family;
+
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: $gap;
+
+	color: $text-primary-white;
+}
+
+.icon {
+	width: 24px;
+	height: 24px;
+}
+
+.close {
+	cursor: pointer;
+}
+
+.filled > .close {
+	&:hover {
+		color: $white-800;
+	}
+}
+
+/////////////////////////////// MEDIUM ///////////////////////////////
+.medium {
+	font-size: $font-size-md;
+
+	padding: $spacing-sm;
+	border-radius: $radius-sm;
+
+	height: 40px;
+
+	span {
+		width: 24px;
+		height: 24px;
+	}
+}
+
+/////////////////////////////// SMALL ///////////////////////////////
+.small {
+	font-size: $font-size-sm;
+
+	height: 32px;
+
+	padding: $spacing-xm $spacing-sm;
+	border-radius: $radius-xm;
+
+	span {
+		width: 24px;
+		height: 24px;
+	}
+}
+
+/////////////////////////////// SMALL ///////////////////////////////
+.tiny {
+	font-size: $font-size-xm;
+
+	height: 24px;
+
+	padding: $spacing-xm - 2 $spacing-xm;
+	border-radius: $radius-xm;
+
+	span {
+		width: 16px;
+		height: 16px;
+	}
+}
+
+/////////////////////////////// COLOR: DEAFULT ///////////////////////////////
+.default {
+	background-color: $primary-500;
+}
+
+/////////////////////////////// COLOR: SUCCESS ///////////////////////////////
+.success {
+	background-color: $green-500;
+}
+
+/////////////////////////////// COLOR: INFO ///////////////////////////////
+.info {
+	background-color: $blue-500;
+}
+
+/////////////////////////////// COLOR: INFO ///////////////////////////////
+.warning {
+	background-color: $yellow-500;
+}
+
+/////////////////////////////// COLOR: INFO ///////////////////////////////
+.error {
+	background-color: $red-500;
+}
+
+/////////////////////////////// VARIANT: OUTLINE ///////////////////////////////
+.outline {
+	border: 1px solid;
+	border-color: inherit;
+}
+
+.outline.default {
+	background-color: $primary-50;
+	color: $text-accent;
+}
+
+.outline.default > .close {
+	&:hover {
+		color: $primary-400;
+	}
+}
+
+.outline.success {
+	background-color: $green-50;
+	color: $text-success;
+}
+
+.outline.success > .close {
+	&:hover {
+		color: $green-400;
+	}
+}
+
+.outline.info {
+	background-color: $blue-50;
+	color: $text-info;
+}
+
+.outline.info > .close {
+	&:hover {
+		color: $blue-400;
+	}
+}
+
+.outline.warning {
+	background-color: $yellow-50;
+	color: $text-warning;
+}
+
+.outline.warning > .close {
+	&:hover {
+		color: $yellow-400;
+	}
+}
+
+.outline.error {
+	background-color: $red-50;
+	color: $text-error;
+}
+
+.outline.error > .close {
+	&:hover {
+		color: $red-400;
+	}
+}
