@@ -25,19 +25,16 @@ const Button: FC<ButtonProps> & {
 			onClick={onClick}
 			style={style}
 			className={clsx(styles.button, className, {
-				[styles.buttonText]: variant === "text",
-				[styles.buttonDanger]: variant === "danger",
-				[styles.buttonRounded]: rounded,
-				[styles.disabledText]: variant === "text" && disabled,
-				[styles.disabledOutline]: variant === "outlined" && disabled,
-				[styles.disabledDanger]: variant === "danger" && disabled,
+				// [styles.danger]: variant === "danger",
+				[styles.rounded]: rounded,
 				[styles.giant]: size === "Giant",
 				[styles.large]: size === "Large",
 				[styles.medium]: size === "Medium",
 				[styles.small]: size === "Small",
 				[styles.tiny]: size === "Tiny",
 				[styles.container]: variant === "contained",
-				[styles.outlined]: variant === "outlined",
+				[styles.outlined]: variant === "outline",
+				[styles.text]: variant === "text",
 			})}
 			type={type}
 			disabled={disabled}
@@ -79,7 +76,8 @@ const BIcon: FC<ButtonIconProps> = ({
 			onClick={onClick}
 			className={clsx(className, styles.buttonIcon, {
 				[styles.container]: variant === "contained",
-        [styles.outlined]: variant === "outlined",
+				[styles.outlined]: variant === "outline",
+				[styles.text]: variant === "text",
 				[styles.giantBIcon]: size === "Giant",
 				[styles.largeBIcon]: size === "Large",
 				[styles.mediumBIcon]: size === "Medium",

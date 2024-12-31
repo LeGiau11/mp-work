@@ -1,3 +1,4 @@
+import Chip from "./Chip";
 import Radio from "./Radio";
 import Input from "./Input";
 import Header from "./Header";
@@ -29,6 +30,7 @@ export {
 	Checkbox,
 	Radio,
 	Typography,
+	Chip,
 };
 
 export type { OptionType };

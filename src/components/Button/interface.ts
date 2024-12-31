@@ -9,7 +9,7 @@ export interface ButtonProps {
 	style?: CSSProperties;
 	type?: "button" | "reset" | "submit";
 	disabled?: boolean;
-	variant?: "text" | "contained" | "outlined" | "danger";
+	variant?: "text" | "contained" | "outline" | "danger";
 	rounded?: boolean;
 	size?: "Giant" | "Large" | "Medium" | "Small" | "Tiny";
 	onClick?: () => void;
