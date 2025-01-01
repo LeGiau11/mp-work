@@ -1,39 +1,73 @@
-import { Chip } from "@/components";
+import { useEffect, useState } from "react";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import styles from "@/styles/Layout.module.scss";
+
+import { Button, Loading } from "@/components";
+import Login from "./login";
 
 export default function Layout() {
-	return (
-		<div
-			style={{
-				display: "flex",
-				alignItems: "center",
-				justifyContent: "center",
-				height: "100vh",
-				gap: "10px",
-			}}
-		>
-			<Chip
-				size="Medium"
-				type="Warning"
-				variant="outline"
-				// iconLeft={
-				// 	<svg
-				// 		xmlns="http://www.w3.org/2000/svg"
-				// 		className="icon"
-				// 		viewBox="0 0 24 24"
-				// 		fill="none"
-				// 	>
-				// 		<path
-				// 			d="M8.58737 8.23597L11.1849 3.00376C11.5183 2.33208 12.4817 2.33208 12.8151 3.00376L15.4126 8.23597L21.2215 9.08017C21.9668 9.18848 22.2638 10.0994 21.7243 10.6219L17.5217 14.6918L18.5135 20.4414C18.6409 21.1798 17.8614 21.7428 17.1945 21.3941L12 18.678L6.80547 21.3941C6.1386 21.7428 5.35909 21.1798 5.48645 20.4414L6.47825 14.6918L2.27575 10.6219C1.73617 10.0994 2.03322 9.18848 2.77852 9.08017L8.58737 8.23597Z"
-				// 			stroke="currentColor"
-				// 			strokeWidth="1.5"
-				// 			strokeLinecap="round"
-				// 			strokeLinejoin="round"
-				// 		/>
-				// 	</svg>
-				// }
-			>
-				Badge
-			</Chip>
-		</div>
-	);
+  const [token, setToken] = useState<string | null>("");
+  const [loading, setLoading] = useState<boolean>(true);
+  const router = useRouter();
+
+  useEffect(() => {
+    createInitUser();
+    const token = localStorage.getItem("token");
+    if (token) setToken(token);
+
+    setLoading(false);
+
+    if (!token) router.push("/login");
+  }, []);
+
+  const createInitUser = async () => {
+    const res = await fetch("/api/user/InitUser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: null,
+    });
+
+    if (res.status === 200) {
+      console.log("Created init User");
+    } else {
+      console.log("Created init User is Failure");
+    }
+  };
+
+  const handleClick = (): void => {
+    localStorage.removeItem("token");
+    router.push("/login");
+  };
+
+  if (loading) return <Loading />;
+
+  return (
+    <>
+      <Head>
+        <title>Home Page - My Next.js App</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Welcome to my awesome Next.js app!" />
+      </Head>
+      {!token ? <Login /> : null}
+      {token ? (
+        <div className={styles.page}>
+          <Button variant="outline" type="button" onClick={handleClick}>
+            Logout
+          </Button>
+          <br />
+          {/* <Header /> 
+        <main className={styles.main}>
+          <Sidebar />
+          <section className={styles.content}>
+            <Button onClick={handleClick}>Logout</Button>
+          </section>
+        </main>
+        <Footer /> */}
+        </div>
+      ) : null}
+    </>
+  );
 }
