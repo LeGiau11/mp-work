@@ -24,6 +24,8 @@ import styles from "./Login.module.scss";
 //   remember: Yup.boolean(),
 // });
 
+const {BIcon} = Button;
+
 export default function Login() {
   const [initialUser, setInitialUser] = useState<ILogin>({});
   const router = useRouter();
@@ -223,26 +225,25 @@ export default function Login() {
               </div>
               <span className={styles.signInWith}>Or sign in with</span>
               <div className={styles.social}>
-                <Button
+                <BIcon
                   rounded
-                  variant="outlined"
-                  icon={<Google />}
+                  variant="outline"
                   type="button"
-                ></Button>
+                ><Google /></BIcon>
 
-                <Button
+                <BIcon
                   rounded
-                  variant="outlined"
-                  icon={<Apple />}
+                  variant="outline"
+                  
                   type="button"
-                ></Button>
+                ><Apple /></BIcon>
 
-                <Button
+                <BIcon
                   rounded
-                  variant="outlined"
-                  icon={<Facebook />}
+                  variant="outline"
+              
                   type="button"
-                ></Button>
+                ><Facebook /></BIcon>
               </div>
               <span className={styles.signUp}>
                 Don&apos;t have an account?

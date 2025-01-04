@@ -54,7 +54,7 @@ export default function Layout() {
       {!token ? <Login /> : null}
       {token ? (
         <div className={styles.page}>
-          <Button variant="outlined" type="button" onClick={handleClick}>
+          <Button variant="outline" type="button" onClick={handleClick}>
             Logout
           </Button>
           <br />
