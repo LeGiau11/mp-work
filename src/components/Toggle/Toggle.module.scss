@@ -1,0 +1,129 @@
+@use "@/styles/--variable" as variable;
+
+// gap
+$gap: variable.$gap;
+
+// font
+$font-size: variable.$font-size;
+$font-family: variable.$font-family;
+
+// radius
+$radius-xm: variable.$radius-xm;
+
+// text color
+$text-disabled: variable.$text-disabled;
+$text-primary-black: variable.$text-primary-black;
+$text-accent: variable.$text-accent;
+
+// color
+$yellow-500: variable.$yellow-500;
+$primary-500: variable.$primary-500;
+$primary-50: variable.$primary-50;
+$white: variable.$white;
+$primary-700: variable.$primary-700;
+$primary-200: variable.$primary-200;
+$grey-300: variable.$grey-300;
+$grey-200: variable.$grey-200;
+$grey-100: variable.$grey-100;
+$black-200: variable.$black-200;
+
+$box-shadow: 0px 0px 0px 3px $primary-200;
+
+.container input[type="checkbox"] {
+	display: none;
+}
+
+.container input[type="checkbox"]:checked + label {
+	background-color: $primary-500;
+}
+
+.container input[type="checkbox"]:checked:hover + label {
+	background-color: $primary-700;
+}
+
+.container input[type="checkbox"]:checked:focus + label {
+	box-shadow: $box-shadow;
+}
+
+
+.container input[type="checkbox"]:checked:disabled + label {
+	background-color: $primary-50;
+}
+
+.container input[type="checkbox"]:checked + label::after {
+	transform: translateX(20px);
+}
+
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: $gap * 2;
+	cursor: pointer;
+
+	label {
+		display: inline-block;
+		position: relative;
+		width: 44px;
+		height: 24px;
+		background-color: $grey-200;
+		border-radius: 15px;
+		transition: background-color 0.3s;
+
+		&::after {
+			content: "";
+			position: absolute;
+			width: 22px;
+			height: 22px;
+			background-color: $white;
+			border-radius: 50%;
+			top: 1px;
+			left: 1px;
+			transition: transform 0.3s, background-color 0.3s;
+			box-shadow: 0 2px 5px $black-200;
+		}
+
+		&:hover {
+			color: $text-accent;
+			background-color: $grey-300;
+		}
+
+		&:focus {
+			box-shadow: $box-shadow;
+		}
+
+		&:focus-visible {
+			outline: none;
+		}
+	}
+
+	span {
+		color: $text-primary-black;
+
+		&:hover {
+			color: $text-accent;
+		}
+	}
+}
+
+.disabled {
+	label {
+		background-color: $grey-100;
+		&::after {
+			box-shadow: none;
+			cursor: no-drop;
+		}
+	}
+
+	span {
+		color: $text-disabled;
+
+		&:hover {
+			color: $text-disabled;
+		}
+	}
+}
+
+.disabled.container {
+	cursor: no-drop;
+}

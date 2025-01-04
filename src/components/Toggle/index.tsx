@@ -1,19 +1,19 @@
-import clsx from "clsx";
 import { forwardRef, MouseEventHandler, useMemo, useRef } from "react";
+import clsx from "clsx";
 
-import styles from "./Checkbox.module.scss";
-import { CheckboxProps } from "./interface";
+import { ToggleProps } from "./interface";
+import styles from "./Toggle.module.scss";
 
-const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
+const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
 	(
 		{
+			id = "toggle",
+			label,
 			classNameContainer,
-			id = "checkbox",
-			label = "",
+			className,
+			position = "left",
 			checked = false,
 			disabled = false,
-			indeterminate = false,
-			position = "left",
 			onChange = () => {},
 			...rest
 		},
@@ -22,7 +22,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 		const inputRef = useRef<HTMLInputElement>(null);
 
 		const newPosition = useMemo(() => {
-			if(!position) return "left";
+			if (!position) return "left";
 			return position;
 		}, [position]);
 
@@ -31,37 +31,36 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 
 			if (disabled) return;
 
-			if (inputRef.current) {
-				inputRef.current?.click();
-			}
+			if (inputRef.current) inputRef.current?.click();
 		};
 
 		return (
 			<div
-				onClick={handleClick}
 				className={clsx(classNameContainer, styles.container, {
+					[styles.left]: newPosition == "left",
+					[styles.right]: newPosition == "right",
 					[styles.disabled]: disabled,
-					[styles.left]: newPosition === "left",
-					[styles.right]: newPosition === "right",
-					[styles.indeterminate]: indeterminate,
 				})}
+				onClick={handleClick}
 			>
+				{position === "left" && <span>{label}</span>}
 				<input
-					ref={ref ? ref : inputRef}
 					type="checkbox"
+					className={className}
 					id={id}
-					className="custom-checkbox"
+					ref={ref ? ref : inputRef}
 					checked={checked}
 					disabled={disabled}
 					onChange={onChange}
 					{...rest}
 				/>
-				<label htmlFor={id}>{label}</label>
+				<label htmlFor={id}></label>
+				{position === "right" && <span>{label}</span>}
 			</div>
 		);
 	},
 );
 
-Checkbox.displayName = "Checkbox";
+Toggle.displayName = "Toggle";
 
-export default Checkbox;
+export default Toggle;

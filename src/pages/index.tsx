@@ -1,4 +1,4 @@
-import { Checkbox, Radio } from "@/components";
+import { Checkbox, Radio, Toggle } from "@/components";
 import { useState } from "react";
 
 export default function Layout() {
@@ -7,6 +7,7 @@ export default function Layout() {
 	return (
 		<div
 			style={{
+				width:'100%',
 				display: "flex",
 				alignItems: "center",
 				justifyContent: "center",
@@ -17,20 +18,25 @@ export default function Layout() {
 			<Checkbox
 				label="vvv"
 				// indeterminate
-				position='right'
+				position="right"
 				onChange={handleClick}
 				checked={state}
 				// disabled
-			>
-				
-			</Checkbox>
+			></Checkbox>
 			<Radio
 				label="vvv"
+				// disabled
+				position=""
+				checked={state}
+				onChange={handleClick}
+			></Radio>
+			<Toggle
 				// disabled
 				position="right"
 				checked={state}
 				onChange={handleClick}
-			></Radio>
+				label="Toggle Switch"
+			></Toggle>
 		</div>
 	);
 }
