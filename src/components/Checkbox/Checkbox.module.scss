@@ -1,53 +1,238 @@
 @use "@/styles/--variable" as variable;
 
+// gap
 $gap: variable.$gap;
+
+// font
 $font-size: variable.$font-size;
 $font-family: variable.$font-family;
-$primary-color-second: variable.$primary-color-second;
-$white-disabled: variable.$white-disabled;
+
+// radius
+$radius-xm: variable.$radius-xm;
+
+// text color
+$text-disabled: variable.$text-disabled;
+$text-primary-black: variable.$text-primary-black;
+$text-accent: variable.$text-accent;
+
+// color
+$yellow-500: variable.$yellow-500;
+$primary-50: variable.$primary-50;
+$primary-500: variable.$primary-500;
 $white: variable.$white;
-$border-color-disabled: variable.$border-color-disabled;
+$primary-200: variable.$primary-200;
+$grey-200: variable.$grey-200;
+
+// custom local css
+$square: 24px;
+$box-shadow:0px 0px 0px 3px $primary-200;
 
 .container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: $gap - 7;
+	display: inline-flex;
+	align-items: center;
 
-  cursor: pointer;
+	cursor: pointer;
 
-  input {
-    display: none;
-  }
+	label {
+		display: flex;
+		align-items: center;
+		user-select: none;
+		cursor: pointer;
+    gap: $gap * 2;
 
-  label {
-    user-select: none;
-    cursor: pointer;
-    color: $primary-color-second;
+		font-size: $font-size;
+		font-family: $font-family;
 
-    font-size: inherit;
-    font-family: $font-family;
-  }
+		color: $text-primary-black;
+		line-height: 150%;
 
-  span{
-    line-height: 0;
-  }
+		&:hover {
+			color: $text-accent;
+		}
+
+		&:disabled {
+			color: $text-disabled;
+		}
+
+    &:focus-visible{
+      outline: none;
+    }
+	}
+
+	span {
+		line-height: 0;
+	}
 }
 
-.containerDisabled {
-  cursor: no-drop;
-
-  background-color: $white;
-
-  label {
-    cursor: no-drop;
-  }
+.container input[type="checkbox"] {
+	display: none;
 }
 
-.uncheck {
-  color: $primary-color-second;
+.disabled {
+	label {
+		cursor: no-drop;
+		color: $text-disabled;
+
+    &:hover {
+			color: $text-disabled;
+		}
+	}
 }
 
-.uncheckDisable {
-  color: $border-color-disabled;
+///////////////////////////////// LEFT ////////////////////////////////////
+
+.left {
+	label {
+		&::before {
+			width: $square;
+			height: $square;
+
+			content: "";
+			position: relative;
+			border-radius: $radius-xm;
+			border: 1px solid $yellow-500;
+
+			display: flex;
+			align-items: center;
+			transition: border-color 0.2s;
+		}
+
+		&:hover::before {
+			background-color: $primary-50;
+			border-color: $primary-500;
+		}
+
+		&:focus::before {
+			background-color: $white;
+			box-shadow:$box-shadow;
+			border-color: $primary-500;
+		}
+	}
+}
+
+.left input[type="checkbox"]:checked + label::before {
+	background-image: url("../../../public/images/check.png");
+	background-color: $primary-500;
+	background-position: center;
+
+	width: $square;
+	height: $square;
+}
+
+.indeterminate.left {
+	label {
+		&::before {
+			background-image: url("../../../public/images/minus.png");
+			background-color: $primary-500;
+			background-position: center;
+		}
+	}
+}
+
+.disabled.left {
+	label {
+		&::before {
+			border-color: $grey-200;
+			cursor: no-drop;
+		}
+		&:hover::before {
+			background: none;
+		}
+	}
+}
+
+.left input[type="checkbox"]:checked:disabled + label::before {
+	background-color: $grey-200;
+}
+
+.disabled.indeterminate.left {
+	label {
+		&::before {
+			background-color: $grey-200;
+		}
+
+		&:hover::before {
+			background-image: url("../../../public/images/minus.png");
+			background-position: center;
+		}
+	}
+}
+
+///////////////////////////////// RIGHT ////////////////////////////////////
+
+.right {
+	label {
+		&::after {
+			width: $square;
+			height: $square;
+
+			content: "";
+			position: relative;
+			border-radius: $radius-xm;
+			border: 1px solid $yellow-500;
+
+			display: flex;
+			align-items: center;
+			transition: border-color 0.2s;
+		}
+
+		&:hover::after {
+			background-color: $primary-50;
+			border-color: $primary-500;
+		}
+
+		&:focus::after {
+			background-color: $white;
+			box-shadow:$box-shadow;
+			border-color: $primary-500;
+		}
+	}
+}
+
+.right input[type="checkbox"]:checked + label::after {
+	background-image: url("../../../public/images/check.png");
+	background-color: $primary-500;
+	background-position: center;
+
+	width: $square;
+	height: $square;
+}
+
+.indeterminate.right {
+	label {
+		&::after {
+			background-image: url("../../../public/images/minus.png");
+			background-color: $primary-500;
+			background-position: center;
+		}
+	}
+}
+
+.disabled.right {
+	label {
+		&::after {
+			border-color: $grey-200;
+			cursor: no-drop;
+		}
+		&:hover::after {
+			background: none;
+		}
+	}
+}
+
+.right input[type="checkbox"]:checked:disabled + label::after {
+	background-color: $grey-200;
+}
+
+.disabled.indeterminate.right {
+	label {
+		&::after {
+			background-color: $grey-200;
+		}
+
+		&:hover::after {
+			background-image: url("../../../public/images/minus.png");
+			background-position: center;
+		}
+	}
 }
