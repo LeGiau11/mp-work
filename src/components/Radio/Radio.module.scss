@@ -1,15 +1,32 @@
 @use "@/styles/--variable" as variable;
 
+// gap
 $gap: variable.$gap;
+
+// font
 $font-size: variable.$font-size;
 $font-family: variable.$font-family;
-$primary-color-second: variable.$primary-color-second;
-$white-disabled: variable.$white-disabled;
+
+// radius
+$radius-xm: variable.$radius-xm;
+
+// text color
+$text-disabled: variable.$text-disabled;
+$text-primary-black: variable.$text-primary-black;
+$text-accent: variable.$text-accent;
+
+// color
+$yellow-500: variable.$yellow-500;
+$primary-50: variable.$primary-50;
+$primary-500: variable.$primary-500;
 $white: variable.$white;
-$border-color-disabled: variable.$border-color-disabled;
-$txt-btn-disabled: variable.$txt-btn-disabled;
-$checked-radio-color: variable.$checked-radio-color;
-$disabled-checke-radio-color: variable.$disabled-checke-radio-color;
+$primary-200: variable.$primary-200;
+$grey-200: variable.$grey-200;
+
+// custom local css
+$square: 24px;
+$box-shadow: 0px 0px 0px 3px $primary-200;
+$border-radius: 9999px;
 
 .container {
   display: flex;
@@ -17,13 +34,32 @@ $disabled-checke-radio-color: variable.$disabled-checke-radio-color;
 
   cursor: pointer;
 
-  input {
-    display: none;
-  }
-
   label {
-    user-select: none;
-    cursor: pointer;
+    display: flex;
+		align-items: center;
+		user-select: none;
+		cursor: pointer;
+		gap: $gap * 2;
+		word-wrap: 'break-word';
+
+		font-size: $font-size;
+		font-family: $font-family;
+
+		color: $text-primary-black;
+		line-height: 150%;
+    transition: background-color 0.2s ease-in-out,border-color 0.2s ease-in-out;
+
+		&:hover {
+			color: $text-accent;
+		}
+
+		&:disabled {
+			color: $text-disabled;
+		}
+
+		&:focus-visible {
+			outline: none;
+		}
   }
 
   span {
@@ -31,27 +67,104 @@ $disabled-checke-radio-color: variable.$disabled-checke-radio-color;
   }
 }
 
-.containerDisabled {
-  cursor: no-drop;
-
-  label {
-    color: $txt-btn-disabled;
-    cursor: no-drop;
-  }
+.container input[type="radio"] {
+	display: none;
 }
 
-.uncheck {
-  color: $primary-color-second;
+.disabled {
+	label {
+		cursor: no-drop;
+		color: $text-disabled;
+
+		&:hover {
+			color: $text-disabled;
+		}
+	}
 }
 
-.check {
-  color: $checked-radio-color;
+///////////////////////////////// LEFT ////////////////////////////////////
+
+.left {
+	label {
+		&::before {
+			width: $square;
+			height: $square;
+
+			content: "";
+			position: relative;
+			border-radius: $border-radius;
+			border: 1px solid $yellow-500;
+		}
+
+		&:hover::before {
+			background-color: $primary-50;
+			border-color: $primary-500;
+		}
+
+		&:focus::before {
+			background-color: $white;
+			box-shadow: $box-shadow;
+			border-color: $primary-500;
+		}
+	}
 }
 
-.uncheckDisabled {
-  color: $border-color-disabled;
+.left input[type="radio"]:checked + label::before, .right input[type="radio"]:checked + label::after  {
+	content: "";
+  background: radial-gradient(circle, $primary-500 40%, transparent 41%);
 }
 
-.checkDisabled {
-  color: $disabled-checke-radio-color;
+.disabled.left {
+	label {
+		&::before {
+			border-color: $grey-200;
+			cursor: no-drop;
+		}
+		&:hover::before {
+			background: none;
+		}
+	}
+}
+
+.left input[type="radio"]:checked:disabled + label::before, .right input[type="radio"]:checked:disabled + label::after  {
+	content: "";
+  background: radial-gradient(circle, $grey-200 40%, transparent 41%);
+}
+
+///////////////////////////////// RIGHT ////////////////////////////////////
+.right {
+	label {
+		&::after {
+			width: $square;
+			height: $square;
+
+			content: "";
+			position: relative;
+			border-radius: $border-radius;
+			border: 1px solid $yellow-500;
+		}
+
+		&:hover::after {
+			background-color: $primary-50;
+			border-color: $primary-500;
+		}
+
+		&:focus::after {
+			background-color: $white;
+			box-shadow: $box-shadow;
+			border-color: $primary-500;
+		}
+	}
+}
+
+.disabled.right {
+	label {
+		&::after {
+			border-color: $grey-200;
+			cursor: no-drop;
+		}
+		&:hover::after {
+			background: none;
+		}
+	}
 }

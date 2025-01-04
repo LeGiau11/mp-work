@@ -1,9 +1,9 @@
-import { Checkbox } from "@/components";
+import { Checkbox, Radio } from "@/components";
 import { useState } from "react";
 
 export default function Layout() {
-	const [state,setState] =  useState(false);
-	const handleClick = () =>setState(!state)
+	const [state, setState] = useState(false);
+	const handleClick = () => setState(!state);
 	return (
 		<div
 			style={{
@@ -15,7 +15,7 @@ export default function Layout() {
 			}}
 		>
 			<Checkbox
-				// label="vvv"
+				label="vvv"
 				// indeterminate
 				position='right'
 				onChange={handleClick}
@@ -24,6 +24,13 @@ export default function Layout() {
 			>
 				
 			</Checkbox>
+			<Radio
+				label="vvv"
+				// disabled
+				position="right"
+				checked={state}
+				onChange={handleClick}
+			></Radio>
 		</div>
 	);
 }

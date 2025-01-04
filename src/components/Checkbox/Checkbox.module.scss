@@ -25,7 +25,7 @@ $grey-200: variable.$grey-200;
 
 // custom local css
 $square: 24px;
-$box-shadow:0px 0px 0px 3px $primary-200;
+$box-shadow: 0px 0px 0px 3px $primary-200;
 
 .container {
 	display: inline-flex;
@@ -38,13 +38,15 @@ $box-shadow:0px 0px 0px 3px $primary-200;
 		align-items: center;
 		user-select: none;
 		cursor: pointer;
-    gap: $gap * 2;
+		gap: $gap * 2;
+		word-wrap: 'break-word';
 
 		font-size: $font-size;
 		font-family: $font-family;
 
 		color: $text-primary-black;
 		line-height: 150%;
+		transition: background-color 0.2s ease-in-out,border-color 0.2s ease-in-out;
 
 		&:hover {
 			color: $text-accent;
@@ -54,9 +56,9 @@ $box-shadow:0px 0px 0px 3px $primary-200;
 			color: $text-disabled;
 		}
 
-    &:focus-visible{
-      outline: none;
-    }
+		&:focus-visible {
+			outline: none;
+		}
 	}
 
 	span {
@@ -73,7 +75,7 @@ $box-shadow:0px 0px 0px 3px $primary-200;
 		cursor: no-drop;
 		color: $text-disabled;
 
-    &:hover {
+		&:hover {
 			color: $text-disabled;
 		}
 	}
@@ -94,7 +96,6 @@ $box-shadow:0px 0px 0px 3px $primary-200;
 
 			display: flex;
 			align-items: center;
-			transition: border-color 0.2s;
 		}
 
 		&:hover::before {
@@ -104,7 +105,7 @@ $box-shadow:0px 0px 0px 3px $primary-200;
 
 		&:focus::before {
 			background-color: $white;
-			box-shadow:$box-shadow;
+			box-shadow: $box-shadow;
 			border-color: $primary-500;
 		}
 	}
@@ -173,7 +174,6 @@ $box-shadow:0px 0px 0px 3px $primary-200;
 
 			display: flex;
 			align-items: center;
-			transition: border-color 0.2s;
 		}
 
 		&:hover::after {
@@ -183,7 +183,7 @@ $box-shadow:0px 0px 0px 3px $primary-200;
 
 		&:focus::after {
 			background-color: $white;
-			box-shadow:$box-shadow;
+			box-shadow: $box-shadow;
 			border-color: $primary-500;
 		}
 	}

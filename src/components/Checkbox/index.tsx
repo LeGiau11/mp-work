@@ -8,7 +8,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 	(
 		{
 			classNameContainer,
-			id = "checkbox1",
+			id = "checkbox",
 			label = "",
 			checked = false,
 			disabled = false,
