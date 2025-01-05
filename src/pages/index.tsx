@@ -1,4 +1,4 @@
-import { Checkbox, Radio, Toggle } from "@/components";
+import { Checkbox, Radio, Toggle, Tooltip } from "@/components";
 import { useState } from "react";
 
 export default function Layout() {
@@ -37,6 +37,10 @@ export default function Layout() {
 				onChange={handleClick}
 				label="Toggle Switch"
 			></Toggle>
+
+			<Tooltip title="Hay click vao day!" position="bottomLeft" trigger="hover">
+				<p>vvvv</p>
+			</Tooltip>
 		</div>
 	);
 }

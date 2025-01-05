@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import Button from "./Button";
 import Option from "./Option";
 import Toggle from "./Toggle";
+import Tooltip from "./Tooltip";
 import Sidebar from "./Sidebar";
 import { Select } from "./Select";
 import Checkbox from "./Checkbox";
@@ -32,7 +33,8 @@ export {
 	Radio,
 	Typography,
 	Chip,
-	Toggle
+	Toggle,
+	Tooltip,
 };
 
 export type { OptionType };
