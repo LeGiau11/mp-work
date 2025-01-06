@@ -6,11 +6,13 @@ import Footer from "./Footer";
 import Button from "./Button";
 import Option from "./Option";
 import Toggle from "./Toggle";
+import Loader from "./Loader";
 import Tooltip from "./Tooltip";
 import Sidebar from "./Sidebar";
 import { Select } from "./Select";
 import Checkbox from "./Checkbox";
 import Typography from "./Typography";
+import ProgressBar from "./ProgressBar";
 import InputPassword from "./InputPassword";
 import { Loading1, Loading } from "./Loading";
 import MultipleSelect from "./MultipleSelect";
@@ -35,6 +37,8 @@ export {
 	Chip,
 	Toggle,
 	Tooltip,
+	ProgressBar,
+	Loader,
 };
 
 export type { OptionType };
