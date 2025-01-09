@@ -1,5 +1,6 @@
-import { Checkbox, Loader, ProgressBar, Radio, Toggle, Tooltip } from "@/components";
 import { useState } from "react";
+
+import { Avatar, Checkbox, Loader, ProgressBar, Radio, Toggle, Tooltip } from "@/components";
 
 export default function Layout() {
 	const [state, setState] = useState(false);
@@ -16,7 +17,7 @@ export default function Layout() {
 					gap: "10px",
 				}}
 			>
-				<Checkbox
+				{/* <Checkbox
 					label="vvv"
 					// indeterminate
 					position="right"
@@ -45,10 +46,11 @@ export default function Layout() {
 					trigger="hover"
 				>
 					<p>vvvv</p>
-				</Tooltip>
-				<Loader size="giant" animated/>
+				</Tooltip> */}
+				<Avatar status="away" size="tiny" text="GL" />
+				{/* <Loader size="giant" animated/> */}
 			</div>
-			<ProgressBar position="right" value={90.5} animated />
+			{/* <ProgressBar position="right" value={90.5} animated /> */}
 		</>
 	);
 }

@@ -7,6 +7,7 @@ import Button from "./Button";
 import Option from "./Option";
 import Toggle from "./Toggle";
 import Loader from "./Loader";
+import Avatar from "./Avatar";
 import Tooltip from "./Tooltip";
 import Sidebar from "./Sidebar";
 import { Select } from "./Select";
@@ -39,6 +40,7 @@ export {
 	Tooltip,
 	ProgressBar,
 	Loader,
+	Avatar
 };
 
 export type { OptionType };
