@@ -1,0 +1,83 @@
+@use "@/styles/--variable" as variable;
+
+// gap
+$gap: variable.$gap;
+// font-family
+$font-family: variable.$font-family;
+$Regular:variable.$Regular;
+// font-size
+$font-size-md: variable.$font-size-md;
+// color
+$primary-500: variable.$primary-500;
+$primary-50: variable.$primary-50;
+// radius
+$radius-xm: variable.$radius-xm;
+// text-color
+$text-primary-black: variable.$text-primary-black;
+// custom
+$square: 40px;
+
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: $gap * 2;
+
+	width: 100%;
+
+	label {
+		flex-shrink: 1;
+
+        font-family: $font-family;
+        font-weight: $Regular;
+        font-size: $font-size-md;
+
+        color: $text-primary-black;
+        word-wrap: break-word;
+	}
+}
+
+.progressBarContainer {
+	width: 100%;
+	background-color: $primary-50;
+	border-radius: $radius-xm;
+	flex-shrink: 1;
+	height: $square / 5;
+
+	overflow: hidden;
+	position: relative;
+}
+
+.progressBar {
+	height: 100%;
+	border-radius: $radius-xm;
+	background-color: $primary-500;
+	transition: width 0.4s ease-in-out;
+}
+
+.striped.progressBar {
+	background-image: linear-gradient(
+		45deg,
+		rgba(255, 255, 255, 0.15) 25%,
+		transparent 25%,
+		transparent 50%,
+		rgba(255, 255, 255, 0.15) 50%,
+		rgba(255, 255, 255, 0.15) 75%,
+		transparent 75%,
+		transparent
+	);
+	background-size: $square $square;
+}
+
+.animated.progressBar {
+	animation: move-stripes 1s linear infinite;
+}
+
+@keyframes move-stripes {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: $square 0;
+	}
+}

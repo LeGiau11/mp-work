@@ -1,0 +1,59 @@
+@use "@/styles/--variable" as variable;
+
+//color
+$primary-500: variable.$primary-500;
+$white: variable.$white;
+// custom
+$border-radius: 9999px;
+$border-giant: 6px;
+$border-medium: 5px;
+$border-small: 4px;
+$square:8px;
+
+.container {
+	width: 100%;
+
+	border-radius: $border-radius;
+
+	position: relative;
+	color: $primary-500;
+}
+
+.animated.container {
+	animation: rotate 1.5s linear infinite;
+}
+
+.giant.container {
+	width: $square * 7;
+	height: $square * 7;
+}
+
+.large.container {
+	width: $square * 6;
+	height: $square * 6;
+}
+
+.medium.container {
+	width: $square * 5;
+	height: $square * 5;
+}
+
+.small.container {
+	width: $square * 4;
+	height: $square * 4;
+}
+
+.tiny.container {
+	width: $square * 3;
+	height: $square * 3;
+}
+
+/* Rotation Animation */
+@keyframes rotate {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}

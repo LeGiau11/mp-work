@@ -5,13 +5,20 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Button from "./Button";
 import Option from "./Option";
+import Toggle from "./Toggle";
+import Loader from "./Loader";
+import Avatar from "./Avatar";
+import Tooltip from "./Tooltip";
 import Sidebar from "./Sidebar";
 import { Select } from "./Select";
 import Checkbox from "./Checkbox";
-import { Loading1, Loading } from "./Loading";
-import InputPassword from "./InputPassword";
-import MultipleSelect from "./MultipleSelect";
 import Typography from "./Typography";
+import Breadcrumb from "./Breadcrumb";
+import Breadcrumbs from "./Breadcrumbs";
+import ProgressBar from "./ProgressBar";
+import InputPassword from "./InputPassword";
+import { Loading1, Loading } from "./Loading";
+import MultipleSelect from "./MultipleSelect";
 import { SearchSelect, Option as OptionType } from "./SearchSelect";
 
 export {
@@ -31,6 +38,13 @@ export {
 	Radio,
 	Typography,
 	Chip,
+	Toggle,
+	Tooltip,
+	ProgressBar,
+	Loader,
+	Avatar,
+	Breadcrumb,
+	Breadcrumbs
 };
 
 export type { OptionType };

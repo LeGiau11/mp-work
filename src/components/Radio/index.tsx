@@ -1,4 +1,4 @@
-import { forwardRef, MouseEventHandler, useRef } from "react";
+import { forwardRef, MouseEventHandler, useMemo, useRef } from "react";
 import clsx from "clsx";
 
 import { RadioProps } from "./interface";
@@ -19,6 +19,12 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
 		ref,
 	) => {
 		const inputRef = useRef<HTMLInputElement>(null);
+
+		const newPosition = useMemo(() => {
+			if (!position) return "left";
+			return position;
+		}, [position]);
+
 		const handleClick: MouseEventHandler<HTMLDivElement> | undefined = (
 			event,
 		) => {
@@ -36,8 +42,8 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
 				onClick={handleClick}
 				className={clsx(classNameContainer, styles.container, {
 					[styles.disabled]: disabled,
-					[styles.left]: position == "left",
-					[styles.right]: position == "right",
+					[styles.left]: newPosition == "left",
+					[styles.right]: newPosition == "right",
 				})}
 			>
 				<input
