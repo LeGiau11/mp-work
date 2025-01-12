@@ -5,9 +5,10 @@ $primary-500: variable.$primary-500;
 $white: variable.$white;
 // custom
 $border-radius: 9999px;
-$border-giant:6px;
-$border-medium:5px;
-$border-small:4px;
+$border-giant: 6px;
+$border-medium: 5px;
+$border-small: 4px;
+$square:8px;
 
 .container {
 	width: 100%;
@@ -15,17 +16,7 @@ $border-small:4px;
 	border-radius: $border-radius;
 
 	position: relative;
-
-	&::before {
-		content: "";
-		top: -16%;
-		left: -16%;
-
-		border-radius: $border-radius;
-		z-index: 99;
-
-		position: absolute;
-	}
+	color: $primary-500;
 }
 
 .animated.container {
@@ -33,104 +24,28 @@ $border-small:4px;
 }
 
 .giant.container {
-	width: 56px;
-	height: 56px;
-
-	border: $border-giant solid transparent;
-	border-top: $border-giant solid $primary-500;
-	border-right: $border-giant solid $primary-500;
-	border-bottom: $border-giant solid $primary-500;
-
-	&::before {
-		width: 100%;
-		height: 100%;
-
-        top: -15%;
-		border: $border-giant solid $primary-500;
-		border-left: $border-giant solid transparent;
-		transform: rotate(60deg);
-	}
+	width: $square * 7;
+	height: $square * 7;
 }
 
-
 .large.container {
-	width: 48px;
-	height: 48px;
-
-	border: $border-giant solid transparent;
-	border-top: $border-giant solid $primary-500;
-	border-right: $border-giant solid $primary-500;
-	border-bottom: $border-giant solid $primary-500;
-
-	&::before {
-		width: 100%;
-		height: 100%;
-
-		border: $border-giant solid $primary-500;
-		border-left: $border-giant solid transparent;
-		transform: rotate(60deg);
-	}
+	width: $square * 6;
+	height: $square * 6;
 }
 
 .medium.container {
-	width: 40px;
-	height: 40px;
-
-	border: $border-medium solid transparent;
-	border-top: $border-medium solid $primary-500;
-	border-right: $border-medium solid $primary-500;
-	border-bottom: $border-medium solid $primary-500;
-
-	&::before {
-		width: 100%;
-		height: 100%;
-
-		border: $border-medium solid $primary-500;
-		border-left: $border-medium solid transparent;
-		transform: rotate(60deg);
-	}
+	width: $square * 5;
+	height: $square * 5;
 }
 
 .small.container {
-	width: 32px;
-	height: 32px;
-
-	border: $border-small solid transparent;
-	border-top: $border-small solid $primary-500;
-	border-right: $border-small solid $primary-500;
-	border-bottom: $border-small solid $primary-500;
-
-	&::before {
-		width: 100%;
-		height: 100%;
-		top: -16%;
-		left: -18%;
-		border: 4px solid transparent;
-		border-left: 4px solid $primary-500;
-		transform: rotate(-30deg);
-	}
+	width: $square * 4;
+	height: $square * 4;
 }
 
 .tiny.container {
-	width: 24px;
-	height: 24px;
-
-	border: $border-small solid transparent;
-	border-top: $border-small solid $primary-500;
-	border-right: $border-small solid $primary-500;
-	border-bottom: $border-small solid $primary-500;
-
-	&::before {
-		width: 100%;
-		height: 100%;
-
-		top: -25%;
-		left: -27%;
-
-		border: $border-small solid $primary-500;
-		border-left: $border-small solid transparent;
-		transform: rotate(-45deg);
-	}
+	width: $square * 3;
+	height: $square * 3;
 }
 
 /* Rotation Animation */

@@ -1,0 +1,115 @@
+@use "@/styles/--variable" as variable;
+
+//display
+$gap: variable.$gap;
+$font-family: variable.$font-family;
+$font-size-md: variable.$font-size-md;
+$SemiBold: variable.$SemiBold;
+
+//spacing
+$spacing-sm: variable.$spacing-sm;
+$spacing-xm: variable.$spacing-xm;
+
+//radius
+$radius-xm: variable.$radius-xm;
+
+//color
+$grey-100: variable.$grey-100;
+$primary-100: variable.$primary-100;
+$primary-50: variable.$primary-50;
+
+// text color
+$text-grey: variable.$text-grey;
+$text-disabled: variable.$text-disabled;
+$text-accent: variable.$text-accent;
+$text-secondary-dark-grey: variable.$text-secondary-dark-grey;
+$text-primary-black: variable.$text-primary-black;
+
+// custom
+$square: 24px;
+
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	gap: $gap + 2;
+
+	list-style: none;
+	height: auto;
+}
+
+.item {
+	font-family: $font-family;
+	font-weight: $SemiBold;
+	font-size: $font-size-md;
+	line-height: 1.6;
+
+	display: flex;
+	align-items: center;
+	gap: $gap;
+
+	width: auto;
+	height: $square;
+
+	padding: $spacing-sm $spacing-xm;
+	border-radius: $radius-xm - 2;
+	word-wrap: break-word;
+	color: $text-grey;
+	cursor: pointer;
+
+	&:hover {
+		background-color: $grey-100;
+		color: $text-secondary-dark-grey;
+	}
+
+	&:focus {
+		color: $text-accent;
+		background-color: $primary-50;
+
+		a {
+			color: $text-accent;
+		}
+	}
+
+	&:focus-visible {
+		outline: none;
+	}
+
+	&:active {
+		color: $text-primary-black;
+		background-color: transparent;
+
+		a {
+			color: $text-primary-black;
+		}
+	}
+
+	span {
+		top: 0;
+		left: 0;
+
+		width: $square - 4;
+		height: $square - 5;
+	}
+
+	a {
+		text-decoration: none;
+		color: $text-grey;
+	}
+}
+
+.disabled.item {
+	cursor: not-allowed;
+	color: $text-disabled;
+	background: none;
+
+	a {
+		color: $text-disabled;
+	}
+}
+
+/** separator */
+.separator {
+	color: $text-grey;
+}

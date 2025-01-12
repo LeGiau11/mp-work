@@ -13,6 +13,8 @@ import Sidebar from "./Sidebar";
 import { Select } from "./Select";
 import Checkbox from "./Checkbox";
 import Typography from "./Typography";
+import Breadcrumb from "./Breadcrumb";
+import Breadcrumbs from "./Breadcrumbs";
 import ProgressBar from "./ProgressBar";
 import InputPassword from "./InputPassword";
 import { Loading1, Loading } from "./Loading";
@@ -40,7 +42,9 @@ export {
 	Tooltip,
 	ProgressBar,
 	Loader,
-	Avatar
+	Avatar,
+	Breadcrumb,
+	Breadcrumbs
 };
 
 export type { OptionType };
