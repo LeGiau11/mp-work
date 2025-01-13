@@ -19,7 +19,12 @@ import ProgressBar from "./ProgressBar";
 import InputPassword from "./InputPassword";
 import { Loading1, Loading } from "./Loading";
 import MultipleSelect from "./MultipleSelect";
+import ContextMenuConfigure from "./ContextMenuConfigure";
 import { SearchSelect, Option as OptionType } from "./SearchSelect";
+import ContextMenu, {
+	Menu as ContextMenuType,
+	ContextMenuProps,
+} from "./ContextMenu";
 
 export {
 	Input,
@@ -44,7 +49,9 @@ export {
 	Loader,
 	Avatar,
 	Breadcrumb,
-	Breadcrumbs
+	Breadcrumbs,
+	ContextMenu,
+	ContextMenuConfigure,
 };
 
-export type { OptionType };
+export type { OptionType, ContextMenuType, ContextMenuProps };

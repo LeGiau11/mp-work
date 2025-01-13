@@ -20,28 +20,45 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({
 	});
 
 	return (
-		<nav role="breadcrumbs">
-			<Breadcrumb>
-				<Breadcrumb.Item leftIcon={leftIcon} rightIcon={rightIcon} href="/">
-					Home
-				</Breadcrumb.Item>
-				{breadcrumbs.map((breadcrumb, index) => {
-					return (
-						<>
-							<Breadcrumb.Separator separator={separator} />
-							<Breadcrumb.Item
-								leftIcon={leftIcon}
-								rightIcon={rightIcon}
-								href={breadcrumb.href}
-								key={index}
-							>
-								{breadcrumb.name}
-							</Breadcrumb.Item>
-						</>
-					);
-				})}
-			</Breadcrumb>
-		</nav>
+		<>
+			<nav role="breadcrumbs">
+				<Breadcrumb>
+					<Breadcrumb.Item leftIcon={leftIcon} rightIcon={rightIcon} href="/">
+						Home
+					</Breadcrumb.Item>
+					{breadcrumbs.map((breadcrumb, index) => {
+						return (
+							<>
+								<Breadcrumb.Separator separator={separator} />
+								<Breadcrumb.Item
+									leftIcon={leftIcon}
+									rightIcon={rightIcon}
+									href={breadcrumb.href}
+									key={index}
+								>
+									{breadcrumb.name}
+								</Breadcrumb.Item>
+							</>
+						);
+					})}
+				</Breadcrumb>
+			</nav>
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{
+					__html: JSON.stringify({
+						"@context": "https://schema.org",
+						"@type": "BreadcrumbList",
+						itemListElement: breadcrumbs.map((breadcrumb, index) => ({
+							"@type": "ListItem",
+							position: index + 1,
+							name: breadcrumb.name,
+							item: breadcrumb.href,
+						})),
+					}),
+				}}
+			/>
+		</>
 	);
 };
 
