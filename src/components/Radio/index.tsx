@@ -1,4 +1,13 @@
-import { forwardRef, MouseEventHandler, useMemo, useRef } from "react";
+import {
+	forwardRef,
+	KeyboardEvent,
+	KeyboardEventHandler,
+	MouseEvent,
+	MouseEventHandler,
+	useMemo,
+	useRef,
+	useState,
+} from "react";
 import clsx from "clsx";
 
 import { RadioProps } from "./interface";
@@ -10,7 +19,7 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
 			id = "radio",
 			classNameContainer = "",
 			label = "",
-			checked = false,
+			checked,
 			disabled = false,
 			position = "left",
 			onChange = () => {},
@@ -18,6 +27,7 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
 		},
 		ref,
 	) => {
+		const [val, setVal] = useState<boolean>(false);
 		const inputRef = useRef<HTMLInputElement>(null);
 
 		const newPosition = useMemo(() => {
@@ -25,15 +35,38 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
 			return position;
 		}, [position]);
 
-		const handleClick: MouseEventHandler<HTMLDivElement> | undefined = (
-			event,
-		) => {
+		/**
+		 *
+		 * Handle Click
+		 * 
+		 * @param event MouseEvent<HTMLDivElement>,
+		 * @returns {void}
+		 */
+		const handleClick: MouseEventHandler<HTMLDivElement> = (
+			event: MouseEvent<HTMLDivElement>,
+		): void => {
 			event.preventDefault();
 
 			if (disabled) return;
 
-			if (inputRef.current) {
-				inputRef.current.click();
+			if (checked === undefined) setVal(true);
+
+			if (inputRef.current) inputRef.current.click();
+		};
+
+		/**
+		 * 
+		 * Handle Key down
+		 * 
+		 * @param event KeyboardEvent<HTMLDivElement>
+		 * @returns {void}
+		 */
+		const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (
+			event: KeyboardEvent<HTMLDivElement>,
+		): void => {
+			if (event.key === " " || event.key === "Enter") {
+				event.preventDefault();
+				inputRef.current?.click();
 			}
 		};
 
@@ -45,11 +78,12 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
 					[styles.left]: newPosition == "left",
 					[styles.right]: newPosition == "right",
 				})}
+				onKeyDown={handleKeyDown}
 			>
 				<input
 					id={id}
 					ref={ref ? ref : inputRef}
-					checked={checked}
+					checked={checked !== undefined ? checked : val}
 					onChange={onChange}
 					type="radio"
 					disabled={disabled}

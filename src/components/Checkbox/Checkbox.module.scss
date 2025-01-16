@@ -67,7 +67,12 @@ $box-shadow: 0px 0px 0px 3px $primary-200;
 }
 
 .container input[type="checkbox"] {
-	display: none;
+	position: absolute;
+	opacity: 0;
+	width: 0;
+	height: 0;
+	margin: 0;
+	pointer-events: none;
 }
 
 .disabled {
@@ -109,6 +114,12 @@ $box-shadow: 0px 0px 0px 3px $primary-200;
 			border-color: $primary-500;
 		}
 	}
+}
+
+.left input[type="checkbox"]:focus + label::before {
+	background-color: $white;
+	box-shadow: $box-shadow;
+	border-color: $primary-500;
 }
 
 .left input[type="checkbox"]:checked + label::before {
@@ -187,6 +198,12 @@ $box-shadow: 0px 0px 0px 3px $primary-200;
 			border-color: $primary-500;
 		}
 	}
+}
+
+.right input[type="checkbox"]:focus + label::after {
+	background-color: $white;
+	box-shadow: $box-shadow;
+	border-color: $primary-500;
 }
 
 .right input[type="checkbox"]:checked + label::after {

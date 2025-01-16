@@ -12,6 +12,7 @@ import Tooltip from "./Tooltip";
 import Sidebar from "./Sidebar";
 import { Select } from "./Select";
 import Checkbox from "./Checkbox";
+import Dropdown from "./Dropdown";
 import Typography from "./Typography";
 import Breadcrumb from "./Breadcrumb";
 import Breadcrumbs from "./Breadcrumbs";
@@ -19,12 +20,10 @@ import ProgressBar from "./ProgressBar";
 import InputPassword from "./InputPassword";
 import { Loading1, Loading } from "./Loading";
 import MultipleSelect from "./MultipleSelect";
+import Menu, { MenuProp as MenuType } from "./Menu";
 import ContextMenuConfigure from "./ContextMenuConfigure";
+import ContextMenu, { ContextMenuProps } from "./ContextMenu";
 import { SearchSelect, Option as OptionType } from "./SearchSelect";
-import ContextMenu, {
-	Menu as ContextMenuType,
-	ContextMenuProps,
-} from "./ContextMenu";
 
 export {
 	Input,
@@ -52,6 +51,8 @@ export {
 	Breadcrumbs,
 	ContextMenu,
 	ContextMenuConfigure,
+	Dropdown,
+	Menu,
 };
 
-export type { OptionType, ContextMenuType, ContextMenuProps };
+export type { OptionType, ContextMenuProps, MenuType };

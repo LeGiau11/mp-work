@@ -8,20 +8,14 @@ import {
 	RefObject,
 } from "react";
 
+import { MenuType as Menu } from "@/components";
+
 export interface ContextMenuProps {
 	targetRef?: RefObject<HTMLElement>;
 	items?: Menu[];
 	children?: ReactNode;
 	anchor?: "left" | "right" | "bottom" | "top";
 }
-
-export interface Menu {
-	key?: string;
-	label?: string | number;
-	icon?: ReactNode;
-	onClick?: () => void;
-}
-
 export interface Position {
 	x?: number;
 	y?: number;

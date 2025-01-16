@@ -13,7 +13,7 @@ const Select: FC<SelectProps> = ({
 }) => {
   const arrowRef = useRef<HTMLDivElement | null>(null);
 
-  const handleForcus = () => {
+  const handleFocus = () => {
     if (arrowRef.current) {
       arrowRef.current?.classList.add(styles.rotated);
     }
@@ -36,7 +36,7 @@ const Select: FC<SelectProps> = ({
 
   return (
     <div
-      onFocus={handleForcus}
+      onFocus={handleFocus}
       onBlur={handleBlur}
       className={clsx(styles.selectContainer)}
     >

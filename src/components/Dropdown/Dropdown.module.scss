@@ -1,0 +1,70 @@
+@use "@/styles/--variable" as variable;
+
+// font-family
+$font-family: variable.$font-family;
+$font-size: variable.$font-size;
+$Regular: variable.$Regular;
+// text color
+$text-primary-black: variable.$text-primary-black;
+
+//icon color
+$icon-grey: variable.$icon-grey;
+
+// color
+$grey-200:variable.$grey-200;
+
+.container {
+	width: 100%;
+	height: auto;
+
+	position: relative;
+}
+
+.content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+
+	padding: 12px;
+	border: 1px solid $grey-200;
+	border-radius: 12px;
+}
+
+.wrapper {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+
+	width: 100%;
+
+	p {
+		flex-grow: 1;
+		line-height: 24px;
+
+		font-family: $font-family;
+		font-size: $font-size;
+		font-weight: $Regular;
+
+		word-wrap: break-word;
+		color: $text-primary-black;
+	}
+}
+
+.customIcon{
+    width: 20px;
+    height: 19px;
+}
+
+.iconDown {
+	width: 24px;
+	height: 24px;
+
+    color: $icon-grey;
+}
+
+.subContent {
+	position: absolute;
+	top: 0;
+	left: 0;
+}

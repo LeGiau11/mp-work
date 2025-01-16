@@ -5,7 +5,6 @@ import {
 	ContextMenuComponent,
 	ContextMenuItemProps,
 	ContextMenuProps,
-	Menu,
 	Position,
 	ValAnchor,
 } from "./interface";
@@ -20,7 +19,6 @@ const ContextMenu = forwardRef<HTMLDivElement, ContextMenuProps>(
 		const handleClick = (e: MouseEvent): void => {
 			if (targetRef?.current && targetRef.current.contains(e.target as Node)) {
 				const rect = targetRef.current.getBoundingClientRect();
-				console.log(rect);
 
 				switch (anchor) {
 					case "left": {
@@ -174,4 +172,4 @@ const ContextMenuItem: FC<ContextMenuItemProps> = ({
 ContextMenu.Item = ContextMenuItem;
 
 export default ContextMenu;
-export type { Menu, ContextMenuProps };
+export type { ContextMenuProps };

@@ -71,14 +71,13 @@ $primary-50: variable.$primary-50;
 				}
 			}
 
-            &:active{
+            &:focus{
 
             }
 
             &:focus-visible{
                 outline: none;
             }
-
 		}
 	}
 }
