@@ -1,23 +1,40 @@
 @use "@/styles/--variable" as variable;
 
+// gap
+$gap: variable.$gap;
 // font-family
 $font-family: variable.$font-family;
 $font-size: variable.$font-size;
 $Regular: variable.$Regular;
 // text color
 $text-primary-black: variable.$text-primary-black;
-
+$text-disabled: variable.$text-disabled;
 //icon color
 $icon-grey: variable.$icon-grey;
-
+$icon-light-grey: variable.$icon-light-grey;
+$icon-accent: variable.$icon-accent;
 // color
-$grey-200:variable.$grey-200;
+$grey-200: variable.$grey-200;
+$white: variable.$white;
+$primary-50: variable.$primary-50;
+$primary-500: variable.$primary-500;
 
 .container {
 	width: 100%;
 	height: auto;
 
 	position: relative;
+
+	&:focus-visible {
+		outline: none;
+	}
+
+	&:focus {
+		.content {
+			border-color: $primary-500;
+			box-shadow: 0px 0px 0px 3px rgba(255, 218, 175, 0.71);
+		}
+	}
 }
 
 .content {
@@ -29,6 +46,25 @@ $grey-200:variable.$grey-200;
 	padding: 12px;
 	border: 1px solid $grey-200;
 	border-radius: 12px;
+	transition: border-color 0.3s ease-in;
+
+	cursor: pointer;
+
+	&:hover {
+		border-color: $primary-500;
+	}
+}
+
+.disabled.content {
+	border-color: $grey-200;
+	color: $text-disabled;
+
+	cursor: not-allowed;
+}
+
+.expanded.content {
+	box-shadow: 0px 0px 0px 3px rgba(255, 218, 175, 0.71);
+	border-color: $primary-500;
 }
 
 .wrapper {
@@ -51,20 +87,152 @@ $grey-200:variable.$grey-200;
 	}
 }
 
-.customIcon{
-    width: 20px;
-    height: 19px;
+.disabled > .wrapper {
+	p {
+		color: $text-disabled;
+	}
 }
 
+.customIcon {
+	width: 20px;
+	height: 19px;
+	transition: color 0.3s ease;
+}
+
+.dropdownItemIcon,
 .iconDown {
 	width: 24px;
 	height: 24px;
+	transition: transform 0.3s ease;
 
-    color: $icon-grey;
+	color: $icon-grey;
 }
 
-.subContent {
+.disabled > .customIcon,
+.disabled > .iconDown {
+	color: $icon-light-grey;
+}
+
+.expanded .customIcon {
+	color: $icon-accent;
+}
+.expanded > .iconDown {
+	transform: rotate(180deg);
+	color: $icon-accent;
+}
+
+.dropdownSearch {
+	width: 100%;
+	padding: 0 5%;
+	margin-bottom: 8px;
+	margin-top: 8px;
+
+	display: flex;
+	align-items: center;
+	gap: $gap + 4;
+}
+
+.dropdownMenu {
 	position: absolute;
-	top: 0;
+	top: 110%;
 	left: 0;
+
+	width: 100%;
+	max-height: 0;
+
+	opacity: 0;
+
+	align-items: flex-start;
+	justify-content: center;
+	flex-direction: column;
+	gap: $gap;
+	padding: 8px 0;
+
+	background: $white;
+	box-shadow: 0px 10px 32px -4px rgba(19, 25, 39, 0.1);
+	z-index: 10;
+	border-radius: 8px;
+	overflow: hidden;
+	list-style: none;
+	transition: max-height 0.15s ease, opacity 0.15s ease;
+
+	&.open {
+		opacity: 1;
+		max-height: 350px;
+		transform: scaleY(1);
+	}
+
+	.dropdownList {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+
+		width: 100%;
+		height: 240px;
+
+		overflow-x: hidden;
+		overflow-y: overlay;
+
+		.dropdownItem {
+			padding: 12px;
+			width: 100%;
+			height: 48px;
+
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: $gap + 4;
+			transition: background-color 0.25s ease-in-out;
+			cursor: pointer;
+
+			&:focus, &:hover {
+				background-color: $primary-50;
+			}
+
+			&:focus-visible {
+				outline: none;
+			}
+		}
+
+		.disabledItem.dropdownItem {
+			cursor: no-drop;
+
+			span {
+				color: $icon-light-grey;
+			}
+
+			p {
+				color: $text-disabled;
+			}
+
+			&:hover,&:focus {
+				background-color: $white;
+			}
+		}
+	}
+}
+
+.dropdownItemContent {
+	display: flex;
+	align-items: center;
+	gap: $gap;
+	flex: 1;
+
+	p {
+		width: 100%;
+		height: 100%;
+
+		font-family: $font-family;
+		font-size: $font-size;
+		font-weight: $Regular;
+
+		color: $text-primary-black;
+		line-height: 24px;
+		word-wrap: break-word;
+	}
+}
+
+.checked {
+	width: 24px;
+	height: 24px;
 }

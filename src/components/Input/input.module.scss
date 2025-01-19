@@ -21,6 +21,7 @@ $button-danger: variable.$button-danger;
   padding: $border-radius + 1 $border-radius * 2;
   transition: all 0.3s;
   padding: $padding $padding * 2;
+  gap: 12px;
 
   width: 100%;
   height: auto;
@@ -28,8 +29,8 @@ $button-danger: variable.$button-danger;
   .prefix {
     display: inline-flex;
 
-    width: $border-radius * 13;
-    height: $border-radius * 13;
+    width: 24px;
+    height: 24px;
   }
 
   input {

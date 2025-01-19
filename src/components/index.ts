@@ -12,7 +12,7 @@ import Tooltip from "./Tooltip";
 import Sidebar from "./Sidebar";
 import { Select } from "./Select";
 import Checkbox from "./Checkbox";
-import Dropdown from "./Dropdown";
+import Dropdown, { Menu as DropdownMenu } from "./Dropdown";
 import Typography from "./Typography";
 import Breadcrumb from "./Breadcrumb";
 import Breadcrumbs from "./Breadcrumbs";
@@ -55,4 +55,4 @@ export {
 	Menu,
 };
 
-export type { OptionType, ContextMenuProps, MenuType };
+export type { OptionType, ContextMenuProps, MenuType, DropdownMenu };
