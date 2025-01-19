@@ -96,6 +96,10 @@ $square: 24px;
 	a {
 		text-decoration: none;
 		color: $text-grey;
+
+		&:focus-visible{
+			outline: none;
+		}
 	}
 }
 

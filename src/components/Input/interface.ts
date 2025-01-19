@@ -12,5 +12,6 @@ export interface InputProps {
   inputStyle?: CSSProperties;
   name?: string;
   isError?: boolean;
+  tabIndex?:number;
   onChange?: (event?: ChangeEvent<HTMLInputElement>) => void;
 }

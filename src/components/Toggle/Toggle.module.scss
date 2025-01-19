@@ -30,7 +30,12 @@ $black-200: variable.$black-200;
 $box-shadow: 0px 0px 0px 3px $primary-200;
 
 .container input[type="checkbox"] {
-	display: none;
+	position: absolute;
+	opacity: 0;
+	width: 0;
+	height: 0;
+	margin: 0;
+	pointer-events: none;
 }
 
 .container input[type="checkbox"]:checked + label {
@@ -41,10 +46,10 @@ $box-shadow: 0px 0px 0px 3px $primary-200;
 	background-color: $primary-700;
 }
 
-.container input[type="checkbox"]:checked:focus + label {
+.container input[type="checkbox"]:checked:focus + label,
+.container input[type="checkbox"]:focus + label {
 	box-shadow: $box-shadow;
 }
-
 
 .container input[type="checkbox"]:checked:disabled + label {
 	background-color: $primary-50;

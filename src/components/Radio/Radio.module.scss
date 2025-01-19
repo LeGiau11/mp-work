@@ -68,7 +68,12 @@ $border-radius: 9999px;
 }
 
 .container input[type="radio"] {
-	display: none;
+	position: absolute;
+	opacity: 0;
+	width: 0;
+	height: 0;
+	margin: 0;
+	pointer-events: none;
 }
 
 .disabled {
@@ -107,6 +112,13 @@ $border-radius: 9999px;
 			border-color: $primary-500;
 		}
 	}
+}
+
+.left input[type="radio"]:focus + label::before, .right input[type="radio"]:focus + label::after  {
+	content: "";
+	background-color: $white;
+	box-shadow: $box-shadow;
+	border-color: $primary-500;
 }
 
 .left input[type="radio"]:checked + label::before, .right input[type="radio"]:checked + label::after  {

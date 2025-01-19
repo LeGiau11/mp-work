@@ -1,0 +1,83 @@
+@use "@/styles/--variable" as variable;
+
+//text color
+$text-accent: variable.$text-accent;
+$text-primary-black: variable.$text-primary-black;
+
+// font
+$font-family: variable.$font-family;
+$font-size: variable.$font-size;
+
+//icon color
+$icon-grey: variable.$icon-grey;
+
+// color
+$primary-50: variable.$primary-50;
+
+.container {
+	width: 240px;
+	height: auto;
+
+	padding: 8px 0;
+
+	box-shadow: 0 10px 32px -4px rgba(19, 25, 39, 0.1);
+	background-color: white;
+	position: absolute;
+	border-radius: 8px;
+	z-index: 50;
+
+	ul {
+		list-style: none;
+
+		width: 100%;
+		height: 100%;
+		max-height: 272px;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		gap: 8px;
+		overflow-y: overlay;
+
+		li {
+			font-family: $font-family;
+
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			cursor: pointer;
+			color: $text-primary-black;
+
+			width: 100%;
+			height: 48px;
+
+			padding: 12px;
+
+			transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+
+			span {
+				width: 20px;
+				height: 20px;
+
+				color: $icon-grey;
+			}
+
+			&:hover, &:active {
+				background-color: $primary-50;
+				color: $text-accent;
+
+				span {
+					color: $text-accent;
+				}
+			}
+
+            &:focus{
+
+            }
+
+            &:focus-visible{
+                outline: none;
+            }
+		}
+	}
+}
