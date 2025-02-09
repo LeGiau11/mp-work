@@ -15,6 +15,10 @@ import {
 	Tooltip,
 	MenuType,
 	DropdownMenu,
+	Card,
+	Stepper,
+	Steps,
+	Step
 } from "@/components";
 import { MenuProp } from "@/components/Menu";
 
@@ -267,7 +271,27 @@ export default function Layout() {
 		},
 	];
 
-	const handleChange = (s: (DropdownMenu | string)[]) => console.log(s);
+	const data: Step[] = [
+		{
+			label: "Step 1",
+			step: 1,
+		},
+		{
+			label: "Step 2",
+			step: 2,
+		},
+		{
+			label: "Step 3",
+			step: 3,
+		},
+		{
+			label: "Step 4",
+			step: 4,
+		},
+	];
+
+	// const handleChange = (s: (DropdownMenu | string)[]) => console.log(s);
+
 	return (
 		<>
 			<div
@@ -276,7 +300,7 @@ export default function Layout() {
 					display: "flex",
 					alignItems: "center",
 					justifyContent: "center",
-					height: "100vh",
+					// height: "100vh",
 					gap: "10px",
 					padding: "20%",
 				}}
@@ -338,7 +362,7 @@ export default function Layout() {
 				{/* <ContextMenuConfigure menu={menus} anchor="bottom">
 					<button>Test</button>
 				</ContextMenuConfigure> */}
-				<Dropdown
+				{/* <Dropdown
 					leftIcon={
 						<svg
 							width="100%"
@@ -362,7 +386,10 @@ export default function Layout() {
 					menus={menusDropDown}
 					onChange={(val) => handleChange(val)}
 					// disabled
-				></Dropdown>
+				></Dropdown> */}
+				{/* <Card type="Vertical" title="" content=""/> */}
+				<Stepper disabled={false}/>
+				{/* <Steps data={data}/> */}
 			</div>
 			{/* <ProgressBar position="right" value={90.5} animated /> */}
 		</>

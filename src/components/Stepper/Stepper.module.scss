@@ -1,0 +1,77 @@
+@use "@/styles/--variable" as variable;
+
+// color
+$grey-200: variable.$grey-200;
+$grey-50: variable.$grey-50;
+$white: variable.$white;
+$primary-50: variable.$primary-50;
+$primary-100: variable.$primary-100;
+// icon-color
+$icon-accent: variable.$icon-accent;
+
+//display
+$radius-xm: variable.$radius-xm;
+$spacing-sm: variable.$spacing-sm;
+
+// custom
+$space: 8px;
+
+.container {
+	width: fit-content;
+
+	display: flex;
+
+	border: 1px solid $grey-200;
+	border-radius: $radius-xm;
+	overflow: hidden;
+
+	.button {
+		width: $space * 6;
+		height: $space * 4;
+
+		display: flex;
+		border: none;
+		background: $white;
+		align-items: center;
+		justify-content: center;
+		padding: 0 $spacing-sm;
+		border-radius: $radius-xm/2;
+		transition: background-color 0.2s ease, transform 0.1s ease;
+
+		cursor: pointer;
+
+		&:active {
+			transform: scale(1);
+			background-color: $grey-50;
+		}
+
+		svg {
+			width: $space * 3;
+			height: $space * 3;
+		}
+	}
+
+	.dived {
+		width: 1.5px;
+		background-color: $grey-200;
+	}
+}
+
+.disabled {
+	border-color: $primary-100;
+	.button {
+		background-color: $primary-50;
+		cursor: not-allowed;
+
+		svg {
+			color: $icon-accent;
+		}
+		&:active {
+			background-color: $primary-50;
+		}
+	}
+
+	.dived {
+		background-color: $primary-100;
+	}
+}
