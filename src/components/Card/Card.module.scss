@@ -1,0 +1,90 @@
+@use "@/styles/--variable" as variable;
+
+// display
+$gap: variable.$gap;
+$spacing-xxl: variable.$spacing-xxl;
+$spacing-xl: variable.$spacing-xl;
+$radius-sm: variable.$radius-sm;
+// color
+$white: variable.$white;
+$text-secondary-dark-grey: variable.$text-secondary-dark-grey;
+
+// custom
+$space: 100%;
+$width-C: 120px;
+
+.container {
+	width: $space;
+	height: $space;
+
+	background-color: $white;
+	box-shadow: 0px 10px 32px -4px rgba(19, 25, 39, 0.1);
+	border-radius: $radius-sm;
+	box-sizing: border-box;
+
+	display: inline-flex;
+
+	overflow: hidden;
+
+	.content {
+		width: $space;
+		height: $width-C;
+
+		padding: $spacing-xl;
+
+		display: flex;
+		flex-direction: column;
+		gap: $gap/2;
+
+		.subContent {
+			word-wrap: break-word;
+		}
+	}
+
+	img {
+		max-width: $space;
+		max-height: $space;
+		width: $width-C;
+		height: $width-C;
+	}
+}
+
+.vertical {
+	flex-direction: column;
+
+	img {
+		width: $space;
+		height: $space;
+	}
+
+	.wrapImage {
+		overflow: hidden;
+	}
+
+	.content {
+		height: $space;
+
+		padding: $spacing-xxl;
+
+		display: inline-flex;
+		flex-direction: column;
+		gap: $gap * 3;
+	}
+
+	.information {
+		display: flex;
+		flex-direction: column;
+		gap: $gap/2;
+
+		&Content {
+			color: $text-secondary-dark-grey;
+			word-wrap: break-word;
+		}
+	}
+
+	.control {
+		display: flex;
+		flex-direction: column;
+		gap: $gap * 2;
+	}
+}

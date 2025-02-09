@@ -1,0 +1,69 @@
+@use "@/styles/--variable" as variable;
+
+.stepper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 80%;
+	max-width: 600px;
+	.step {
+		text-align: center;
+		position: relative;
+		flex: 1;
+
+		&Circle {
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			background-color: #ccc;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 18px;
+			font-weight: bold;
+			color: #fff;
+			margin: 0 auto 10px;
+			cursor: pointer;
+			transition: background-color 0.3s ease, transform 0.3s ease;
+		}
+		&Label {
+			font-size: 14px;
+			color: #666;
+		}
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: 20px;
+			left: -50%;
+			width: 100%;
+			height: 2px;
+			background-color: #ccc;
+			z-index: -1;
+		}
+
+		&:first-child::before {
+			display: none;
+		}
+	}
+}
+
+.active {
+	.stepCircle {
+		background-color: #007bff;
+		transform: scale(1.1);
+	}
+	&::before {
+		background-color: #007bff;
+	}
+}
+
+.complete {
+	.stepCircle {
+		background-color: #28a745;
+	}
+
+	&::before {
+		background-color: #007bff;
+	}
+}
