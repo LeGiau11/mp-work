@@ -16,4 +16,5 @@ export interface AvatarProp {
 	style?: CSSProperties;
 	className?: string;
 	status?: "available" | "offline" | "busy" | "away";
+	showStatus?:boolean;
 }

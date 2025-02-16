@@ -1,4 +1,6 @@
-const CheckIcon = () => (
+import { FC } from "react";
+
+const CheckIcon: FC = () => (
 	<svg
 		width="100%"
 		height="100%"

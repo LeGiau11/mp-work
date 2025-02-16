@@ -18,9 +18,14 @@ import {
 	Card,
 	Stepper,
 	Steps,
-	Step
+	Step,
+	List,
+	ListMenu,
+	Tabs,
+	TabItem,
 } from "@/components";
 import { MenuProp } from "@/components/Menu";
+import { ArrowDownIcon } from "@/icons";
 
 export default function Layout() {
 	const [state, setState] = useState(false);
@@ -290,7 +295,27 @@ export default function Layout() {
 		},
 	];
 
-	// const handleChange = (s: (DropdownMenu | string)[]) => console.log(s);
+	const data1: ListMenu[] = [
+		{
+			label: "Value1",
+		},
+		{
+			label: "Value2",
+		},
+	];
+
+	const TabItem : TabItem[] = [
+		{
+			label:"TabItem1",
+			children: "ContentItem 1"
+		},
+		{
+			label:"TabItem2",
+			children: "ContentItem 2"
+		}
+	]
+
+	const handleChange = (s: (DropdownMenu | string)[]) => console.log(s);
 
 	return (
 		<>
@@ -387,9 +412,37 @@ export default function Layout() {
 					onChange={(val) => handleChange(val)}
 					// disabled
 				></Dropdown> */}
+
+				{/** ======================  Card ============== */}
 				{/* <Card type="Vertical" title="" content=""/> */}
-				<Stepper disabled={false}/>
+
+				{/** ======================  Stepper ============== */}
+				{/* <Stepper disabled={false}/> */}
+
+				{/** ======================  Steps ============== */}
 				{/* <Steps data={data}/> */}
+
+				{/** ======================  List ============== */}
+				{/* <List data={data1} showImage icon={<ArrowDownIcon />}>
+					<List.Item>A</List.Item>
+					<List.Item>B</List.Item>
+				</List> */}
+
+				{/** ======================  Tabs ============== */}
+				<Tabs data={TabItem} defaultTab="1">
+					<Tabs.TabsPane label="Tab1" 
+					rightIcon={<ArrowDownIcon/>} leftIcon={<ArrowDownIcon/>}
+					>
+						<div style={{ height: "400px" }}>Content 1</div>
+					</Tabs.TabsPane>
+					<Tabs.TabsPane label="Tab2">
+						<div style={{ height: "400px" }}>Content 2</div>
+					</Tabs.TabsPane>
+					<Tabs.TabsPane label="Tab3">
+						<div style={{ height: "400px" }}>Content 3</div>
+					</Tabs.TabsPane>
+					<div>sss</div>
+				</Tabs>
 			</div>
 			{/* <ProgressBar position="right" value={90.5} animated /> */}
 		</>

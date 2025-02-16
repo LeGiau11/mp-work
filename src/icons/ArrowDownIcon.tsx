@@ -1,4 +1,6 @@
-const ArrowDownIcon = () => (
+import { FC } from "react";
+
+const ArrowDownIcon: FC = () => (
 	<svg
 		width="100%"
 		height="100%"

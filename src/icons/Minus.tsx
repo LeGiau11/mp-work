@@ -1,4 +1,6 @@
-const MinusIcon = () => (
+import { FC } from "react";
+
+const MinusIcon: FC = () => (
 	<svg
 		width="100%"
 		height="100%"

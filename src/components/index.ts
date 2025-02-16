@@ -17,8 +17,10 @@ import Checkbox from "./Checkbox";
 import Steps, { Step } from "./Steps";
 import Typography from "./Typography";
 import Breadcrumb from "./Breadcrumb";
+import Tabs, { TabItem } from "./Tabs";
 import Breadcrumbs from "./Breadcrumbs";
 import ProgressBar from "./ProgressBar";
+import List, { ListMenu } from "./List";
 import InputPassword from "./InputPassword";
 import { Loading1, Loading } from "./Loading";
 import MultipleSelect from "./MultipleSelect";
@@ -59,6 +61,16 @@ export {
 	Card,
 	Stepper,
 	Steps,
+	List,
+	Tabs,
 };
 
-export type { OptionType, ContextMenuProps, MenuType, DropdownMenu, Step };
+export type {
+	OptionType,
+	ContextMenuProps,
+	MenuType,
+	DropdownMenu,
+	Step,
+	ListMenu,
+	TabItem,
+};

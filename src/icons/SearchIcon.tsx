@@ -1,4 +1,6 @@
-const SearchIcon = () => (
+import { FC } from "react";
+
+const SearchIcon: FC = () => (
 	<svg
 		width="24"
 		height="24"

@@ -11,6 +11,7 @@ const Avatar: FC<AvatarProp> = ({
 	text,
 	size = "medium",
 	status = "available",
+	showStatus = true,
 }) => {
 	const w = useMemo(() => {
 		if (!size) return 40;
@@ -144,7 +145,7 @@ const Avatar: FC<AvatarProp> = ({
 			) : (
 				text
 			)}
-			<div className={styles.dot}>{Status}</div>
+			{showStatus && <div className={styles.dot}>{Status}</div>}
 		</div>
 	);
 };
