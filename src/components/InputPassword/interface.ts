@@ -1,4 +1,4 @@
-import { ChangeEvent, CSSProperties } from "react";
+import { ChangeEvent, CSSProperties } from 'react';
 
 export interface InputPassWordProps {
   value?: string;

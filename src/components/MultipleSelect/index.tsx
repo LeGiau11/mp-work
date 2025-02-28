@@ -1,21 +1,21 @@
-import { ChangeEvent, FC, useState } from "react";
-import clsx from "clsx";
+import { ChangeEvent, FC, useState } from 'react';
+import clsx from 'clsx';
 
-import { MultipleSelectProps } from "./interface";
-import { Input } from "@/components";
-import styles from "./multipleSelect.module.scss";
+import { MultipleSelectProps } from './interface';
+import { Input } from '@/components';
+import styles from './multipleSelect.module.scss';
 
 const MultipleSelect: FC<MultipleSelectProps> = ({
   showSearch = false,
-  classNameContainer = "",
-  searchPlaceHolder = "search item...",
-  placeHolder = "Select option...",
+  classNameContainer = '',
+  searchPlaceHolder = 'search item...',
+  placeHolder = 'Select option...',
   options = [],
   selectedValues = [],
   onChange = () => {},
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [searchItem, setSearchItem] = useState<string>("");
+  const [searchItem, setSearchItem] = useState<string>('');
   const filterOtions = options.filter((option) =>
     option.value.toLowerCase().includes(searchItem.toLowerCase())
   );
@@ -27,7 +27,7 @@ const MultipleSelect: FC<MultipleSelectProps> = ({
       : [...selectedValues, value];
     onChange(newSelectValues);
     setIsOpen(!isOpen);
-    setSearchItem("");
+    setSearchItem('');
   };
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) =>
     setSearchItem(event.currentTarget.value);
@@ -36,7 +36,7 @@ const MultipleSelect: FC<MultipleSelectProps> = ({
     <div className={clsx(styles.container, classNameContainer)}>
       <div className={clsx(styles.input)} onClick={toggleDropdown}>
         <div className={styles.text}>
-          {selectedValues.length ? selectedValues.join(", ") : placeHolder}
+          {selectedValues.length ? selectedValues.join(', ') : placeHolder}
         </div>
         <span className={clsx(styles.arrow, { [styles.rotated]: isOpen })}>
           ▼

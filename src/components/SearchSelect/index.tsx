@@ -6,23 +6,23 @@ import {
   useEffect,
   useRef,
   useState,
-} from "react";
-import clsx from "clsx";
+} from 'react';
+import clsx from 'clsx';
 
-import { Option } from "@/common/interface";
-import { SearchSelectProps } from "./interface";
-import styles from "./searchSelect.module.scss";
+import { Option } from '@/common/interface';
+import { SearchSelectProps } from './interface';
+import styles from './searchSelect.module.scss';
 
 const SearchSelect: FC<SearchSelectProps> = ({
-  placeHolder = "search",
-  className = "",
-  value = { label: "", value: "" },
+  placeHolder = 'search',
+  className = '',
+  value = { label: '', value: '' },
   options = [],
   onChange = () => {},
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [isFocus, setIsFocus] = useState<boolean>(false);
-  const [searchItem, setSearchItem] = useState<string>("");
+  const [searchItem, setSearchItem] = useState<string>('');
   const [filterOptions, setFilterOptions] = useState<Option[]>([]);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -39,10 +39,10 @@ const SearchSelect: FC<SearchSelectProps> = ({
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutSide);
+    document.addEventListener('mousedown', handleClickOutSide);
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutSide);
+      document.removeEventListener('mousedown', handleClickOutSide);
     };
   }, []);
 
@@ -55,7 +55,7 @@ const SearchSelect: FC<SearchSelectProps> = ({
 
   const handleFocus = () => {
     setIsDropdownOpen(true);
-    setSearchItem("");
+    setSearchItem('');
     setIsFocus(true);
   };
 

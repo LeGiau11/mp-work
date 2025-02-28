@@ -1,14 +1,14 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import { NextApiRequest, NextApiResponse } from 'next';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
-import { disconnect } from "@/libs/mongodb";
-import GetUserService from "@/services/user/GetUserService";
-import { User } from "@/models/User";
-import { ResponseData } from "@/common/interface";
+import { disconnect } from '@/libs/mongodb';
+import GetUserService from '@/services/user/GetUserService';
+import { User } from '@/models/User';
+import { ResponseData } from '@/common/interface';
 
-const JWT_SECRET = process.env.JWT_SECRET || "kongkong";
-const EXPIRE = "1h";
+const JWT_SECRET = process.env.JWT_SECRET || 'kongkong';
+const EXPIRE = '1h';
 /**
  * Hàm  login
  *
@@ -24,52 +24,52 @@ const EXPIRE = "1h";
  *
  */
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-	if (req.method === "POST") {
-		const { username, password } = req.body;
+  if (req.method === 'POST') {
+    const { username, password } = req.body;
 
-		try {
-			const data: ResponseData<User> = await GetUserService(
-				"username",
-				username,
-			);
+    try {
+      const data: ResponseData<User> = await GetUserService(
+        'username',
+        username,
+      );
 
-			if (!data.success) return res.status(401).json({ message: data.error });
+      if (!data.success) return res.status(401).json({ message: data.error });
 
-			const user: User = data.data;
+      const user: User = data.data;
 
-			let isValidPassword = false;
+      let isValidPassword = false;
 
-			if (user) {
-				isValidPassword = await bcrypt.compare(password, user.password);
-			}
+      if (user) {
+        isValidPassword = await bcrypt.compare(password, user.password);
+      }
 
-			if (!isValidPassword)
-				return res
-					.status(401)
-					.json({ message: "Invalid username or password" });
+      if (!isValidPassword)
+        return res
+          .status(401)
+          .json({ message: 'Invalid username or password' });
 
-			const token = jwt.sign({ username: user.username }, JWT_SECRET, {
-				expiresIn: EXPIRE,
-			});
+      const token = jwt.sign({ username: user.username }, JWT_SECRET, {
+        expiresIn: EXPIRE,
+      });
 
-			const result: ResponseData<string> = {
-				success: true,
-				data: token,
-			};
+      const result: ResponseData<string> = {
+        success: true,
+        data: token,
+      };
 
-			return res.status(200).json(result);
-		} catch (ex) {
-			console.log("Error->message:", ex);
-			return res.status(500).json({
-				message: ex instanceof Error ? ex.message : "Internal Server Error",
-			});
-		} finally {
-			disconnect();
-		}
-	} else {
-		res.setHeader("Allow", "POST");
-		res.status(405).end(`Method ${req.method} Not Allowed`);
-	}
+      return res.status(200).json(result);
+    } catch (ex) {
+      console.log('Error->message:', ex);
+      return res.status(500).json({
+        message: ex instanceof Error ? ex.message : 'Internal Server Error',
+      });
+    } finally {
+      disconnect();
+    }
+  } else {
+    res.setHeader('Allow', 'POST');
+    res.status(405).end(`Method ${req.method} Not Allowed`);
+  }
 };
 
 export default handler;

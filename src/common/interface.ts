@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, InputHTMLAttributes } from "react";
+import { DetailedHTMLProps, InputHTMLAttributes } from 'react';
 
 export interface Option {
   value: string;
@@ -12,7 +12,7 @@ export interface ResponseData<T> {
   message?: string;
 }
 
-export interface Response<T> extends Omit<ResponseData<T>,"data">{
+export interface Response<T> extends Omit<ResponseData<T>,'data'>{
 
 }
 

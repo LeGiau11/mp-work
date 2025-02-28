@@ -1,6 +1,16 @@
 {
   "extends": [
-    "next/core-web-vitals", 
-    "next/typescript"
-  ]
+    "next/core-web-vitals",
+    "next/typescript",
+    "plugin:storybook/recommended"
+  ],
+  "plugins": ["react-hooks"],
+  "rules": {
+    // Add custom rules here
+    "indent": ["error", 2],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "no-console": "warn",
+    "react-hooks/exhaustive-deps":"warn"
+  }
 }
