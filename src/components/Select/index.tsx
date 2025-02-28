@@ -1,13 +1,13 @@
-import { FC, useRef } from "react";
-import clsx from "clsx";
+import { FC, useRef } from 'react';
+import clsx from 'clsx';
 
-import { SelectProps } from "./interface";
-import styles from "./select.module.scss";
+import { SelectProps } from './interface';
+import styles from './select.module.scss';
 
 const Select: FC<SelectProps> = ({
   children,
   className,
-  value = "",
+  value = '',
   onChange = () => {},
   ...rest
 }) => {

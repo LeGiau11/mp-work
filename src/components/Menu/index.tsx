@@ -1,9 +1,9 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import { MenuProp } from "./interface";
+import { MenuProp } from './interface';
 
 const Menu: FC<MenuProp> = () => {
-	return <div>this is menu</div>;
+  return <div>this is menu</div>;
 };
 
 export default Menu;

@@ -9,70 +9,83 @@ $padding: variable.$padding;
 $text-placeholder: variable.$text-placeholder;
 $button-danger: variable.$button-danger;
 
+// display
+$md-font-size: variable.$md-font-size;
+
 .inputPrefix {
-  position: relative;
+	position: relative;
 
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 
-  border: 1px solid $border-color;
-  border-radius: $border-radius;
-  padding: $border-radius + 1 $border-radius * 2;
-  transition: all 0.3s;
-  padding: $padding $padding * 2;
-  gap: 12px;
+	border: 1px solid $border-color;
+	border-radius: $border-radius;
+	padding: $border-radius + 1 $border-radius * 2;
+	transition: all 0.3s;
+	padding: $padding $padding * 2;
+	gap: 12px;
 
-  width: 100%;
-  height: auto;
+	width: 100%;
+	height: auto;
 
-  .prefix {
-    display: inline-flex;
+	.prefix {
+		display: inline-flex;
 
-    width: 24px;
-    height: 24px;
-  }
+		width: 24px;
+		height: 24px;
+	}
 
-  input {
-    border: none;
-    outline: none;
+	input {
+		border: none;
+		outline: none;
 
-    font-size: $font-size;
+		font-size: $font-size;
 
-    width: 100%;
+		width: 100%;
 
-    &::placeholder {
-      color: $text-placeholder;
-    }
-  }
+		&::placeholder {
+			color: $text-placeholder;
+		}
+	}
 
-  &:hover {
-    border-color: $border-color-hover;
-  }
+	&:hover {
+		border-color: $border-color-hover;
+	}
 
-  &:focus {
-    border-color: $border-color-hover;
-    box-shadow: 0 0 0 2px $border-color-hover;
-    outline: 0;
-    z-index: 1;
-  }
+	&:focus {
+		border-color: $border-color-hover;
+		box-shadow: 0 0 0 2px $border-color-hover;
+		outline: 0;
+		z-index: 1;
+	}
 
-  &:focus-visible {
-    outline: 0;
-  }
+	&:focus-visible {
+		outline: 0;
+	}
 }
 
 .inputPrefixFocus {
-  border-color: $border-color-hover;
-  box-shadow: 0 0 0 2px $border-color-focus;
-  outline: 0;
-  z-index: 1;
+	border-color: $border-color-hover;
+	box-shadow: 0 0 0 2px $border-color-focus;
+	outline: 0;
+	z-index: 1;
 }
 
 .inputError {
-  border-color: $button-danger;
+	border-color: $button-danger;
 
-  &:hover {
-    border-color: $button-danger;
-  }
+	&:hover {
+		border-color: $button-danger;
+	}
+}
+
+@media (max-width: 575.98px) {
+	.inputPrefix {
+		input {
+			&::placeholder {
+				font-size: $md-font-size;
+			}
+		}
+	}
 }

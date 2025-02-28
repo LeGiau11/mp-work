@@ -1,4 +1,4 @@
-import { ChangeEvent, CSSProperties, HTMLInputTypeAttribute } from "react";
+import { ChangeEvent, CSSProperties, HTMLInputTypeAttribute } from 'react';
 
 export interface InputProps {
   label?: string;
@@ -10,6 +10,7 @@ export interface InputProps {
   type?: HTMLInputTypeAttribute;
   placeholder?: string;
   inputStyle?: CSSProperties;
+  inputClassName?:string;
   name?: string;
   isError?: boolean;
   tabIndex?:number;

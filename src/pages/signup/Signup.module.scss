@@ -1,83 +1,216 @@
 @use "@/styles/--variable" as variable;
 
+// display
+
 $font-family: variable.$font-family;
 $font-size: variable.$font-size;
 $sm-font-size: variable.$sm-font-size;
 $bg-login-color: variable.$bg-login-color;
-$white: variable.$white;
 $padding: variable.$padding;
 $gap: variable.$gap;
-$ms-error-color: variable.$ms-error-color;
 $md-font-size: variable.$md-font-size;
-$font-weight-400: 400;
-$font-weight-700: 700;
+
+// color
+
+$white: variable.$white;
+$primary-500: variable.$primary-500;
+$text-accent: variable.$text-accent;
+$ms-error-color: variable.$ms-error-color;
+
+// custom css
 $width: 15px;
 $local-color: rgba(0, 0, 0, 0.65);
-$primary-color-second: variable.$primary-color-second;
 $screen-width: variable.$screen-width;
 $screen-height: variable.$screen-height;
 $padding-local: 10px;
+$font-weight-400: 400;
+$font-weight-700: 700;
 
 .container {
 	display: flex;
-	align-items: center;
-	justify-content: center;
+	flex-wrap: wrap;
 
+	width: 100vw;
 	height: 100vh;
-	width: auto;
 
-	padding: 0 30%;
+	.backgroundSection {
+		width: 100%;
 
-	form {
+		background: $primary-500;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex: 1;
+
+		position: relative;
+		overflow: hidden;
+		clip-path: polygon(0 0, 75% 0%, 100% 100%, 0 100%);
+	}
+
+	.form {
+		flex: 1;
+
 		width: 100%;
 	}
 }
 
-.content {
-	display: flex;
-	gap: 40px;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
+@media (max-width: 575.98px) {
+	/* CSS for mobile */
+	.container {
+		.backgroundSection {
+			display: none;
+		}
 
-.inputs {
-	box-sizing: border-box;
+		.form {
+			padding-top: 40px;
+			display: flex;
+			flex-direction: column;
+			gap: 22px;
 
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	gap: $gap / 2;
+			.logo {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
 
-	width: 100%;
-}
+			.signUpForm {
+				display: flex;
+				align-items: center;
+				justify-content: center;
 
-.wrapperInput {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	gap: $gap - 7;
+				height: 100%;
+				width: 100%;
 
-	label {
-		font-size: $font-size;
-		font-family: $font-family;
-		font-weight: $font-weight-700;
+				form {
+					width: 100%;
+					height: 100%;
 
-		color: $primary-color-second;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					flex-direction: column;
+					flex-wrap: wrap;
+					gap: 14px;
+
+					padding: 0px 12px;
+
+					.title {
+						flex: 1;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						flex-direction: column;
+						gap: 6px;
+					}
+
+					.inputs {
+						flex: 1;
+						display: flex;
+						align-items: flex-start;
+						justify-content: center;
+						flex-direction: column;
+						gap: 4px;
+
+						.information {
+							width: 100%;
+
+							display: flex;
+							align-items: center;
+							gap: 6px;
+						}
+
+						.wrapInput {
+							width: 100%;
+
+							display: flex;
+							flex-direction: column;
+							gap: 8px;
+
+							label {
+								font-size: 15px;
+							}
+						}
+					}
+
+					.submit {
+						width: 100%;
+
+						button {
+							width: 100%;
+						}
+					}
+
+					.signIn {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						gap: $gap;
+
+						font-size: $md-font-size;
+
+						&Link {
+							color: $text-accent;
+							text-decoration: none;
+
+							&:hover {
+								color: $primary-500;
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }
 
-.errorMessage {
-	font-size: $sm-font-size;
-	font-weight: $font-weight-400;
-
-	color: $ms-error-color;
+@media (min-width: 576px) and (max-width: 767.98px) {
+	/* CSS for tablet small and mobile hor */
+	.container {
+		.backgroundSection {
+			display: none;
+		}
+	}
 }
 
-.submit {
-	width: 100%;
+@media (min-width: 768px) and (max-width: 991.98px) {
+	/* CSS for tablet big */
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+	/* CSS for desktop basic */
+}
 
-	button {
-		width: inherit;
+@media (max-height: 667px) {
+	.container {
+		.form {
+			.signUpForm {
+				form {
+					gap: 14px;
+
+					padding: 0px 12px 18px;
+
+					.title {
+						margin-bottom: 12px;
+					}
+				}
+			}
+		}
+	}
+}
+
+/* Cho iPhone lớn hơn */
+@media (min-height: 668px) and (max-height: 926px) {
+	.element {
+		padding: 20px;
+		margin-bottom: 25px;
+	}
+}
+
+@media (orientation: landscape) {
+	@media (max-height: 430px) {
+		/* iPhone & similar */
+	}
+
+	@media (max-height: 320px) {
+		/* Extra small screens */
 	}
 }

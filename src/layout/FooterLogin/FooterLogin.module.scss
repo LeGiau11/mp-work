@@ -1,0 +1,75 @@
+@use "@/styles/--variable" as variable;
+
+// display
+$gap: variable.$gap;
+
+// color
+$border-color: variable.$border-color;
+$primary-500: variable.$primary-500;
+$primary-200: variable.$primary-200;
+$text-grey: variable.$text-grey;
+// custom css
+$local-color: rgba(0, 0, 0, 0.65);
+$width: 15px;
+$pace: 40px;
+
+.social {
+	display: flex;
+	gap: $gap * 2;
+	flex-shrink: 0;
+}
+
+.signInWith {
+	text-align: center;
+	position: relative;
+
+	&::before {
+		display: inline-block;
+
+		content: "";
+		border: 1px solid $local-color;
+		position: absolute;
+		top: 50%;
+		left: -25%;
+		transform: rotate(180deg);
+
+		width: $width;
+	}
+
+	&::after {
+		display: inline-block;
+
+		content: "";
+		border: 1px solid $local-color;
+		position: absolute;
+		top: 50%;
+		right: -25%;
+		transform: rotate(180deg);
+
+		width: $width;
+	}
+}
+
+.socialIcon {
+	width: $pace;
+	height: $pace;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	border: 1px solid $border-color;
+	border-radius: 99999px;
+	padding: 9px;
+	color: $text-grey;
+
+	&:hover {
+		border-color: $primary-500;
+	}
+
+	&:focus {
+		border-color: $primary-500;
+		box-shadow: 0 0 0 2px $primary-200;
+		outline: 0;
+	}
+}

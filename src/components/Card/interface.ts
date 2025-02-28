@@ -1,7 +1,7 @@
-import { CSSProperties } from "react";
+import { CSSProperties } from 'react';
 
 export interface CardProps {
-	type?: "Vertical" | "Horizontal";
+	type?: 'Vertical' | 'Horizontal';
 	src?: string;
 	title?: string;
 	content?: string;

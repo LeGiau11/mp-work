@@ -1,4 +1,4 @@
-import { Option } from "@/common/interface";
+import { Option } from '@/common/interface';
 
 export interface SearchSelectProps {
   className?: string;

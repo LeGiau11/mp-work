@@ -6,6 +6,7 @@ $primary-200: variable.$primary-200;
 $primary-500: variable.$primary-500;
 $primary-50: variable.$primary-50;
 $white: variable.$white;
+$grey-200: variable.$grey-200;
 
 // text color
 $text-accent: variable.$text-accent;
@@ -27,7 +28,7 @@ $border-width: 2px;
 	&List {
 		display: flex;
 		height: $height;
-		border-bottom: 1px solid $text-disabled;
+		border-bottom: 1px solid $grey-200;
 
 		.wrap {
 			display: flex;

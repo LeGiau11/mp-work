@@ -5,6 +5,7 @@ $gap: variable.$gap;
 
 // font
 $font-size: variable.$font-size;
+$md-font-size: variable.$md-font-size;
 $font-family: variable.$font-family;
 
 // radius
@@ -39,14 +40,14 @@ $box-shadow: 0px 0px 0px 3px $primary-200;
 		user-select: none;
 		cursor: pointer;
 		gap: $gap * 2;
-		word-wrap: 'break-word';
+		word-wrap: break-word;
 
 		font-size: $font-size;
 		font-family: $font-family;
 
 		color: $text-primary-black;
 		line-height: 150%;
-		transition: background-color 0.2s ease-in-out,border-color 0.2s ease-in-out;
+		transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 
 		&:hover {
 			color: $text-accent;
@@ -251,5 +252,22 @@ $box-shadow: 0px 0px 0px 3px $primary-200;
 			background-image: url("../../../public/images/minus.png");
 			background-position: center;
 		}
+	}
+}
+
+/* Mode landscape*/
+@media (orientation: landscape) {
+	@media (max-height: 430px) {
+		/* iPhone & similar */
+		.container {
+			label {
+				gap: $gap - 2;
+				font-size: $md-font-size;
+			}
+		}
+	}
+
+	@media (max-height: 320px) {
+		/* Extra small screens */
 	}
 }

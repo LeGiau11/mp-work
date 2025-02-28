@@ -1,16 +1,16 @@
-import { FC, useState } from "react";
-import clsx from "clsx";
+import { FC, useState } from 'react';
+import clsx from 'clsx';
 
-import styles from "./input-password.module.scss";
-import { InputPassWordProps } from "./interface";
-import { Eye, EyeSlash } from "@/svg";
+import styles from './input-password.module.scss';
+import { InputPassWordProps } from './interface';
+import { Eye, EyeSlash } from '@/svg';
 
 const InputPassword: FC<InputPassWordProps> = ({
-  value = "",
-  placeholder = "",
-  className = "",
-  name = "inputPassword",
-  id = "",
+  value = '',
+  placeholder = '',
+  className = '',
+  name = 'inputPassword',
+  id = '',
   isError = false,
   onChange = () => {},
 }) => {
@@ -35,7 +35,7 @@ const InputPassword: FC<InputPassWordProps> = ({
           value={value}
           onChange={onChange}
           placeholder={placeholder}
-          type={showPassword ? "text" : "password"}
+          type={showPassword ? 'text' : 'password'}
           onBlur={handleBlur}
           onFocus={handleFocus}
         />
