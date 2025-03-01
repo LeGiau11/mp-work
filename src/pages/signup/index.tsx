@@ -6,7 +6,7 @@ import { useFormik } from "formik";
 
 import { REGEX_PASSWORD, Response } from "@/common";
 import styles from "./Signup.module.scss";
-import { Button, Input, InputPassword } from "@/components";
+import { Button, Input, InputPassword, Typography } from "@/components";
 import { FooterLogin } from "@/layout";
 
 export default function SignUp() {
@@ -72,12 +72,12 @@ export default function SignUp() {
 						alt="logo.png"
 					/>
 				</div>
+				<div className={styles.title}>
+					<h1>Get started</h1>
+					<h3>Let’s create your account</h3>
+				</div>
 				<div className={styles.signUpForm}>
 					<form onSubmit={formik.handleSubmit}>
-						<div className={styles.title}>
-							<h1>Get started</h1>
-							<h3>Let’s create your account</h3>
-						</div>
 						<div className={styles.inputs}>
 							<div className={styles.information}>
 								<div className={styles.wrapInput}>
@@ -139,7 +139,17 @@ export default function SignUp() {
 									onChange={formik.handleChange}
 									isError={!!formik.errors.username}
 								/>
-								<span></span>
+								<span>
+									<Typography className={styles.hint} level={2}>
+										Contains between 8-20 characters.
+									</Typography>
+									<Typography className={styles.hint} level={2}>Least one number (0-9).</Typography>
+									<Typography className={styles.hint} level={2}>
+										Least one symbol (!, @, #, $, %, &, *, ?, .).
+									</Typography>
+									<Typography className={styles.hint} level={2}>Least one lowercase (a-z).</Typography>
+									<Typography className={styles.hint} level={2}>Least one uppercase (A-Z).</Typography>
+								</span>
 							</div>
 							<div className={styles.wrapInput}>
 								<label>
@@ -153,7 +163,7 @@ export default function SignUp() {
 									onChange={formik.handleChange}
 									isError={!!formik.errors.username}
 								/>
-								<span></span>
+								<Typography level={2}>Passwords match</Typography>
 							</div>
 						</div>
 						<div className={styles.submit}>
@@ -161,13 +171,15 @@ export default function SignUp() {
 								Sign Up
 							</Button>
 						</div>
-						<FooterLogin />
-						<span className={styles.signIn}>
-							Don&apos;t have an account?
-							<Link href={"/login"} className={styles.signInLink}>
-								Sign In
-							</Link>
-						</span>
+						<div className={styles.social}>
+							<FooterLogin />
+							<span className={styles.signIn}>
+								Don&apos;t have an account?
+								<Link href={"/login"} className={styles.signInLink}>
+									Sign In
+								</Link>
+							</span>
+						</div>
 						{/* <div className={styles.content}>
 							<div className="wrap-title">
 								<h1>Sign Up MP-Work!</h1>

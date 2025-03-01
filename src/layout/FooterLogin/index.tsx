@@ -1,11 +1,11 @@
-import { FC, Fragment } from "react";
+import { FC } from "react";
 import Link from "next/link";
 
 import styles from "./FooterLogin.module.scss";
 import { Apple, Facebook, Google } from "@/svg";
 const FooterLogin: FC = () => {
 	return (
-		<Fragment>
+		<section className={styles.container}>
 			<span className={styles.signInWith}>Or sign in with</span>
 			<div className={styles.social}>
 				<Link href={""} className={styles.socialIcon}>
@@ -18,7 +18,7 @@ const FooterLogin: FC = () => {
 					<Facebook />
 				</Link>
 			</div>
-		</Fragment>
+		</section>
 	);
 };
 
