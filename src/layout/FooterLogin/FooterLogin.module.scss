@@ -82,3 +82,15 @@ $pace: 40px;
 		outline: 0;
 	}
 }
+
+@media (max-height: 667px) {
+    .container{
+        gap: 15px;
+    }
+}
+
+@media (min-height: 668px) and (max-height: 932px){
+    .container{
+        gap: 20px;
+    }
+}

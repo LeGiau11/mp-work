@@ -63,7 +63,8 @@ export default function SignUp() {
 				<div className={clsx(styles.shape, styles.shape2)}></div>
 				<div className={clsx(styles.shape, styles.shape1)}></div>
 			</div>
-			<div className={styles.form}>
+			<div className={styles.form}></div>
+			<div className={styles.formWrap}>
 				<div className={styles.logo}>
 					<Image
 						width={144}
@@ -72,14 +73,14 @@ export default function SignUp() {
 						alt="logo.png"
 					/>
 				</div>
-				<div className={styles.title}>
-					<h1>Get started</h1>
-					<h3>Let’s create your account</h3>
-				</div>
-				<div className={styles.signUpForm}>
-					<form onSubmit={formik.handleSubmit}>
-						<div className={styles.inputs}>
-							<div className={styles.information}>
+				<div className={styles.content}>
+					<div className={styles.title}>
+						<h1>Get started</h1>
+						<h3>Let’s create your account</h3>
+					</div>
+					<div className={styles.signUpForm}>
+						<form onSubmit={formik.handleSubmit}>
+							<div className={styles.inputs}>
 								<div className={styles.wrapInput}>
 									<label>
 										<strong>First Name</strong>
@@ -111,76 +112,81 @@ export default function SignUp() {
 									/>
 									<span></span>
 								</div>
+								<div className={styles.wrapInput}>
+									<label>
+										<strong>Email Address</strong>
+									</label>
+									<Input
+										placeholder="Enter your email address"
+										className={styles.username}
+										type="text"
+										name="username"
+										value={formik.values.username}
+										onChange={formik.handleChange}
+										isError={!!formik.errors.username}
+									/>
+									<span></span>
+								</div>
+								<div className={styles.wrapInput}>
+									<label>
+										<strong>Password</strong>
+									</label>
+									<InputPassword
+										placeholder="Enter your password"
+										className={styles.username}
+										name="username"
+										value={formik.values.username}
+										onChange={formik.handleChange}
+										isError={!!formik.errors.username}
+									/>
+									<span>
+										<Typography className={styles.hint} level={2}>
+											Contains between 8-20 characters.
+										</Typography>
+										<Typography className={styles.hint} level={2}>
+											Least one number (0-9).
+										</Typography>
+										<Typography className={styles.hint} level={2}>
+											Least one symbol (!, @, #, $, %, &, *, ?, .).
+										</Typography>
+										<Typography className={styles.hint} level={2}>
+											Least one lowercase (a-z).
+										</Typography>
+										<Typography className={styles.hint} level={2}>
+											Least one uppercase (A-Z).
+										</Typography>
+									</span>
+								</div>
+								<div className={styles.wrapInput}>
+									<label>
+										<strong>Confirm Password</strong>
+									</label>
+									<InputPassword
+										placeholder="Enter your confirm password"
+										className={styles.username}
+										name="username"
+										value={formik.values.username}
+										onChange={formik.handleChange}
+										isError={!!formik.errors.username}
+									/>
+									<Typography level={2}>Passwords match</Typography>
+								</div>
 							</div>
-							<div className={styles.wrapInput}>
-								<label>
-									<strong>Email Address</strong>
-								</label>
-								<Input
-									placeholder="Enter your email address"
-									className={styles.username}
-									type="text"
-									name="username"
-									value={formik.values.username}
-									onChange={formik.handleChange}
-									isError={!!formik.errors.username}
-								/>
-								<span></span>
+							<div className={styles.submit}>
+								<Button disabled={true} variant="contained" type="submit">
+									Sign Up
+								</Button>
 							</div>
-							<div className={styles.wrapInput}>
-								<label>
-									<strong>Password</strong>
-								</label>
-								<InputPassword
-									placeholder="Enter your password"
-									className={styles.username}
-									name="username"
-									value={formik.values.username}
-									onChange={formik.handleChange}
-									isError={!!formik.errors.username}
-								/>
-								<span>
-									<Typography className={styles.hint} level={2}>
-										Contains between 8-20 characters.
-									</Typography>
-									<Typography className={styles.hint} level={2}>Least one number (0-9).</Typography>
-									<Typography className={styles.hint} level={2}>
-										Least one symbol (!, @, #, $, %, &, *, ?, .).
-									</Typography>
-									<Typography className={styles.hint} level={2}>Least one lowercase (a-z).</Typography>
-									<Typography className={styles.hint} level={2}>Least one uppercase (A-Z).</Typography>
+							<div className={styles.social}>
+								<FooterLogin />
+								<span className={styles.signIn}>
+									Don&apos;t have an account?
+									<Link href={"/login"} className={styles.signInLink}>
+										Sign In
+									</Link>
 								</span>
 							</div>
-							<div className={styles.wrapInput}>
-								<label>
-									<strong>Confirm Password</strong>
-								</label>
-								<InputPassword
-									placeholder="Enter your confirm password"
-									className={styles.username}
-									name="username"
-									value={formik.values.username}
-									onChange={formik.handleChange}
-									isError={!!formik.errors.username}
-								/>
-								<Typography level={2}>Passwords match</Typography>
-							</div>
-						</div>
-						<div className={styles.submit}>
-							<Button disabled={true} variant="contained" type="submit">
-								Sign Up
-							</Button>
-						</div>
-						<div className={styles.social}>
-							<FooterLogin />
-							<span className={styles.signIn}>
-								Don&apos;t have an account?
-								<Link href={"/login"} className={styles.signInLink}>
-									Sign In
-								</Link>
-							</span>
-						</div>
-						{/* <div className={styles.content}>
+							{/* <div className={styles.content}>
 							<div className="wrap-title">
 								<h1>Sign Up MP-Work!</h1>
 							</div>
@@ -239,7 +245,8 @@ export default function SignUp() {
 								</Button>
 							</div>
 						</div> */}
-					</form>
+						</form>
+					</div>
 				</div>
 			</div>
 		</section>

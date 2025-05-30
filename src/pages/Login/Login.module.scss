@@ -38,6 +38,7 @@ $pace: 40px;
 
 	width: $screen-width;
 	height: $screen-height;
+	position: relative;
 }
 
 .logo {
@@ -46,7 +47,7 @@ $pace: 40px;
 }
 
 .form {
-	width: 100%;
+	width: 50%;
 	height: 100%;
 
 	display: flex;
@@ -56,6 +57,7 @@ $pace: 40px;
 
 	// padding: $padding-local * 4;
 	box-sizing: border-box;
+	
 }
 
 .loginForm {
@@ -209,7 +211,7 @@ $pace: 40px;
 	}
 }
 
-.backgroundSection {
+.backgroundHidden{
 	width: 100%;
 
 	background: $primary-500;
@@ -218,35 +220,61 @@ $pace: 40px;
 	justify-content: center;
 	position: relative;
 	overflow: hidden;
-	clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%);
+	flex-direction: column;
+	gap: 15px;
 }
+
+.backgroundShow{
+	width: 100%;
+	height: 100%;
+
+	position: absolute;
+	top:0;
+	left: 0;
+	z-index: 99;
+	background: transparent;
+	clip-path: polygon(0 0, 45% 0%, 55% 100%, 0 100%);
+	-webkit-clip-path: polygon(0 0, 45% 0%, 55% 100%, 0 100%);
+	background: white;
+}
+
+// .backgroundSection {
+// 	width: 100%;
+
+// 	background: transparent;
+// 	display: flex;
+
+// 	clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%);
+// 	// -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%);
+// }
 
 .shape {
 	transform: rotate(134deg);
 	transform-origin: top left;
 
-	position: relative;
+	width: 1351px;
+	height: 200px;
+	position: absolute;
 
 	&1 {
 		width: 784px;
-		height: 300px;
-		left: 460.4px;
-		top: 126.67px;
-
-		position: absolute;
+		height: 220px;
+		// left: 460.4px;
+		// top: 126.67px;
 		background: linear-gradient(90deg, #ffd6a2 0%, #ffc279 30%, #ffc279 100%);
 		box-shadow: 0px -20px 30px rgba(0, 0, 0, 0.25);
 		border-radius: 200px;
 		z-index: 5;
+		left: 78%;
+    	top: 11%;
 	}
 
 	&2 {
 		width: 1351px;
 		height: 200px;
-    left: 84%;
-    top: -8%;
+		left: 105%;
+		top: 0%;
 		z-index: 4;
-		position: absolute;
 		border-radius: 150px;
 		box-shadow: 0px -20px 30px rgba(0, 0, 0, 0.25);
 		background: linear-gradient(
@@ -262,12 +290,11 @@ $pace: 40px;
 
 	&3 {
 		width: 854.42px;
-		height: 150px;
-    left: 104%;
-    top: -8%;
-		position: absolute;
-		transform: rotate(134deg);
-		transform-origin: left top;
+		height: 130px;
+		left: 111%;
+		top: 11%;
+
+
 		background: linear-gradient(
 			90deg,
 			rgb(255, 182, 94) 0%,
@@ -281,12 +308,9 @@ $pace: 40px;
 
 	&4 {
 		width: 1171.59px;
-		height: 250px;
-    left: 97%;
-    top: 58%;
-		position: absolute;
-		transform: rotate(134deg);
-		transform-origin: left top;
+		height: 210px;
+		left: 117%;
+		top: 35%;
 		background: linear-gradient(
 			90deg,
 			rgb(255, 182, 94) 0%,
@@ -303,12 +327,9 @@ $pace: 40px;
 
 	&5 {
 		width: 854.42px;
-		height: 150px;
-    left: 145%;
-    top: 9%;
-		position: absolute;
-		transform: rotate(134deg);
-		transform-origin: left top;
+		height: 120px;
+		left: 130%;
+		top: 33%;
 		background: linear-gradient(
 			90deg,
 			rgb(255, 182, 94) 0%,
@@ -409,7 +430,7 @@ $pace: 40px;
 		gap: $gap * 2;
 	}
 }
-
+// mode pc normal
 @media (min-width: 992px) and (max-width: 1199.98px) {
 	/* CSS cho desktop phổ thông */
 
@@ -461,6 +482,46 @@ $pace: 40px;
 			width: 854.42px;
 			height: 150px;
 			box-shadow: rgba(0, 0, 0, 0.25) 0px -20px 30px;
+		}
+	}
+}
+
+/* mode pc large and  very large*/
+@media screen and (min-width: 1440px){
+	.shape {	
+		&1 {
+			width: 1200px;
+			height: 250px;
+			left: 79%;
+			top: 9%;
+		}
+	
+		&2 {
+			width: 1700px;
+			height: 220px;
+			left: 104%;
+			top: 1%;
+		}
+	
+		&3 {
+			width: 1200px;
+			height: 200px;
+			left: 115%;
+			top: 10%;
+		}
+	
+		&4 {
+			width: 1171.59px;
+			height: 210px;
+			left: 117%;
+			top: 35%;
+		}
+	
+		&5 {
+			width: 854.42px;
+			height: 120px;
+			left: 130%;
+			top: 33%;
 		}
 	}
 }
