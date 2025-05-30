@@ -12,6 +12,7 @@ import { Apple, Facebook, Google } from "@/svg";
 import { FooterLogin } from "@/layout";
 import { Button, Checkbox, Input, InputPassword } from "@/components";
 import styles from "./Login.module.scss";
+import hinh from "../../../public/images/image_login.png";
 
 // const loginErrorMessagesSchema = Yup.object({
 //   username: Yup.string()
@@ -140,13 +141,7 @@ export default function Login() {
 
 	return (
 		<section className={styles.container}>
-			<div className={styles.backgroundHidden}>
-				<div className={clsx(styles.shape, styles.shape5)}></div>
-				<div className={clsx(styles.shape, styles.shape4)}></div>
-				<div className={clsx(styles.shape, styles.shape3)}></div>
-				<div className={clsx(styles.shape, styles.shape2)}></div>
-				<div className={clsx(styles.shape, styles.shape1)}></div>
-			</div>
+			<div className={styles.backgroundHidden}></div>
 			<div className={styles.backgroundShow}>
 				<div className={styles.form}>
 					<div className={styles.logo}>
