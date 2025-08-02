@@ -1,3 +1,12 @@
+@use 'sass:math';
+
+@function rem($px, $base: 16) {
+	@return ($px / $base) * 1rem;
+}
+
+@function cDiv($val1, $val2) {
+	@return math.div($val1,$val2);
+}
 
 $sm-font-size: 13px;
 $md-font-size: 14px;
@@ -9,11 +18,11 @@ $line-height: 1.6;
 $padding: 9px;
 $gap: 8px;
 /////////////////////////////// FONT-SIZE ///////////////////////////////
-$font-size-xl: 18px;
-$font-size: 16px;
-$font-size-md: 14px;
-$font-size-sm: 12px;
-$font-size-xm: 10px;
+$font-size-xl: rem(18);
+$font-size: rem(16); // 16px == 1rem
+$font-size-md: rem(14);
+$font-size-sm: rem(12);
+$font-size-xm: rem(10);
 /////////////////////////////// FONT-WEIGHT ///////////////////////////////
 $Bold: 700;
 $SemiBold: 600;
@@ -29,3 +38,6 @@ $spacing-xm: 8px;
 /////////////////////////////// RADIUS ///////////////////////////////
 $radius-sm: 12px;
 $radius-xm: 8px;
+
+////
+

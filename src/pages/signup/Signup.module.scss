@@ -1,134 +1,155 @@
+@use "sass:math";
 @use "@/styles/--variable" as variable;
 
 // display
-
 $font-family: variable.$font-family;
 $font-size: variable.$font-size;
+$font-size-md: variable.$font-size-md;
 $sm-font-size: variable.$sm-font-size;
-$bg-login-color: variable.$bg-login-color;
-$padding: variable.$padding;
-$gap: variable.$gap;
-$md-font-size: variable.$md-font-size;
+$font-size-xl: variable.$font-size-xl;
 
 // color
-
-$white: variable.$white;
+$border-color: variable.$border-color;
 $primary-500: variable.$primary-500;
+$primary-200: variable.$primary-200;
+$text-disabled: variable.$text-disabled;
+$text-grey: variable.$text-grey;
 $text-accent: variable.$text-accent;
+$bg-login-color: variable.$bg-login-color;
+$white: variable.$white;
+$padding: variable.$padding;
+$gap: variable.$gap;
 $ms-error-color: variable.$ms-error-color;
-
-// custom css
-$width: 15px;
-$local-color: rgba(0, 0, 0, 0.65);
-$screen-width: variable.$screen-width;
-$screen-height: variable.$screen-height;
-$padding-local: 10px;
+$md-font-size: variable.$md-font-size;
 $font-weight-400: 400;
 $font-weight-700: 700;
+$width: 15px;
+$local-color: rgba(0, 0, 0, 0.65);
+$primary-color-second: variable.$primary-color-second;
+$screen-width: variable.$screen-width;
+$screen-height: variable.$screen-height;
+
+// custom
+$padding-local: 10px;
+$pace: 40px;
 
 .container {
+	box-sizing: border-box;
+
 	display: flex;
-	flex-wrap: wrap;
 
-	width: 100vw;
-	height: 100vh;
-
+	width: $screen-width;
+	height: $screen-height;
 	position: relative;
+	background-image: url("../../../public/images/image_signup.png");
+	background-position: center;
+	background-size: cover;
 
-	.backgroundSection {
-		width: 60%;
+	.backgroundShow {
+		width: 100%;
 		height: 100%;
 
-		background: $primary-500;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 99;
+		background: white;
 
-		position: relative;
-		overflow: hidden;
-		clip-path: polygon(0 0, 75% 0%, 100% 100%, 0 100%);
-	}
+		.form {
+			width: 50%;
+			height: 100%;
 
-	.form {
-		width: 40%;
-		height: 100%;
-
-		display: flex;
-		flex-direction: column;
-
-		position: relative;
-
-		&Wrap {
-			position: absolute;
-			top: 0;
-			left: -7%;
 			display: flex;
 			flex-direction: column;
-			gap: 40px;
+			flex: 0 1 auto;
+			gap: $gap * 4;
 
-			padding: 40px 0;
+			// padding: $padding-local * 4;
+			box-sizing: border-box;
 
 			.logo {
 				display: flex;
 				align-items: center;
 				justify-content: flex-start;
-				position: relative;
+
+				margin-top: $pace;
+				margin-left: 7%;
 			}
 
 			.content {
-				padding-right: 20px;
-				display: flex;
-				align-items: center;
-				flex-direction: column;
-				justify-content: center;
-				gap: 40px;
+				.signupForm {
+					width: 100%;
+					height: 100%;
 
-				.title {
 					display: flex;
 					flex-direction: column;
-					align-items: flex-start;
-					width: 100%;
-				}
-
-				.signUpForm {
-					display: flex;
-					align-items: center;
-					justify-content: center;
-
-					height: 100%;
-					width: 100%;
+					align-self: stretch;
+					gap: $gap * 3;
 
 					form {
-						width: 100%;
-						height: auto;
+						height: 100%;
 
-						display: flex;
-						justify-content: center;
-						flex-direction: column;
-						flex-wrap: wrap;
-
-						.inputs {
-							flex: 1;
+						.title {
 							display: flex;
-							align-items: flex-start;
+							align-items: center;
 							justify-content: center;
 							flex-direction: column;
+							gap: math.div($gap, 2);
 
-							.information {
-								width: 100%;
+							padding: $padding-local math.div($padding-local, 2);
 
-								display: flex;
-								align-items: center;
+							margin-bottom: $gap;
+
+							h1,
+							h3 {
+								font-family: $font-family;
+								line-height: normal;
 							}
 
-							.wrapInput {
-								width: 100%;
+							h1 {
+								font-size: variable.rem(34);
+								font-weight: $font-weight-700;
 
+								color: $primary-color-second;
+							}
+
+							h3 {
+								font-size: variable.rem(22);
+								font-weight: $font-weight-400;
+
+								color: $primary-color-second;
+							}
+						}
+
+						.inputs {
+							box-sizing: border-box;
+
+							display: flex;
+							flex-direction: column;
+							justify-content: center;
+							gap: $gap + 4;
+
+							width: 100%;
+
+							.wrapInput {
 								display: flex;
 								flex-direction: column;
+								justify-content: center;
+								gap: $gap - 7;
 
 								label {
-									font-size: 15px;
+									font-size: $font-size;
+									font-family: $font-family;
+									font-weight: $font-weight-700;
+
+									color: $primary-color-second;
+								}
+
+								.errorMessage {
+									font-size: $sm-font-size;
+									font-weight: $font-weight-400;
+
+									color: $ms-error-color;
 								}
 							}
 						}
@@ -136,38 +157,11 @@ $font-weight-700: 700;
 						.submit {
 							width: 100%;
 
+							display: flex;
+
 							button {
 								width: 100%;
 							}
-						}
-
-						.signIn {
-							display: flex;
-							align-items: center;
-							justify-content: center;
-							gap: $gap;
-
-							font-size: $md-font-size;
-
-							&Link {
-								color: $text-accent;
-								text-decoration: none;
-
-								&:hover {
-									color: $primary-500;
-								}
-
-								&:focus,
-								&:focus-visible {
-									outline-color: $primary-500;
-								}
-							}
-						}
-
-						.social {
-							display: flex;
-							flex-direction: column;
-							gap: 20px;
 						}
 					}
 				}
@@ -177,54 +171,84 @@ $font-weight-700: 700;
 }
 
 @media (max-width: 575.98px) {
-	/* CSS for mobile */
 	.container {
-		.backgroundSection {
-			display: none;
-		}
+		background: none;
 
-		.form {
-			width: 100%;
+		.backgroundShow {
+			.form {
+				width: 100%;
 
-			padding-top: 40px;
-			gap: 22px;
+				gap: $gap;
 
-			.logo {
-				justify-content: center;
-			}
+				.logo {
+					justify-content: center;
 
-			.title {
-				flex: 1;
-				gap: 6px;
-			}
+					margin-top: variable.cDiv($pace, 4);
+					margin-left: 0;
+				}
 
-			.signUpForm {
-				form {
-					gap: 14px;
+				.content {
+					padding: 8px 0;
 
-					padding: 0px 30px;
+					.signupForm {
+						padding: 0 12px;
 
-					.inputs {
-						flex: 1;
-						gap: 10px;
+						form {
+							display: flex;
+							flex-direction: column;
+							gap: $gap;
 
-						.information {
-							gap: 6px;
-						}
+							.title {
+								margin-bottom: $padding-local - 2;
+								padding: 0;
 
-						.wrapInput {
-							gap: 8px;
+								h1 {
+									font-size: variable.rem(28);
+								}
 
-							label {
-								font-size: 15px;
+								h2 {
+									font-size: variable.rem(22);
+								}
+
+								h3 {
+									font-size: variable.rem(20);
+								}
+							}
+
+							.inputs {
+								gap: $gap + 2;
+
+								.wrapInput {
+									gap: variable.cDiv($gap, 2);
+
+									label {
+										font-size: $font-size-md;
+
+										color: $primary-color-second;
+									}
+								}
+							}
+
+							.social {
+								display: flex;
+								flex-direction: column;
+								gap: $gap + 4;
+
+								.customFooter {
+									gap: $gap;
+								}
+
+								.signIn {
+									display: flex;
+									align-items: center;
+									justify-content: center;
+
+									.signInLink {
+										margin-left: $padding-local - 6;
+									}
+								}
 							}
 						}
-					}
-
-					.signIn {
-						gap: $gap;
-
-						font-size: $md-font-size;
 					}
 				}
 			}
@@ -233,83 +257,80 @@ $font-weight-700: 700;
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
-	/* CSS for tablet small and mobile hor */
 	.container {
-		.backgroundSection {
-			display: none;
-		}
+		background: none;
 
-		.form {
-			width: 100%;
+		.backgroundShow {
+			.form {
+				width: 100%;
 
-			gap: 24px;
+				gap: $gap;
 
-			.logo {
-				justify-content: center;
-			}
+				.logo {
+					justify-content: center;
 
-			.signUpForm {
-				form {
-					.title {
-						gap: 6px;
-					}
-
-					.inputs {
-						gap: 10px;
-
-						.information {
-							gap: 12px;
-						}
-
-						.wrapInput {
-							gap: 8px;
-
-							label {
-								font-size: 15px;
-							}
-						}
-					}
+					margin-top: $padding-local;
+					margin-left: 0;
 				}
-			}
-		}
-	}
-}
-
-@media (min-width: 768px) and (max-width: 991.98px) {
-	/* CSS for tablet big */
-	.container {
-		.form {
-			gap: 16px;
-
-			&Wrap {
-				top: 0;
-				gap: 40px;
-				left: 56%;
-				width: 44%;
 
 				.content {
-					padding: 0 20px;
+					padding: $padding-local - 2 0;
 
-					.signUpForm {
+					.signupForm {
+						padding: 0 $padding-local + 2;
+
 						form {
-							gap: 30px;
+							display: flex;
+							flex-direction: column;
+							gap: $gap;
+
+							.title {
+								margin-bottom: $padding-local - 2;
+								padding: 0;
+
+								h1 {
+									font-size: variable.rem(28);
+								}
+
+								h2 {
+									font-size: variable.rem(22);
+								}
+
+								h3 {
+									font-size: variable.rem(20);
+								}
+							}
 
 							.inputs {
-								gap: 10px;
-
-								.information {
-									gap: 12px;
-								}
+								gap: $gap + 2;
 
 								.wrapInput {
-									gap: 8px;
+									gap: variable.cDiv($gap, 2);
 
 									label {
-										font-size: 14px;
-									}
+										font-size: $font-size-md;
 
-									.hint {
-										font-size: 13px;
+										color: $primary-color-second;
+									}
+								}
+							}
+
+							.social {
+								display: flex;
+								flex-direction: column;
+								gap: $gap + 4;
+
+								.customFooter {
+									gap: $gap;
+								}
+
+								.signIn {
+									display: flex;
+									align-items: center;
+									justify-content: center;
+
+									.signInLink {
+										margin-left: $padding-local - 6;
 									}
 								}
 							}
@@ -320,45 +341,187 @@ $font-weight-700: 700;
 		}
 	}
 }
+
+// /* Tablet lớn (768px đến 991px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+	.container {
+		.backgroundShow {
+			clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%);
+			-webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%);
+
+			width: 63%;
+
+			left: 37%;
+			top: 0;
+
+			.form {
+				width: 100%;
+
+				gap: $gap;
+
+				.logo {
+					margin-top: $padding-local + 8;
+					margin-left: $padding-local + 14;
+				}
+
+				.content {
+					padding: $padding-local * 2 variable.cDiv($padding-local, 2);
+					padding-left: 12%;
+
+					.signupForm {
+						padding: 0 $padding-local + 2;
+
+						form {
+							display: flex;
+							flex-direction: column;
+							gap: $gap * 2;
+
+							.title {
+								margin-bottom: $padding-local + 6;
+								padding: 0;
+								gap: $gap;
+
+								h1 {
+									font-size: variable.rem(30);
+								}
+
+								h2 {
+									font-size: variable.rem(24);
+								}
+
+								h3 {
+									font-size: variable.rem(22);
+								}
+							}
+
+							.inputs {
+								gap: $gap + 2;
+
+								.wrapInput {
+									gap: $gap - 2;
+
+									label {
+										font-size: $font-size-md;
+
+										color: $primary-color-second;
+									}
+								}
+							}
+
+							.social {
+								display: flex;
+								flex-direction: column;
+								gap: $gap * 2;
+
+								.customFooter {
+									gap: $gap;
+								}
+
+								.signIn {
+									display: flex;
+									align-items: center;
+									justify-content: center;
+
+									.signInLink {
+										margin-left: $padding-local - 6;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/* CSS cho desktop phổ thông */
 @media (min-width: 992px) and (max-width: 1199.98px) {
-	/* CSS for desktop basic */
-}
-
-@media (max-height: 667px) {
 	.container {
-		.form {
-			padding-top: 10px;
-			gap: 8px;
+		.backgroundShow {
+			clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%);
+			-webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%);
 
-			.title {
-				margin-bottom: 6px;
-				gap: 4px;
-			}
+			width: 55%;
 
-			.signUpForm {
-				form {
-					gap: 6px;
+			left: 45%;
+			top: 0;
 
-					.inputs {
-						gap: 4px;
+			.form {
+				width: 100%;
 
-						.wrapInput {
-							gap: 4px;
+				padding: $pace 0;
+				gap: $gap * 5;
 
-							label {
-								font-size: 14px;
+				.logo {
+					margin-top: 0;
+					margin-left: $pace;
+				}
+
+				.content {
+					padding: 0 variable.cDiv($padding-local, 2);
+					padding-left: 12%;
+
+					.signupForm {
+						padding: 0 $padding-local + 2;
+
+						form {
+							display: flex;
+							flex-direction: column;
+							gap: $gap * 2;
+
+							.title {
+								margin-bottom: $padding-local + 6;
+								padding: 0;
+								gap: $gap;
+
+								h1 {
+									font-size: variable.rem(30);
+								}
+
+								h2 {
+									font-size: variable.rem(24);
+								}
+
+								h3 {
+									font-size: variable.rem(22);
+								}
+							}
+
+							.inputs {
+								gap: $gap + 2;
+
+								.wrapInput {
+									gap: $gap - 2;
+
+									label {
+										font-size: $font-size;
+
+										color: $primary-color-second;
+									}
+								}
+							}
+
+							.social {
+								display: flex;
+								flex-direction: column;
+								gap: $gap * 2;
+
+								.customFooter {
+									gap: $gap;
+								}
+
+								.signIn {
+									display: flex;
+									align-items: center;
+									justify-content: center;
+
+									.signInLink {
+										margin-left: $padding-local - 6;
+									}
+								}
 							}
 						}
-					}
-
-					.signIn {
-						gap: $gap;
-
-						font-size: $md-font-size;
-					}
-
-					.social {
-						gap: 15px;
 					}
 				}
 			}
@@ -366,42 +529,96 @@ $font-weight-700: 700;
 	}
 }
 
-/* Cho iPhone lớn hơn */
-@media (min-height: 668px) and (max-height: 932px) {
+/* Mode pc large and  very large */
+@media screen and (min-width: 1200px) {
 	.container {
-		.form {
-			gap: 30px;
+		.backgroundShow {
+			clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%);
+			-webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%);
 
-			.title {
-				gap: 12px;
-			}
+			width: 50%;
+			left: 50%;
 
-			.signUpForm {
-				align-items: flex-start;
+			top: 0;
 
-				form {
-					gap: 20px;
+			.form {
+				width: 100%;
 
-					.inputs {
-						gap: 20px;
+				padding: $pace 0;
+				gap: $gap * 5;
 
-						.wrapInput {
-							gap: 4px;
+				.logo {
+					margin-top: 0;
+					margin-left: $pace;
+				}
 
-							label {
-								font-size: 14px;
+				.content {
+					padding: 0 variable.cDiv($padding-local, 2);
+					padding-left: 14%;
+
+					.signupForm {
+						padding: 0 $padding-local + 2;
+
+						form {
+							display: flex;
+							flex-direction: column;
+							gap: $gap * 2;
+
+							.title {
+								margin-bottom: $padding-local + 6;
+								padding: 0;
+								gap: $gap;
+
+								h1 {
+									font-size: variable.rem(60);
+									line-height: 1.2;
+								}
+
+								h2 {
+									font-size: variable.rem(48);
+									line-height: 1.3;
+								}
+
+								h3 {
+									font-size: variable.rem(36);
+									line-height: 1.4;
+								}
+							}
+
+							.inputs {
+								gap: $gap + 2;
+
+								.wrapInput {
+									gap: $gap - 2;
+
+									label {
+										font-size: $font-size;
+
+										color: $primary-color-second;
+									}
+								}
+							}
+
+							.social {
+								display: flex;
+								flex-direction: column;
+								gap: $gap * 2;
+
+								.customFooter {
+									gap: $gap;
+								}
+
+								.signIn {
+									display: flex;
+									align-items: center;
+									justify-content: center;
+
+									.signInLink {
+										margin-left: $padding-local - 6;
+									}
+								}
 							}
 						}
-					}
-
-					.signIn {
-						gap: $gap;
-
-						font-size: $md-font-size;
-					}
-
-					.social {
-						gap: 20px;
 					}
 				}
 			}
@@ -409,9 +626,42 @@ $font-weight-700: 700;
 	}
 }
 
+/* Mode landscape*/
 @media (orientation: landscape) {
 	@media (max-height: 430px) {
 		/* iPhone & similar */
+		.container {
+			padding: 0 20px;
+
+			.wrapper {
+				padding: 0;
+				gap: $gap/2;
+			}
+
+			.title {
+				h1 {
+					font-size: 22px;
+				}
+
+				h3 {
+					font-size: $font-size-xl;
+				}
+			}
+
+			.inputs {
+				gap: $gap;
+			}
+
+			.wrapperInput {
+				label {
+					font-size: $md-font-size;
+				}
+			}
+		}
+
+		.backgroundSection {
+			display: none;
+		}
 	}
 
 	@media (max-height: 320px) {

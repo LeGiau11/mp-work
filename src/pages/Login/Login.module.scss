@@ -41,6 +41,7 @@ $pace: 40px;
 	position: relative;
 	background-image: url("../../../public/images/image_login.png");
 	background-position: center;
+	background-size: cover;
 }
 
 .logo {
@@ -213,18 +214,6 @@ $pace: 40px;
 	}
 }
 
-.backgroundHidden{
-	width: 100%;
-
-	background: transparent;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: relative;
-	overflow: hidden;
-	flex-direction: column;
-	gap: 15px;
-}
 
 .backgroundShow{
 	width: 100%;
@@ -234,8 +223,6 @@ $pace: 40px;
 	top:0;
 	left: 0;
 	z-index: 99;
-	background: transparent;
-	
 	background: white;
 }
 
@@ -276,10 +263,6 @@ $pace: 40px;
 		justify-content: center;
 
 		gap: $gap + 4;
-	}
-
-	.backgroundSection {
-		display: none;
 	}
 }
 

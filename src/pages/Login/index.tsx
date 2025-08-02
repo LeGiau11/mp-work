@@ -1,18 +1,11 @@
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/router";
-import clsx from "clsx";
-import * as Yup from "yup";
-import { useFormik } from "formik";
 
-import { ResponseData } from "@/common";
-import { ILogin, RequestLogin } from "./interface";
-import { Apple, Facebook, Google } from "@/svg";
+import { useHook } from "./Login.hook";
 import { FooterLogin } from "@/layout";
 import { Button, Checkbox, Input, InputPassword } from "@/components";
+
 import styles from "./Login.module.scss";
-import hinh from "../../../public/images/image_login.png";
 
 // const loginErrorMessagesSchema = Yup.object({
 //   username: Yup.string()
@@ -29,119 +22,10 @@ import hinh from "../../../public/images/image_login.png";
 // });
 
 export default function Login() {
-	const [initialUser, setInitialUser] = useState<ILogin>({});
-	const router = useRouter();
-
-	const formik = useFormik({
-		initialValues: {
-			username: initialUser.username || "",
-			password: initialUser.password || "",
-			remember: initialUser.remember || false,
-		},
-		enableReinitialize: true,
-		validationSchema: Yup.object().shape({
-			username: Yup.string()
-				.email("Invalid email address")
-				.required("Email address is required"),
-			password: Yup.string().required("Password is required"),
-			remember: Yup.boolean(),
-		}),
-		onSubmit: async (values, { setSubmitting, setErrors, setFieldValue }) => {
-			try {
-				if (values.remember) {
-					const data = { username: values.username, password: values.password };
-					localStorage.setItem("user", JSON.stringify(data));
-				} else {
-					if (localStorage.getItem("user")) {
-						localStorage.removeItem("user");
-					}
-				}
-
-				const res = await handlelogIn(values);
-
-				if (res?.error || res?.message) {
-					await setFieldValue("password", "");
-					await setErrors({
-						username: "An email address does not exist.",
-						password: "",
-					});
-				}
-
-				setSubmitting(false);
-			} catch (error) {
-				console.log("error", error);
-			}
-		},
-	});
-
-	useEffect(() => {
-		const savedUser = localStorage.getItem("user");
-		if (savedUser) {
-			const parsedUser: Omit<ILogin, "remember"> = JSON.parse(savedUser);
-			setInitialUser({
-				username: parsedUser.username,
-				password: parsedUser.password,
-				remember: true,
-			});
-			formik.setFieldValue("username", parsedUser.username);
-			formik.setFieldValue("password", parsedUser.password);
-			formik.setFieldValue("remember", true);
-		}
-		() => {
-			formik.resetForm();
-		};
-	}, []);
-
-	/**
-	 *
-	 * handlelogIn
-	 *
-	 * @param data { RequestLogin }
-	 * @returns { ResponseData<string> }
-	 *
-	 * Step 1: gọi api: /api/auth/Login
-	 * Step 2:  nếu gọi đúng user/password thì chuyển sang trang home
-	 *
-	 */
-	const handlelogIn = async (data: RequestLogin) => {
-		const res: ResponseData<string> = await fetch("/api/auth/Login", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(data),
-		}).then((res) => res.json());
-
-		if (res.success) {
-			localStorage.setItem("token", JSON.stringify(res.data));
-			router.push("/");
-			return;
-		}
-
-		return res;
-	};
-
-	/**
-	 *
-	 * isDisableSubmitBtn
-	 *
-	 * @returns {boolean}
-	 *
-	 * Step: kiểm tra trường password/user
-	 *
-	 */
-	const isDisableSubmitBtn = (): boolean => {
-		return (
-			formik.isSubmitting ||
-			!formik.isValid ||
-			formik.values.username == "" ||
-			formik.values.password == ""
-		);
-	};
+	const { isDisableSubmitBtn, initialUser, formik } = useHook();
 
 	return (
 		<section className={styles.container}>
-			<div className={styles.backgroundHidden}></div>
 			<div className={styles.backgroundShow}>
 				<div className={styles.form}>
 					<div className={styles.logo}>

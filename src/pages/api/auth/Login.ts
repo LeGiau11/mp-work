@@ -1,14 +1,13 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+import { NextApiRequest, NextApiResponse } from "next";
+import bcrypt from "bcrypt";
+import cookie from "cookie";
 
-import { disconnect } from '@/libs/mongodb';
-import GetUserService from '@/services/user/GetUserService';
-import { User } from '@/models/User';
-import { ResponseData } from '@/common/interface';
+import { User } from "@/models/User";
+import { PRODUCTION, REFRESH_TOKEN } from "@/common";
+import GetUserService from "@/services/user/GetUserService";
+import { generateAccessToken, generateRefreshToken, post } from "@/helpers";
+import { HttpError, sendCreated, throwBadRequest } from "@/utils";
 
-const JWT_SECRET = process.env.JWT_SECRET || 'kongkong';
-const EXPIRE = '1h';
 /**
  * Hàm  login
  *
@@ -24,52 +23,49 @@ const EXPIRE = '1h';
  *
  */
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method === 'POST') {
-    const { username, password } = req.body;
+	try {
+		const { username, password } = req.body;
+		const result = await post<string, User>(req, res, async () => {
+			return await GetUserService("username", username);
+		});
 
-    try {
-      const data: ResponseData<User> = await GetUserService(
-        'username',
-        username,
-      );
+		if (result.status === 400) throwBadRequest();
 
-      if (!data.success) return res.status(401).json({ message: data.error });
+		if (result.status === 200) {
+			const user: User | undefined = result.data;
 
-      const user: User = data.data;
+			if (!user) throwBadRequest();
 
-      let isValidPassword = false;
+			let isValidPassword = false;
 
-      if (user) {
-        isValidPassword = await bcrypt.compare(password, user.password);
-      }
+			if (user) isValidPassword = await bcrypt.compare(password, user.password);
 
-      if (!isValidPassword)
-        return res
-          .status(401)
-          .json({ message: 'Invalid username or password' });
+			if (!isValidPassword) throwBadRequest();
 
-      const token = jwt.sign({ username: user.username }, JWT_SECRET, {
-        expiresIn: EXPIRE,
-      });
+			const accessToken = await generateAccessToken({ username });
+			const refreshToken = await generateRefreshToken({ username });
 
-      const result: ResponseData<string> = {
-        success: true,
-        data: token,
-      };
+			res.setHeader(
+				"Set-Cookie",
+				cookie.serialize(REFRESH_TOKEN, refreshToken, {
+					httpOnly: true,
+					path: "/",
+					//maxAge: 7 * 24 * 60 * 60, // 7d
+					maxAge: 3 * 60,
+					secure: process.env.NODE_ENV !== PRODUCTION,
+					sameSite: "strict",
+				}),
+			);
 
-      return res.status(200).json(result);
-    } catch (ex) {
-      console.log('Error->message:', ex);
-      return res.status(500).json({
-        message: ex instanceof Error ? ex.message : 'Internal Server Error',
-      });
-    } finally {
-      disconnect();
-    }
-  } else {
-    res.setHeader('Allow', 'POST');
-    res.status(405).end(`Method ${req.method} Not Allowed`);
-  }
+			return sendCreated(res, { access: accessToken, refresh: refreshToken });
+		}
+	} catch (err) {
+		let status = err instanceof HttpError ? err.statusCode : 500;
+		const error = err instanceof HttpError ? err.error : "";
+		let message = err instanceof Error ? err.message : "Đã có lỗi xảy ra";
+
+		return res.status(status).json({ success: false, message, error });
+	}
 };
 
 export default handler;
