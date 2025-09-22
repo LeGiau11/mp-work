@@ -37,7 +37,7 @@ export function useHook() {
 				}
 
 				const res = await handleLogIn(values);
-				console.log(res);
+
 				if (res?.error || res?.message) {
 					await setFieldValue("password", "");
 					await setErrors({

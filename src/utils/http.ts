@@ -58,7 +58,7 @@ export const sendCreated = <T>(
 	data: T,
 	message = "Created",
 	error = "Created",
-) => {
+): void => {
 	const value: ResponseData<T> = {
 		status: 201,
 		data,
@@ -118,6 +118,20 @@ export const throwNotAllowed = (
 	error = "Not Allowed",
 ): never => {
 	throw new HttpError(message, 405, error);
+};
+
+export const throwConflict = (
+	message = "Conflict",
+	error = "Conflict",
+): never => {
+	throw new HttpError(message, 409, error);
+};
+
+export const throwUnprocessableEntity = (
+	message = "Unprocessable Entity",
+	error = "Unprocessable Entity",
+): never => {
+	throw new HttpError(message, 422, error);
 };
 
 export const throwInternalServerError = (

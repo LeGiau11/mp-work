@@ -33,6 +33,22 @@ $screen-height: variable.$screen-height;
 $padding-local: 10px;
 $pace: 40px;
 
+.show {
+	display: inline-block;
+}
+
+.hidden {
+	display: none;
+}
+
+.valid {
+	color: green !important;
+}
+
+.invalid {
+	color: red !important;
+}
+
 .container {
 	box-sizing: border-box;
 

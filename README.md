@@ -129,8 +129,19 @@ mp-work/
 ├── public/             # File tĩnh
 │   └── images/         # Chứa hình, ảnh
 ├── src/                # Mã nguồn chính
-│   ├── assets/
-│   ├── Avatar/
+│   ├── common/
+│   │    ├── const.ts
+│   │    ├── index.ts
+│   │    └── interface.ts
+│   ├── components/
+│   │    ├── Avatar/
+│   │    │      ├── Avatar.module.scss
+│   │    │      ├── index.tsx
+│   │    │      └── interface.ts
+│   │    ├── Breadcrumb/
+│   │    │      ├── Breadcrumb.module.scss
+│   │    │      ├── index.tsx
+│   │    │      └── interface.ts
 │   ├── Breadcrumb/
 │   ├── Button/
 │   ├── Card/
@@ -176,6 +187,12 @@ mp-work/
 └── vite.config.ts      # Cấu hình vite
 
 ```
+
+---
+
+## 📁 Lưu đồ layer
+
+UI -> API -> Validator -> Service -> DAO -> Database
 
 ---
 

@@ -7,6 +7,8 @@ export {
 	throwNotFound,
 	throwUnauthorized,
 	throwNotAllowed,
+	throwConflict,
+	throwUnprocessableEntity,
 	sendCreated,
 	sendOk,
 	InternalServerError,

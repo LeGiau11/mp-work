@@ -22,7 +22,10 @@ import { HttpError, sendCreated, throwBadRequest } from "@/utils";
  * Step 6: Trả lại token
  *
  */
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (
+	req: NextApiRequest,
+	res: NextApiResponse,
+): Promise<void> => {
 	try {
 		const { username, password } = req.body;
 		const result = await post<string, User>(req, res, async () => {

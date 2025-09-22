@@ -1,58 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import clsx from "clsx";
-import * as Yup from "yup";
-import { useFormik } from "formik";
 
-import { REGEX_PASSWORD, Response } from "@/common";
+import { useHook } from "./Signup.hook";
 import styles from "./Signup.module.scss";
 import { Input, Button, InputPassword, Typography } from "@/components";
 import { FooterLogin } from "@/layout";
 
 export default function SignUp() {
-	const formik = useFormik({
-		initialValues: { username: "", password: "", rePassword: "" },
-		validationSchema: Yup.object().shape({
-			username: Yup.string()
-				.email("Invalid email address")
-				.required("Email address is required"),
-			password: Yup.string()
-				.max(24, "The password can have a maximum of 24 characters.")
-				.matches(
-					REGEX_PASSWORD,
-					"The password must be at least 8 characters long, including uppercase letters, lowercase letters, numbers, and special characters.",
-				)
-				.required("Password is required"),
-			rePassword: Yup.string()
-				.oneOf([Yup.ref("password"), undefined], "Passwords must match")
-				.required("Re-Password is required"),
-		}),
-		onSubmit: async (values, { setSubmitting, setErrors }) => {
-			try {
-				// console.log("values", values);
-				const res: Response<unknown> = await fetch(
-					"/api/user/CheckIsExistUser",
-					{
-						method: "POST",
-						headers: {
-							"Content-Type": "application/json",
-						},
-						body: JSON.stringify({ username: values.username }),
-					},
-				).then((res) => res.json());
-
-				if (!res.success) {
-					await setErrors({
-						username: res.error,
-					});
-				}
-
-				setSubmitting(false);
-			} catch (error) {
-				console.log("error", error);
-			}
-		},
-	});
+	const { formik, rules, isDisableSubmitBtn } = useHook();
 
 	return (
 		<section className={styles.container}>
@@ -85,11 +41,18 @@ export default function SignUp() {
 											name="firstName"
 											htmlFor="firstName"
 											inputClassName={styles.input}
-											value={formik.values.username}
+											value={formik.values.firstName}
 											onChange={formik.handleChange}
-											isError={!!formik.errors.username}
+											onBlur={formik.handleBlur}
+											isError={
+												!!formik.errors.firstName && !!formik.touched.firstName
+											}
 										/>
-										<Typography className={styles.errorMessage} level={2}>Passwords match</Typography>
+										{formik.touched.firstName && formik.errors.firstName && (
+											<Typography className={styles.errorMessage} level={2}>
+												{formik.errors.firstName}
+											</Typography>
+										)}
 									</div>
 									<div className={styles.wrapInput}>
 										<label htmlFor="lastName">
@@ -101,11 +64,18 @@ export default function SignUp() {
 											type="text"
 											name="lastName"
 											htmlFor="lastName"
-											value={formik.values.username}
+											value={formik.values.lastName}
 											onChange={formik.handleChange}
-											isError={!!formik.errors.username}
+											onBlur={formik.handleBlur}
+											isError={
+												!!formik.errors.lastName && !!formik.touched.lastName
+											}
 										/>
-										<Typography className={styles.errorMessage} level={2}>Passwords match</Typography>
+										{formik.touched.lastName && formik.errors.lastName && (
+											<Typography className={styles.errorMessage} level={2}>
+												{formik.errors.lastName}
+											</Typography>
+										)}
 									</div>
 									<div className={styles.wrapInput}>
 										<label htmlFor="email">
@@ -117,11 +87,16 @@ export default function SignUp() {
 											type="text"
 											name="email"
 											htmlFor="email"
-											value={formik.values.username}
+											value={formik.values.email}
 											onChange={formik.handleChange}
-											isError={!!formik.errors.username}
+											onBlur={formik.handleBlur}
+											isError={!!formik.touched.email && !!formik.errors.email}
 										/>
-										<Typography className={styles.errorMessage} level={2}>Passwords match</Typography>
+										{formik.touched.email && formik.errors.email && (
+											<Typography className={styles.errorMessage} level={2}>
+												{formik.errors.email}
+											</Typography>
+										)}
 									</div>
 									<div className={styles.wrapInput}>
 										<label htmlFor="password">
@@ -132,27 +107,39 @@ export default function SignUp() {
 											className={styles.username}
 											name="password"
 											id="password"
-											value={formik.values.username}
+											value={formik.values.password}
 											onChange={formik.handleChange}
-											isError={!!formik.errors.username}
+											onBlur={formik.handleBlur}
+											isError={
+												!!formik.errors.password && !!formik.touched.password
+											}
 										/>
-										<span className={styles.info}>
-											<Typography className={styles.hint} level={2}>
-												Contains between 8-20 characters.
-											</Typography>
-											<Typography className={styles.hint} level={2}>
-												Least one number (0-9).
-											</Typography>
-											<Typography className={styles.hint} level={2}>
-												Least one symbol (!, @, #, $, %, &, *, ?, .).
-											</Typography>
-											<Typography className={styles.hint} level={2}>
-												Least one lowercase (a-z).
-											</Typography>
-											<Typography className={styles.hint} level={2}>
-												Least one uppercase (A-Z).
-											</Typography>
-										</span>
+										{formik.touched.password && formik.errors.password && (
+											<span
+												className={clsx({
+													[styles.hidden]: !formik.errors.password,
+													[styles.show]: !!formik.errors.password,
+												})}
+											>
+												{rules.map((rule, idx) => {
+													const valid = rule.regex.test(
+														formik.values.password || "",
+													);
+													return (
+														<Typography
+															key={idx}
+															className={clsx(styles.hint, {
+																[styles.valid]: valid,
+																[styles.invalid]: !valid,
+															})}
+															level={2}
+														>
+															{rule.text}
+														</Typography>
+													);
+												})}
+											</span>
+										)}
 									</div>
 									<div className={styles.wrapInput}>
 										<label htmlFor="rePassword">
@@ -160,17 +147,32 @@ export default function SignUp() {
 										</label>
 										<InputPassword
 											placeholder="Enter your confirm password"
-											className={styles.username}
+											className={styles.rePassword}
 											name="rePassword"
-											value={formik.values.username}
+											value={formik.values.rePassword}
 											onChange={formik.handleChange}
-											isError={!!formik.errors.username}
+											onBlur={formik.handleBlur}
+											isError={
+												!!formik.errors.rePassword &&
+												!!formik.touched.rePassword
+											}
+											onCopy={(e) => e.preventDefault()}
+											onCut={(e) => e.preventDefault()}
+											onPaste={(e) => e.preventDefault()}
 										/>
-										<Typography className={styles.errorMessage} level={2}>Passwords match</Typography>
+										{formik.touched.rePassword && formik.errors.rePassword && (
+											<Typography className={styles.errorMessage} level={2}>
+												{formik.errors.rePassword}
+											</Typography>
+										)}
 									</div>
 								</div>
 								<div className={styles.submit}>
-									<Button disabled={true} variant="contained" type="submit">
+									<Button
+										disabled={isDisableSubmitBtn()}
+										variant="contained"
+										type="submit"
+									>
 										Sign Up
 									</Button>
 								</div>

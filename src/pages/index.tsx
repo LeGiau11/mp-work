@@ -5,7 +5,7 @@ import styles from "@/styles/Layout.module.scss";
 
 import { Button, Loading } from "@/components";
 import Login from "./login";
-import { ACCESS_TOKEN } from "@/common";
+import { ACCESS_TOKEN, ResponseData } from "@/common";
 
 export default function Layout() {
 	const [token, setToken] = useState<string | null>("");
@@ -38,9 +38,20 @@ export default function Layout() {
 	//   }
 	// };
 
-	const handleClick = (): void => {
+	const handleClick = async (): Promise<void> => {
 		//localStorage.removeItem('token');
-		router.push("/login");
+		const res: ResponseData<unknown> = await fetch("/api/auth/logout", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		}).then((res) => res.json());
+
+		if (res.status === 200) {
+			localStorage.clear();
+			router.push("/login");
+			return;
+		}
 	};
 
 	if (loading) return <Loading />;

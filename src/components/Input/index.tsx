@@ -20,6 +20,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 			inputStyle,
 			isError = false,
 			onChange = () => {},
+			onBlur,
 			...rest
 		},
 		ref,
@@ -51,7 +52,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 					name={name}
 					value={value}
 					placeholder={placeholder}
-					onBlur={handleBlur}
+					onBlur={(e) => {
+						if (handleBlur) handleBlur(); // gọi handler mặc định (formik.handleBlur)
+						if (onBlur) onBlur(e); // nếu DOM truyền vào thêm thì cũng gọi
+					}}
 					onFocus={handleFocus}
 					style={inputStyle}
 					tabIndex={0}

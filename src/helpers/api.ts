@@ -32,17 +32,13 @@ export const get = async <T, P = undefined>(
 		const hasQuery = req.query && Object.keys(req.query).length > 0;
 		const data = hasQuery ? await getDataFn(req.query as P) : await getDataFn();
 
-		if (!data) {
-			throwNotFound();
-		}
+		if (!data) throwNotFound();
 
 		return sendOk(res, data, "Successfully");
 	} catch (error) {
 		const isErrNW = isNetworkError(error);
 
-		if (isErrNW.isError) {
-			return InternalServerError(res, isErrNW.message);
-		}
+		if (isErrNW.isError) return InternalServerError(res, isErrNW.message);
 
 		const status = error instanceof HttpError ? error.statusCode : 500;
 		const err = error instanceof HttpError ? error.error : "";
