@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import cookie from "cookie";
 
 import { User } from "@/models/User";
-import { PRODUCTION, REFRESH_TOKEN } from "@/common";
+import { IResUser, PRODUCTION, REFRESH_TOKEN } from "@/common";
 import GetUserService from "@/services/user/GetUserService";
 import { generateAccessToken, generateRefreshToken, post } from "@/helpers";
 import { HttpError, sendCreated, throwBadRequest } from "@/utils";
@@ -28,40 +28,33 @@ const handler = async (
 ): Promise<void> => {
 	try {
 		const { username, password } = req.body;
-		const result = await post<string, User>(req, res, async () => {
-			return await GetUserService("username", username);
-		});
 
-		if (result.status === 400) throwBadRequest();
+		const user: IResUser | null = await GetUserService(username);
 
-		if (result.status === 200) {
-			const user: User | undefined = result.data;
+		if (!user) throwBadRequest();
 
-			if (!user) throwBadRequest();
+		let isValidPassword = false;
 
-			let isValidPassword = false;
+		if (user) isValidPassword = await bcrypt.compare(password, user.password);
 
-			if (user) isValidPassword = await bcrypt.compare(password, user.password);
+		if (!isValidPassword) throwBadRequest();
 
-			if (!isValidPassword) throwBadRequest();
+		const accessToken = await generateAccessToken({ username });
+		const refreshToken = await generateRefreshToken({ username });
 
-			const accessToken = await generateAccessToken({ username });
-			const refreshToken = await generateRefreshToken({ username });
+		res.setHeader(
+			"Set-Cookie",
+			cookie.serialize(REFRESH_TOKEN, refreshToken, {
+				httpOnly: true,
+				path: "/",
+				//maxAge: 7 * 24 * 60 * 60, // 7d
+				maxAge: 3 * 60,
+				secure: process.env.NODE_ENV !== PRODUCTION,
+				sameSite: "strict",
+			}),
+		);
 
-			res.setHeader(
-				"Set-Cookie",
-				cookie.serialize(REFRESH_TOKEN, refreshToken, {
-					httpOnly: true,
-					path: "/",
-					//maxAge: 7 * 24 * 60 * 60, // 7d
-					maxAge: 3 * 60,
-					secure: process.env.NODE_ENV !== PRODUCTION,
-					sameSite: "strict",
-				}),
-			);
-
-			return sendCreated(res, { access: accessToken, refresh: refreshToken });
-		}
+		return sendCreated(res, { access: accessToken, refresh: refreshToken });
 	} catch (err) {
 		let status = err instanceof HttpError ? err.statusCode : 500;
 		const error = err instanceof HttpError ? err.error : "";

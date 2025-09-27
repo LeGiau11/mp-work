@@ -1,7 +1,7 @@
-import { ObjectId } from "mongodb";
+import { JWTPayload } from "jose";
 
-export interface User {
-	id?: ObjectId;
+export interface IResUser {
+	id?: string; // thay thế cho _id
 	isActive?: boolean;
 	username: string;
 	password: string;
@@ -13,4 +13,10 @@ export interface User {
 	createdBy?: string;
 	updatedAt?: Date;
 	updatedBy?: string;
+}
+
+export interface IDecode extends JWTPayload {
+	username: string;
+	type: string;
+	exp: number;
 }

@@ -4,7 +4,7 @@ const uri: string = process.env.MONGODB_URI!;
 const option = {};
 let client: MongoClient | null = null;
 let db: Db | null = null;
-const DB_NAME = "mp_work";
+const DB_NAME = process.env.DB_NAME;
 
 export const connect = async (): Promise<Db> => {
 	if (db) return db;

@@ -1,45 +1,15 @@
-import { WithId } from "mongodb";
-
-import { User } from "@/models/User";
-import { connect } from "@/libs/mongodb";
+import { IResUser } from "@/common";
+import { userDAO } from "@/dao/userDAO";
 
 export default async function GetUserService(
-	field: string,
-	key: string,
-): Promise<User | null> {
-	const db = await connect();
-	let user: User = {
-		id: "",
-		username: "",
-		password: "",
-		isActive: false,
-		name: "",
-	};
+	username: string,
+): Promise<IResUser | null> {
+	let result: IResUser | null = null;
+
+	if (!username) return null;
+
 	try {
-		if (!field) throw new Error("Chưa có field. Hãy nhập vào");
-
-		if (!key) throw new Error("Chưa có key. Hãy nhập vào");
-
-		const query = { [field]: key };
-
-		const data = await db.collection("users").findOne<WithId<User>>(query);
-
-		if (!data) throw new Error("Không tìm thấy User");
-
-		for (const item in data) {
-			if (item === "_id") {
-				user.id = data[item].toString() || "";
-			} else if (item in user) {
-				const key = item as keyof User; // Ensure item is a key of User
-				const value = data[key]; // Get the value from data
-				const obj = {
-					[key]: value,
-				};
-				user = Object.assign(user, obj);
-			}
-		}
-
-		return user;
+		return await userDAO.findUserInActive(username);
 	} catch (ex) {
 		console.log("ex", ex);
 		return null;

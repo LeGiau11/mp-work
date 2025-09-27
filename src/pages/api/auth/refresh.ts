@@ -20,8 +20,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 		if (decoded?.type !== "refresh") throw new Error("Invalid token type");
 
-		const newAccessToken = generateAccessToken({ username: decoded.username });
-		const newRefreshToken = generateRefreshToken({
+		const newAccessToken = await generateAccessToken({
+			username: decoded.username,
+		});
+		const newRefreshToken = await generateRefreshToken({
 			username: decoded.username,
 		});
 

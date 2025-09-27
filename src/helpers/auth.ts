@@ -9,17 +9,26 @@ const JWT_REFRESH_SECRET = new TextEncoder().encode(
 	process.env.JWT_REFRESH_SECRET!,
 );
 
-export async function generateAccessToken(payload: object): Promise<string> {
+export async function generateAccessToken(
+	payload: object,
+	timeExp?: string,
+): Promise<string> {
+	const expTime = timeExp ? timeExp : ACCESS_TOKEN_EXPIRE;
 	return await new SignJWT({ ...payload, type: ACCESS })
 		.setProtectedHeader({ alg: HS256 })
-		.setExpirationTime(`${ACCESS_TOKEN_EXPIRE}`)
+		.setExpirationTime(`${expTime}`)
 		.sign(JWT_SECRET);
 }
 
-export async function generateRefreshToken(payload: object): Promise<string> {
+export async function generateRefreshToken(
+	payload: object,
+	timeExp?: string,
+): Promise<string> {
+	const expTime = timeExp ? timeExp : REFRESH_TOKEN_EXPIRE;
+
 	return await new SignJWT({ ...payload, type: REFRESH })
 		.setProtectedHeader({ alg: HS256 })
-		.setExpirationTime(`${REFRESH_TOKEN_EXPIRE}`)
+		.setExpirationTime(`${expTime}`)
 		.sign(JWT_REFRESH_SECRET);
 }
 

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Welcome Email</title>
+	</head>
+	<body
+		style="
+			margin: 0;
+			padding: 0;
+			background-color: #f3f4f6;
+			font-family: Arial, sans-serif;
+		"
+	>
+		<table
+			role="presentation"
+			border="0"
+			cellpadding="0"
+			cellspacing="0"
+			width="100%"
+		>
+			<tr>
+				<td align="center" style="padding: 20px 0">
+					<table
+						role="presentation"
+						border="0"
+						cellpadding="0"
+						cellspacing="0"
+						width="600"
+						style="
+							background-color: #ffffff;
+							border-radius: 12px;
+							overflow: hidden;
+						"
+					>
+						<tr>
+							<td
+								align="center"
+								bgcolor="#FFB65E"
+								style="
+									padding: 20px 40px 30px 40px;
+									border-top-left-radius: 10px;
+									border-top-right-radius: 10px;
+								"
+							>
+								<img
+									src="cid:logo_cid"
+									width="160"
+									height="40"
+									alt="Logo"
+									border="0"
+									style="display: block"
+								/>
+
+								<h2
+									style="
+										color: #ffffff;
+										font-family: Quicksand, Arial, sans-serif;
+										font-size: 30px;
+										font-weight: 600;
+										margin: 20px 0 10px 0;
+										line-height: 39px;
+									"
+								>
+									Welcome!
+								</h2>
+
+								<!-- Subtitle -->
+								<p
+									style="
+										color: #ffffff;
+										font-family: Quicksand, Arial, sans-serif;
+										font-size: 16px;
+										font-weight: 600;
+										line-height: 20px;
+										margin: 0;
+										text-align: center;
+									"
+								>
+									Just one more step to complete your registration
+								</p>
+							</td>
+						</tr>
+
+						<tr>
+							<td
+								style="
+									padding: 30px;
+									color: #374151;
+									font-size: 16px;
+									line-height: 1.6;
+								"
+							>
+								<div style="margin: 0 0 30px 0; color: #6b7280">
+									<p style="margin: 0 0 20px 0; color: #6d717f">
+										Hello
+										<span style="color: #374151; font-weight: 500"
+											>{{first_name}} {{last_name}}</span
+										>,
+									</p>
+									<p style="margin: 0">
+										Thank you for registering an account with MP-WORK. To start
+										using our services, please confirm your email address by
+										clicking the button below:
+									</p>
+								</div>
+
+								<div style="text-align: center; margin: 0 0 30px 0">
+									<a
+										href="{{url_href}}"
+										target="_blank"
+										style="
+											display: inline-block;
+											padding: 12px 24px;
+											font-size: 14px;
+											font-weight: 600;
+											color: #ffffff;
+											text-decoration: none;
+											border-radius: 30px;
+											background: linear-gradient(
+												135deg,
+												#ff9f43 0%,
+												#ffb65e 100%
+											);
+										"
+									>
+										Activate account
+									</a>
+								</div>
+
+								<div
+									style="
+										color: #6d717f;
+										font-size: 14px;
+										line-height: 1.6;
+										margin: 0 0 30px 0;
+									"
+								>
+									If the above button doesn't work, copy and paste this link
+									into your browser:
+								</div>
+
+								<div
+									style="
+										background-color: #f9fafb;
+										border: 1px solid #f9fafb;
+										border-radius: 8px;
+										padding: 18px;
+										margin: 0 0 30px 0;
+									"
+								>
+									<p
+										style="
+											color: #ea580c;
+											font-size: 14px;
+											word-break: break-all;
+											margin: 0;
+											font-family: 'Courier New', monospace;
+										"
+									>
+										<a style="color: #ffb65e" target="_blank" href="{{div_url}}"
+											>{{url}}</a
+										>
+									</p>
+								</div>
+
+								<div
+									style="
+										border-left: 4px solid #ff9f43;
+										background-color: #fff4e5;
+										padding: 25px;
+										border-radius: 5px;
+										margin: 0 0 30px 0;
+									"
+								>
+									<h3
+										style="
+											color: #000000;
+											font-size: 16px;
+											margin: 0;
+											margin-bottom: 20px;
+											line-height: 20px;
+											font-weight: 700;
+										"
+									>
+										Your account information:
+									</h3>
+
+									<div style="margin-bottom: 10px">
+										<span
+											style="
+												color: #6b7280;
+												font-size: 14px;
+												display: inline-block;
+												width: 140px;
+											"
+											>Email:</span
+										>
+										<span style="color: #374151; font-size: 14px"
+											>{{email}}</span
+										>
+									</div>
+
+									<div style="margin-bottom: 10px">
+										<span
+											style="
+												color: #6b7280;
+												font-size: 14px;
+												display: inline-block;
+												width: 140px;
+											"
+											>Username:</span
+										>
+										<span style="color: #374151; font-size: 14px"
+											>{{username}}</span
+										>
+									</div>
+
+									<div>
+										<span
+											style="
+												color: #6b7280;
+												font-size: 14px;
+												display: inline-block;
+												width: 140px;
+											"
+											>Registration date:</span
+										>
+										<span style="color: #374151; font-size: 14px"
+											>{{register_date}}</span
+										>
+									</div>
+								</div>
+
+								<table
+									width="100%"
+									cellpadding="0"
+									cellspacing="0"
+									border="0"
+									style="
+										background-color: #fff4e5;
+										border-radius: 8px;
+										padding: 10px;
+										font-family: Arial, sans-serif;
+									"
+								>
+									<tr>
+										<td
+											width="60"
+											valign="top"
+											align="center"
+											style="padding-right: 15px"
+										>
+											<div
+												style="
+													background-color: #f59e0b;
+													color: #ffffff;
+													border-radius: 50%;
+													width: 22px;
+													height: 22px;
+													line-height: 22px;
+													font-size: 14px;
+													font-weight: bold;
+													text-align: center;
+													margin: 0 auto 4px auto;
+												"
+											>
+												!
+											</div>
+											<p
+												style="
+													color: #ffaa00;
+													font-weight: 600;
+													margin: 0;
+													font-size: 12px;
+													text-align: center;
+												"
+											>
+												Warning
+											</p>
+										</td>
+
+										<td valign="top" style="font-size: 14px; color: #6b7280">
+											<h4
+												style="
+													color: #ffaa00;
+													margin: 0 0 8px 0;
+													font-size: 16px;
+													font-weight: 600;
+												"
+											>
+												Security Note
+											</h4>
+											<ul
+												style="
+													margin: 0;
+													padding-left: 18px;
+													line-height: 1.5;
+													font-size: 14px;
+													color: #6b7280;
+												"
+											>
+												<li style="margin-bottom: 10px">
+													Activation link will expire after 24 hours
+												</li>
+												<li style="margin-bottom: 10px">
+													Do not share this link with others
+												</li>
+												<li style="margin-bottom: 0">
+													If you did not register for this account, please
+													ignore this email
+												</li>
+											</ul>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+
+						<tr>
+							<td
+								style="
+									background-color: #f9fafb;
+									padding: 20px 10px;
+									text-align: center;
+									font-family: Arial, sans-serif;
+									border-top: 1px solid #e5e7eb;
+								"
+							>
+								<!-- Contact Info -->
+								<p
+									style="
+										color: #6d717f;
+										font-size: 14px;
+										margin: 0 0 10px 0;
+										font-weight: 500;
+									"
+								>
+									Need help? Contact us:
+								</p>
+								<p
+									style="
+										margin: 0;
+										font-size: 14px;
+										color: #6d717f;
+										display: inline-block;
+										border: 1px solid #f3f4f6;
+										border-radius: 8px;
+										padding: 6px 8px;
+										background: white;
+									"
+								>
+									📧
+									<a
+										href="mailto:support@mp-work.com"
+										style="color: #6d717f; text-decoration: none"
+										>support@mp-work.com</a
+									>
+								</p>
+
+								<!-- Social Links -->
+								<table
+									cellpadding="0"
+									cellspacing="0"
+									border="0"
+									align="center"
+									style="margin: 15px auto"
+								>
+									<tr>
+										<td style="padding: 0 8px">
+											<a
+												href="#"
+												style="
+													font-size: 12px;
+													color: #6d717f;
+													text-decoration: none;
+												"
+											>
+												<table
+													role="presentation"
+													cellpadding="0"
+													cellspacing="0"
+													border="0"
+													style="display: inline-block"
+												>
+													<tr>
+														<td style="padding-right: 5px">
+															<img
+																src="cid:logo_facebook_cid"
+																width="13"
+																height="13"
+																alt="Facebook"
+																border="0"
+																style="display: block"
+															/>
+														</td>
+														<td style="font-size: 12px; color: #6d717f">
+															Facebook
+														</td>
+													</tr>
+												</table>
+											</a>
+										</td>
+										<td style="padding: 0 8px">
+											<a
+												href="#"
+												style="
+													font-size: 12px;
+													color: #6d717f;
+													text-decoration: none;
+												"
+											>
+												<table
+													role="presentation"
+													cellpadding="0"
+													cellspacing="0"
+													border="0"
+													style="display: inline-block"
+												>
+													<tr>
+														<td style="padding-right: 5px">
+															<img
+																src="cid:logo_linkedin_cid"
+																width="13"
+																height="13"
+																alt="LinkedIn"
+																border="0"
+																style="display: block"
+															/>
+														</td>
+														<td style="font-size: 12px; color: #6d717f">
+															LinkedIn
+														</td>
+													</tr>
+												</table>
+											</a>
+										</td>
+										<td style="padding: 0 8px">
+											<a
+												href="#"
+												style="
+													font-size: 12px;
+													color: #6d717f;
+													text-decoration: none;
+												"
+												><table
+													role="presentation"
+													cellpadding="0"
+													cellspacing="0"
+													border="0"
+													style="display: inline-block"
+												>
+													<tr>
+														<td style="padding-right: 5px">
+															<img
+																src="cid:logo_instagram_cid"
+																width="13"
+																height="13"
+																alt="Instagram"
+																border="0"
+																style="display: block"
+															/>
+														</td>
+														<td style="font-size: 12px; color: #6d717f">
+															Instagram
+														</td>
+													</tr>
+												</table>
+											</a>
+										</td>
+										<td style="padding: 0 8px">
+											<a
+												href="#"
+												style="
+													font-size: 12px;
+													color: #6d717f;
+													text-decoration: none;
+												"
+												><table
+													role="presentation"
+													cellpadding="0"
+													cellspacing="0"
+													border="0"
+													style="display: inline-block"
+												>
+													<tr>
+														<td style="padding-right: 5px">
+															<img
+																src="cid:logo_twitter_cid"
+																width="13"
+																height="13"
+																alt="Twitter"
+																border="0"
+																style="display: block"
+															/>
+														</td>
+														<td style="font-size: 12px; color: #6d717f">
+															Twitter
+														</td>
+													</tr>
+												</table></a
+											>
+										</td>
+									</tr>
+								</table>
+
+								<!-- Copyright Section -->
+								<p style="font-size: 12px; margin: 0 0 5px 0; color: #6d717f">
+									© 2024 MP-WORK. All rights reserved.
+								</p>
+								<p style="font-size: 12px; margin: 0 0 12px 0; color: #6d717f">
+									123 Business Street, Tech District, City 12345
+								</p>
+								<p style="font-size: 12px; margin: 0; color: #6d717f">
+									<a href="#" style="color: #6d717f">Privacy Policy</a> |
+									<a href="#" style="color: #6d717f">Terms of Use</a>
+								</p>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

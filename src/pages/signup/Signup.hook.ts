@@ -1,8 +1,8 @@
-import clsx from "clsx";
+import { useRouter } from "next/router";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
-import { REGEX_PASSWORD, Response } from "@/common";
+import { REGEX_PASSWORD, Response, ResponseData } from "@/common";
 import { RequestSignup } from "./interface";
 
 export function useHook() {
@@ -16,6 +16,8 @@ export function useHook() {
 		{ regex: /[a-z]/, text: "At least one lowercase (a–z)" },
 		{ regex: /[A-Z]/, text: "At least one uppercase (A–Z)" },
 	];
+
+	const router = useRouter();
 
 	const formik = useFormik({
 		initialValues: {
@@ -81,13 +83,20 @@ export function useHook() {
 	});
 
 	const handleSignup = async (data: RequestSignup) => {
-		const res: Response<unknown> = await fetch("/api/auth/signup", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
+		const res: ResponseData<{ username: string } | null> = await fetch(
+			"/api/auth/signup",
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(data),
 			},
-			body: JSON.stringify(data),
-		}).then((res) => res.json());
+		).then((res) => res.json());
+
+		if (res.status === 201) {
+			router.push(`/thankyou?username=${res.data?.username ?? ""}`);
+		}
 
 		return res;
 	};

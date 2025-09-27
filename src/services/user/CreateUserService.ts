@@ -16,8 +16,12 @@ const CreateUserServices = async (data: RequestSignup) => {
 	const userData: User = {
 		...data,
 		password: hashPass,
-		isActive: true,
+		isActive: false,
 		remember: false,
+		createdBy: "",
+		createdAt: new Date(),
+		updatedBy: "",
+		updatedAt: new Date(),
 	};
 
 	return await userDAO.insert(userData);
