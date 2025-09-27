@@ -29,8 +29,10 @@ const MultipleSelect: FC<MultipleSelectProps> = ({
 		setIsOpen(!isOpen);
 		setSearchItem("");
 	};
-	const handleSearch = (event?: ChangeEvent<HTMLInputElement | undefined>) =>
-		setSearchItem(event?.currentTarget?.value || "");
+	const handleSearch = (event?: ChangeEvent<HTMLInputElement | undefined>) => {
+		if (!event) return;
+		setSearchItem(event.currentTarget.value);
+	};
 
 	return (
 		<div className={clsx(styles.container, classNameContainer)}>
