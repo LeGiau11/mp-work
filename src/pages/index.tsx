@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import styles from "@/styles/Layout.module.scss";
 
 import { Button, Loading } from "@/components";
-import Login from "@/pages/login";
 import { ACCESS_TOKEN, ResponseData } from "@/common";
 
 export default function Layout() {
@@ -13,30 +12,15 @@ export default function Layout() {
 	const router = useRouter();
 
 	useEffect(() => {
-		// createInitUser();
-		const token = localStorage.getItem(ACCESS_TOKEN);
-		if (token) setToken(token);
+		if (typeof window !== "undefined") {
+			const token = localStorage.getItem(ACCESS_TOKEN);
+			if (token) setToken(token);
 
-		setLoading(false);
+			setLoading(false);
 
-		if (!token) router.push("/login");
-	}, []);
-
-	// const createInitUser = async () => {
-	//   const res = await fetch('/api/user/InitUser', {
-	//     method: 'POST',
-	//     headers: {
-	//       'Content-Type': 'application/json',
-	//     },
-	//     body: null,
-	//   });
-
-	//   if (res.status === 200) {
-	//     console.log('Created init User');
-	//   } else {
-	//     console.log('Created init User is Failure');
-	//   }
-	// };
+			if (!token) router.replace("/login");
+		}
+	}, [router]);
 
 	const handleClick = async (): Promise<void> => {
 		//localStorage.removeItem('token');
@@ -49,7 +33,7 @@ export default function Layout() {
 
 		if (res.status === 200) {
 			localStorage.clear();
-			router.push("/login");
+			router.replace("/login");
 			return;
 		}
 	};
@@ -63,7 +47,6 @@ export default function Layout() {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<meta name="description" content="Welcome to my awesome Next.js app!" />
 			</Head>
-			{!token ? <Login /> : null}
 			{token ? (
 				<div className={styles.page}>
 					<Button variant="outline" type="button" onClick={handleClick}>
