@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import styles from "@/styles/Layout.module.scss";
 
 import { Button, Loading } from "@/components";
-import Login from "./login";
+import Login from "@/pages/login";
 import { ACCESS_TOKEN, ResponseData } from "@/common";
 
 export default function Layout() {
