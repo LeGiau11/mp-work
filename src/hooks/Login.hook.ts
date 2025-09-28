@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import { ILogin, RequestLogin } from "./interface";
+import { ILogin, RequestLogin } from "@/interface/Login.interface";
 import { ACCESS_TOKEN, REFRESH_TOKEN, ResponseData } from "@/common";
 //import { startSilentRefreshAuth } from "@/utils";
 

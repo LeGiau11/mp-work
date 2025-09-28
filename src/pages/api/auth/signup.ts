@@ -11,7 +11,7 @@ import {
 } from "@/utils";
 import { REGEX_PASSWORD } from "@/common";
 import CreateUserServices from "@/services/user/CreateUserService";
-import { RequestSignup } from "@/pages/signup/interface";
+import { RequestSignup } from "@/interface/Signup.interface";
 import smtpService from "@/libs/smtp";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
