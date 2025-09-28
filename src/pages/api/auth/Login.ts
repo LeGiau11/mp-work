@@ -25,6 +25,7 @@ const handler = async (
 	req: NextApiRequest,
 	res: NextApiResponse,
 ): Promise<void> => {
+	console.log("Request method:", req.method);
 	try {
 		const { username, password } = req.body;
 
