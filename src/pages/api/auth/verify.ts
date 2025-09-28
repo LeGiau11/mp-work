@@ -22,9 +22,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 		// Lấy current time tính bằng giây, exp cung tinh bang giay
 		const currentTime = Math.floor(Date.now() / 1000);
 
-		console.log(exp, "exp");
-		console.log(currentTime, "currentTime");
-
 		if (!exp || currentTime > exp) {
 			return res.redirect(
 				new URL("/404", process.env.PUBLIC_APP_URL).toString(),
@@ -57,13 +54,17 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 		res.redirect(new URL("/login", process.env.PUBLIC_APP_URL).toString());
 	} catch (error) {
-		let status = error instanceof HttpError ? error.statusCode : 500;
+		const status = error instanceof HttpError ? error.statusCode : 500;
 		const errorNew = error instanceof HttpError ? error.error : "";
-		let message = error instanceof Error ? error.message : "Đã có lỗi xảy ra";
+		const message = error instanceof Error ? error.message : "Đã có lỗi xảy ra";
 
-		return res
-			.status(status)
-			.json({ success: false, message, error: errorNew, status, data: null });
+		return res.status(status).json({
+			success: false,
+			message,
+			error: errorNew,
+			status: status,
+			data: null,
+		});
 	}
 };
 

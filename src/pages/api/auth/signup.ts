@@ -9,7 +9,7 @@ import {
 	throwBadRequest,
 	throwUnprocessableEntity,
 } from "@/utils";
-import { REGEX_PASSWORD, User } from "@/common";
+import { REGEX_PASSWORD } from "@/common";
 import CreateUserServices from "@/services/user/CreateUserService";
 import { RequestSignup } from "@/pages/signup/interface";
 import smtpService from "@/libs/smtp";
@@ -45,7 +45,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 		const formattedDate = createdAt
 			? `${new Date(createdAt).getDate()}/${
 					new Date(createdAt).getMonth() + 1
-			  }/${new Date(createdAt).getFullYear()}`
+				}/${new Date(createdAt).getFullYear()}`
 			: null;
 
 		let htmlTemplate = fs.readFileSync(templatePath, "utf8");
@@ -118,9 +118,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 		return sendCreated(res, { username }, "OK");
 	} catch (err) {
-		let status = err instanceof HttpError ? err.statusCode : 500;
+		const status = err instanceof HttpError ? err.statusCode : 500;
 		const error = err instanceof HttpError ? err.error : "";
-		let message = err instanceof Error ? err.message : "Đã có lỗi xảy ra";
+		const message = err instanceof Error ? err.message : "Đã có lỗi xảy ra";
 
 		return res
 			.status(status)

@@ -9,13 +9,9 @@ const DB_NAME = process.env.DB_NAME;
 export const connect = async (): Promise<Db> => {
 	if (db) return db;
 
-	console.log("creating connect...");
-
 	if (!client) {
 		client = new MongoClient(uri, option);
-		console.log("waiting connect...");
 		await client.connect();
-		console.log("connect successfully!");
 	}
 
 	db = client.db(DB_NAME);
@@ -26,7 +22,7 @@ export const disconnect = () => {
 	if (!client) return;
 
 	client.close();
-	console.log("disconnected!");
+
 	client = null;
 	db = null;
 };

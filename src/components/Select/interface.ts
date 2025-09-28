@@ -1,4 +1,4 @@
-import { SelectHTMLAttributes } from 'react';
+import { SelectHTMLAttributes } from "react";
 
 export interface SelectProps
-  extends Omit<SelectHTMLAttributes<HTMLSelectElement>, 'multiple'> {}
+	extends Omit<SelectHTMLAttributes<HTMLSelectElement>, "multiple"> {}

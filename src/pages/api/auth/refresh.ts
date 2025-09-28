@@ -7,7 +7,7 @@ import {
 	generateRefreshToken,
 	verifyRefreshToken,
 } from "@/helpers";
-import { PRODUCTION, REFRESH_TOKEN } from "@/common";
+import { IDecode, PRODUCTION, REFRESH_TOKEN } from "@/common";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	const cookies = cookie.parse(req.headers.cookie || "");
@@ -16,7 +16,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	try {
 		if (!token || typeof token !== "string") throwUnauthorized();
 
-		const decoded = verifyRefreshToken(token as string) as any;
+		const decoded = (await verifyRefreshToken(token as string)) as IDecode;
 
 		if (decoded?.type !== "refresh") throw new Error("Invalid token type");
 
@@ -40,9 +40,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 		return sendCreated(res, newAccessToken);
 	} catch (error) {
-		let status = error instanceof HttpError ? error.statusCode : 500;
-		const errors = error instanceof HttpError ? error.error : "";
-		let message = error instanceof Error ? error.message : "Đã có lỗi xảy ra";
+		const status = error instanceof HttpError ? error.statusCode : 500;
+		const message = error instanceof Error ? error.message : "Đã có lỗi xảy ra";
 
 		return res.status(status).json({ success: false, message, error });
 	}

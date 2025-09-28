@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 export interface DropdownProp {
 	leftIcon?: ReactNode;
@@ -6,7 +6,7 @@ export interface DropdownProp {
 	menus: Menu[];
 	disabled?: boolean;
 	tabIndex?: number;
-	onChange?: (menus:(Menu | string)[]) => void;
+	onChange?: (menus: (Menu | string)[]) => void;
 }
 
 export interface Menu {

@@ -1,4 +1,4 @@
-import { CSSProperties, ReactNode } from 'react';
+import { CSSProperties, ReactNode } from "react";
 
 export interface Tabs {
 	children?: ReactNode;
@@ -7,7 +7,7 @@ export interface Tabs {
 	style?: CSSProperties;
 	data?: TabItem[];
 }
-export interface TabsPane extends Omit<Tabs, 'defaultTab' | 'data'> {
+export interface TabsPane extends Omit<Tabs, "defaultTab" | "data"> {
 	label: string;
 	leftIcon?: ReactNode;
 	rightIcon?: ReactNode;

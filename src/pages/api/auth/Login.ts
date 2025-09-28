@@ -2,10 +2,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import bcrypt from "bcrypt";
 import cookie from "cookie";
 
-import { User } from "@/models/User";
 import { IResUser, PRODUCTION, REFRESH_TOKEN } from "@/common";
 import GetUserService from "@/services/user/GetUserService";
-import { generateAccessToken, generateRefreshToken, post } from "@/helpers";
+import { generateAccessToken, generateRefreshToken } from "@/helpers";
 import { HttpError, sendCreated, throwBadRequest } from "@/utils";
 
 /**
@@ -56,9 +55,9 @@ const handler = async (
 
 		return sendCreated(res, { access: accessToken, refresh: refreshToken });
 	} catch (err) {
-		let status = err instanceof HttpError ? err.statusCode : 500;
+		const status = err instanceof HttpError ? err.statusCode : 500;
 		const error = err instanceof HttpError ? err.error : "";
-		let message = err instanceof Error ? err.message : "Đã có lỗi xảy ra";
+		const message = err instanceof Error ? err.message : "Đã có lỗi xảy ra";
 
 		return res.status(status).json({ success: false, message, error });
 	}

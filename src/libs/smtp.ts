@@ -40,7 +40,7 @@ class SMTPService {
 		text,
 		html,
 		attachments,
-	}: ISmtpSendMailOptions): Promise<ResponseData<any>> {
+	}: ISmtpSendMailOptions): Promise<ResponseData<string>> {
 		try {
 			const info = await this.transporter.sendMail({
 				from: `"${process.env.SMTP_FROM_NAME}"<${process.env.SMTP_FROM_EMAIL}>`,
@@ -57,8 +57,6 @@ class SMTPService {
 
 			return { data: info?.messageId, status: 201, success: true, message: "" };
 		} catch (error) {
-			console.error(error);
-
 			return { status: 500, success: false, message: "Send mail failed" };
 		}
 	}
@@ -81,13 +79,11 @@ class SMTPService {
 	async sendWithRetry(
 		options: ISmtpSendMailOptions,
 		retries = 3,
-	): Promise<ResponseData<any>> {
+	): Promise<ResponseData<string>> {
 		for (let attempt = 1; attempt <= retries; attempt++) {
 			const result = await this.sendMail(options);
 
 			if (result.success) return result;
-
-			console.warn(`Retry ${attempt}/${retries}...`);
 		}
 		return { status: 500, success: false, message: "Max retries exceeded" };
 	}

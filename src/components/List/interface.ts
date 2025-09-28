@@ -1,4 +1,4 @@
-import { CSSProperties, ReactNode } from 'react';
+import { CSSProperties, ReactNode } from "react";
 
 export interface ListMenu {
 	label: string;
@@ -13,9 +13,9 @@ export interface List {
 	showIcon?: boolean;
 	showRightText?: boolean;
 	rightText?: string;
-    showCheckbox?:boolean;
-    showRadio?:boolean;
-    showToggle?:boolean;
+	showCheckbox?: boolean;
+	showRadio?: boolean;
+	showToggle?: boolean;
 	icon?: ReactNode | JSX.Element;
 }
 

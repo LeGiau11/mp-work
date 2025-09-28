@@ -1,5 +1,5 @@
 export interface StepperProps {
-	disabled?:boolean;
+	disabled?: boolean;
 	onPlusClick?: () => void;
 	onMinusClick?: () => void;
 }

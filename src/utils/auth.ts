@@ -13,7 +13,7 @@ export async function fetchWithAuth(url: string, options: RequestInit = {}) {
 		},
 	};
 
-	let res = await fetch(url, authOptions);
+	const res = await fetch(url, authOptions);
 
 	if (res.status === 401 && refreshToken) {
 		// Thử refresh token

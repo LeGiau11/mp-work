@@ -17,15 +17,9 @@ const CheckExistUser = async (username: string): Promise<IResUser | null> => {
 
 	if (!username) return null;
 
-	try {
-		result = await userDAO.findUserByUserName(username);
+	result = await userDAO.findUserByUserName(username);
 
-		return result;
-	} catch (ex) {
-		console.log("ex", ex);
-	} finally {
-		return result;
-	}
+	return result;
 };
 
 export default CheckExistUser;

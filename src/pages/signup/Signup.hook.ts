@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
-import { REGEX_PASSWORD, Response, ResponseData } from "@/common";
+import { ResponseData } from "@/common";
 import { RequestSignup } from "./interface";
 
 export function useHook() {
@@ -57,28 +57,22 @@ export function useHook() {
 			lastName: Yup.string().required("Last name is required"),
 		}),
 		onSubmit: async (values, { setSubmitting, setErrors }) => {
-			try {
-				const data: RequestSignup = {
-					username: values.email,
-					password: values.password,
-					firstName: values.firstName,
-					lastName: values.lastName,
-					email: values.email,
-				};
+			const data: RequestSignup = {
+				username: values.email,
+				password: values.password,
+				firstName: values.firstName,
+				lastName: values.lastName,
+				email: values.email,
+			};
 
-				const res = await handleSignup(data);
+			const res = await handleSignup(data);
 
-				if (res?.status !== 201) {
-					setErrors({
-						email: res.message,
-					});
-				}
-				setSubmitting(false);
-			} catch (error) {
-				console.log("error", error);
-			} finally {
-				setSubmitting(false);
+			if (res?.status !== 201) {
+				setErrors({
+					email: res.message,
+				});
 			}
+			setSubmitting(false);
 		},
 	});
 

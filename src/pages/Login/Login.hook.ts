@@ -26,30 +26,26 @@ export function useHook() {
 			remember: Yup.boolean(),
 		}),
 		onSubmit: async (values, { setSubmitting, setErrors, setFieldValue }) => {
-			try {
-				if (values.remember) {
-					const data = { username: values.username, password: values.password };
-					localStorage.setItem("user", JSON.stringify(data));
-				} else {
-					if (localStorage.getItem("user")) {
-						localStorage.removeItem("user");
-					}
+			if (values.remember) {
+				const data = { username: values.username, password: values.password };
+				localStorage.setItem("user", JSON.stringify(data));
+			} else {
+				if (localStorage.getItem("user")) {
+					localStorage.removeItem("user");
 				}
-
-				const res = await handleLogIn(values);
-
-				if (res?.error || res?.message) {
-					await setFieldValue("password", "");
-					await setErrors({
-						username: "An email address does not exist.",
-						password: "",
-					});
-				}
-
-				setSubmitting(false);
-			} catch (error) {
-				console.log("error", error);
 			}
+
+			const res = await handleLogIn(values);
+
+			if (res?.error || res?.message) {
+				await setFieldValue("password", "");
+				await setErrors({
+					username: "An email address does not exist.",
+					password: "",
+				});
+			}
+
+			setSubmitting(false);
 		},
 	});
 

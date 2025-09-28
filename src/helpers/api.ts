@@ -84,7 +84,7 @@ export const post = async <TBody, TResponse>(
 		};
 	} catch (error) {
 		let status = error instanceof HttpError ? error.statusCode : 500;
-		const err = error instanceof HttpError ? error.error : "";
+
 		let message = error instanceof Error ? error.message : "Đã có lỗi xảy ra";
 		const isErrNW = isNetworkError(error);
 
