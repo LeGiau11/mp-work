@@ -1,3 +1,3 @@
-import FooterLogin from './FooterLogin';
+import FooterLogin from "./FooterLogin";
 
 export { FooterLogin };

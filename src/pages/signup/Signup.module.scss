@@ -1,159 +1,268 @@
+@use "sass:math";
 @use "@/styles/--variable" as variable;
 
 // display
-
 $font-family: variable.$font-family;
 $font-size: variable.$font-size;
+$font-size-md: variable.$font-size-md;
 $sm-font-size: variable.$sm-font-size;
-$bg-login-color: variable.$bg-login-color;
-$padding: variable.$padding;
-$gap: variable.$gap;
-$md-font-size: variable.$md-font-size;
+$font-size-xl: variable.$font-size-xl;
 
 // color
-
-$white: variable.$white;
+$border-color: variable.$border-color;
 $primary-500: variable.$primary-500;
+$primary-200: variable.$primary-200;
+$text-disabled: variable.$text-disabled;
+$text-grey: variable.$text-grey;
 $text-accent: variable.$text-accent;
+$bg-login-color: variable.$bg-login-color;
+$white: variable.$white;
+$padding: variable.$padding;
+$gap: variable.$gap;
 $ms-error-color: variable.$ms-error-color;
-
-// custom css
-$width: 15px;
-$local-color: rgba(0, 0, 0, 0.65);
-$screen-width: variable.$screen-width;
-$screen-height: variable.$screen-height;
-$padding-local: 10px;
+$md-font-size: variable.$md-font-size;
 $font-weight-400: 400;
 $font-weight-700: 700;
+$width: 15px;
+$local-color: rgba(0, 0, 0, 0.65);
+$primary-color-second: variable.$primary-color-second;
+$screen-width: variable.$screen-width;
+$screen-height: variable.$screen-height;
 
-.container {
-	display: flex;
-	flex-wrap: wrap;
+// custom
+$padding-local: 10px;
+$pace: 40px;
 
-	width: 100vw;
-	height: 100vh;
-
-	.backgroundSection {
-		width: 100%;
-
-		background: $primary-500;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex: 1;
-
-		position: relative;
-		overflow: hidden;
-		clip-path: polygon(0 0, 75% 0%, 100% 100%, 0 100%);
-	}
-
-	.form {
-		flex: 1;
-
-		width: 100%;
-	}
+.show {
+	display: inline-block;
 }
 
-@media (max-width: 575.98px) {
-	/* CSS for mobile */
-	.container {
-		.backgroundSection {
-			display: none;
-		}
+.hidden {
+	display: none;
+}
+
+.valid {
+	color: green !important;
+}
+
+.invalid {
+	color: red !important;
+}
+
+.container {
+	box-sizing: border-box;
+
+	display: flex;
+
+	width: $screen-width;
+	height: $screen-height;
+	position: relative;
+	background-image: url("../../../public/images/image_signup.png");
+	background-position: center;
+	background-size: cover;
+
+	.backgroundShow {
+		width: 100%;
+		height: 100%;
+
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 99;
+		background: white;
 
 		.form {
-			padding-top: 40px;
+			width: 50%;
+			height: 100%;
+
 			display: flex;
 			flex-direction: column;
-			gap: 22px;
+			flex: 0 1 auto;
+			gap: $gap * 4;
+
+			// padding: $padding-local * 4;
+			box-sizing: border-box;
 
 			.logo {
 				display: flex;
 				align-items: center;
-				justify-content: center;
+				justify-content: flex-start;
+
+				margin-top: $pace;
+				margin-left: 7%;
 			}
 
-			.signUpForm {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-
-				height: 100%;
-				width: 100%;
-
-				form {
+			.content {
+				.signupForm {
 					width: 100%;
 					height: 100%;
 
 					display: flex;
-					justify-content: center;
-					align-items: center;
 					flex-direction: column;
-					flex-wrap: wrap;
-					gap: 14px;
+					align-self: stretch;
+					gap: $gap * 3;
 
-					padding: 0px 12px;
+					form {
+						height: 100%;
 
-					.title {
-						flex: 1;
-						display: flex;
-						align-items: center;
-						justify-content: center;
-						flex-direction: column;
-						gap: 6px;
-					}
-
-					.inputs {
-						flex: 1;
-						display: flex;
-						align-items: flex-start;
-						justify-content: center;
-						flex-direction: column;
-						gap: 4px;
-
-						.information {
-							width: 100%;
-
+						.title {
 							display: flex;
 							align-items: center;
-							gap: 6px;
+							justify-content: center;
+							flex-direction: column;
+							gap: math.div($gap, 2);
+
+							padding: $padding-local math.div($padding-local, 2);
+
+							margin-bottom: $gap;
+
+							h1,
+							h3 {
+								font-family: $font-family;
+								line-height: normal;
+							}
+
+							h1 {
+								font-size: variable.rem(34);
+								font-weight: $font-weight-700;
+
+								color: $primary-color-second;
+							}
+
+							h3 {
+								font-size: variable.rem(22);
+								font-weight: $font-weight-400;
+
+								color: $primary-color-second;
+							}
 						}
 
-						.wrapInput {
-							width: 100%;
+						.inputs {
+							box-sizing: border-box;
 
 							display: flex;
 							flex-direction: column;
-							gap: 8px;
+							justify-content: center;
+							gap: $gap + 4;
 
-							label {
-								font-size: 15px;
+							width: 100%;
+
+							.wrapInput {
+								display: flex;
+								flex-direction: column;
+								justify-content: center;
+								gap: $gap - 7;
+
+								label {
+									font-size: $font-size;
+									font-family: $font-family;
+									font-weight: $font-weight-700;
+
+									color: $primary-color-second;
+								}
+
+								.errorMessage {
+									font-size: $sm-font-size;
+									font-weight: $font-weight-400;
+
+									color: $ms-error-color;
+								}
+							}
+						}
+
+						.submit {
+							width: 100%;
+
+							display: flex;
+
+							button {
+								width: 100%;
 							}
 						}
 					}
+				}
+			}
+		}
+	}
+}
 
-					.submit {
-						width: 100%;
+@media (max-width: 575.98px) {
+	.container {
+		background: none;
 
-						button {
-							width: 100%;
-						}
-					}
+		.backgroundShow {
+			.form {
+				width: 100%;
 
-					.signIn {
-						display: flex;
-						align-items: center;
-						justify-content: center;
-						gap: $gap;
+				gap: $gap;
 
-						font-size: $md-font-size;
+				.logo {
+					justify-content: center;
 
-						&Link {
-							color: $text-accent;
-							text-decoration: none;
+					margin-top: variable.cDiv($pace, 4);
+					margin-left: 0;
+				}
 
-							&:hover {
-								color: $primary-500;
+				.content {
+					padding: 8px 0;
+
+					.signupForm {
+						padding: 0 12px;
+
+						form {
+							display: flex;
+							flex-direction: column;
+							gap: $gap;
+
+							.title {
+								margin-bottom: $padding-local - 2;
+								padding: 0;
+
+								h1 {
+									font-size: variable.rem(28);
+								}
+
+								h2 {
+									font-size: variable.rem(22);
+								}
+
+								h3 {
+									font-size: variable.rem(20);
+								}
+							}
+
+							.inputs {
+								gap: $gap + 2;
+
+								.wrapInput {
+									gap: variable.cDiv($gap, 2);
+
+									label {
+										font-size: $font-size-md;
+
+										color: $primary-color-second;
+									}
+								}
+							}
+
+							.social {
+								display: flex;
+								flex-direction: column;
+								gap: $gap + 4;
+
+								.customFooter {
+									gap: $gap;
+								}
+
+								.signIn {
+									display: flex;
+									align-items: center;
+									justify-content: center;
+
+									.signInLink {
+										margin-left: $padding-local - 6;
+									}
+								}
 							}
 						}
 					}
@@ -164,32 +273,84 @@ $font-weight-700: 700;
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
-	/* CSS for tablet small and mobile hor */
 	.container {
-		.backgroundSection {
-			display: none;
-		}
-	}
-}
+		background: none;
 
-@media (min-width: 768px) and (max-width: 991.98px) {
-	/* CSS for tablet big */
-}
-@media (min-width: 992px) and (max-width: 1199.98px) {
-	/* CSS for desktop basic */
-}
+		.backgroundShow {
+			.form {
+				width: 100%;
 
-@media (max-height: 667px) {
-	.container {
-		.form {
-			.signUpForm {
-				form {
-					gap: 14px;
+				gap: $gap;
 
-					padding: 0px 12px 18px;
+				.logo {
+					justify-content: center;
 
-					.title {
-						margin-bottom: 12px;
+					margin-top: $padding-local;
+					margin-left: 0;
+				}
+
+				.content {
+					padding: $padding-local - 2 0;
+
+					.signupForm {
+						padding: 0 $padding-local + 2;
+
+						form {
+							display: flex;
+							flex-direction: column;
+							gap: $gap;
+
+							.title {
+								margin-bottom: $padding-local - 2;
+								padding: 0;
+
+								h1 {
+									font-size: variable.rem(28);
+								}
+
+								h2 {
+									font-size: variable.rem(22);
+								}
+
+								h3 {
+									font-size: variable.rem(20);
+								}
+							}
+
+							.inputs {
+								gap: $gap + 2;
+
+								.wrapInput {
+									gap: variable.cDiv($gap, 2);
+
+									label {
+										font-size: $font-size-md;
+
+										color: $primary-color-second;
+									}
+								}
+							}
+
+							.social {
+								display: flex;
+								flex-direction: column;
+								gap: $gap + 4;
+
+								.customFooter {
+									gap: $gap;
+								}
+
+								.signIn {
+									display: flex;
+									align-items: center;
+									justify-content: center;
+
+									.signInLink {
+										margin-left: $padding-local - 6;
+									}
+								}
+							}
+						}
 					}
 				}
 			}
@@ -197,17 +358,326 @@ $font-weight-700: 700;
 	}
 }
 
-/* Cho iPhone lớn hơn */
-@media (min-height: 668px) and (max-height: 926px) {
-	.element {
-		padding: 20px;
-		margin-bottom: 25px;
+// /* Tablet lớn (768px đến 991px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+	.container {
+		.backgroundShow {
+			clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%);
+			-webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%);
+
+			width: 63%;
+
+			left: 37%;
+			top: 0;
+
+			.form {
+				width: 100%;
+
+				gap: $gap;
+
+				.logo {
+					margin-top: $padding-local + 8;
+					margin-left: $padding-local + 14;
+				}
+
+				.content {
+					padding: $padding-local * 2 variable.cDiv($padding-local, 2);
+					padding-left: 12%;
+
+					.signupForm {
+						padding: 0 $padding-local + 2;
+
+						form {
+							display: flex;
+							flex-direction: column;
+							gap: $gap * 2;
+
+							.title {
+								margin-bottom: $padding-local + 6;
+								padding: 0;
+								gap: $gap;
+
+								h1 {
+									font-size: variable.rem(30);
+								}
+
+								h2 {
+									font-size: variable.rem(24);
+								}
+
+								h3 {
+									font-size: variable.rem(22);
+								}
+							}
+
+							.inputs {
+								gap: $gap + 2;
+
+								.wrapInput {
+									gap: $gap - 2;
+
+									label {
+										font-size: $font-size-md;
+
+										color: $primary-color-second;
+									}
+								}
+							}
+
+							.social {
+								display: flex;
+								flex-direction: column;
+								gap: $gap * 2;
+
+								.customFooter {
+									gap: $gap;
+								}
+
+								.signIn {
+									display: flex;
+									align-items: center;
+									justify-content: center;
+
+									.signInLink {
+										margin-left: $padding-local - 6;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }
 
+/* CSS cho desktop phổ thông */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+	.container {
+		.backgroundShow {
+			clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%);
+			-webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%);
+
+			width: 55%;
+
+			left: 45%;
+			top: 0;
+
+			.form {
+				width: 100%;
+
+				padding: $pace 0;
+				gap: $gap * 5;
+
+				.logo {
+					margin-top: 0;
+					margin-left: $pace;
+				}
+
+				.content {
+					padding: 0 variable.cDiv($padding-local, 2);
+					padding-left: 12%;
+
+					.signupForm {
+						padding: 0 $padding-local + 2;
+
+						form {
+							display: flex;
+							flex-direction: column;
+							gap: $gap * 2;
+
+							.title {
+								margin-bottom: $padding-local + 6;
+								padding: 0;
+								gap: $gap;
+
+								h1 {
+									font-size: variable.rem(30);
+								}
+
+								h2 {
+									font-size: variable.rem(24);
+								}
+
+								h3 {
+									font-size: variable.rem(22);
+								}
+							}
+
+							.inputs {
+								gap: $gap + 2;
+
+								.wrapInput {
+									gap: $gap - 2;
+
+									label {
+										font-size: $font-size;
+
+										color: $primary-color-second;
+									}
+								}
+							}
+
+							.social {
+								display: flex;
+								flex-direction: column;
+								gap: $gap * 2;
+
+								.customFooter {
+									gap: $gap;
+								}
+
+								.signIn {
+									display: flex;
+									align-items: center;
+									justify-content: center;
+
+									.signInLink {
+										margin-left: $padding-local - 6;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/* Mode pc large and  very large */
+@media screen and (min-width: 1200px) {
+	.container {
+		.backgroundShow {
+			clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%);
+			-webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%);
+
+			width: 50%;
+			left: 50%;
+
+			top: 0;
+
+			.form {
+				width: 100%;
+
+				padding: $pace 0;
+				gap: $gap * 5;
+
+				.logo {
+					margin-top: 0;
+					margin-left: $pace;
+				}
+
+				.content {
+					padding: 0 variable.cDiv($padding-local, 2);
+					padding-left: 14%;
+
+					.signupForm {
+						padding: 0 $padding-local + 2;
+
+						form {
+							display: flex;
+							flex-direction: column;
+							gap: $gap * 2;
+
+							.title {
+								margin-bottom: $padding-local + 6;
+								padding: 0;
+								gap: $gap;
+
+								h1 {
+									font-size: variable.rem(60);
+									line-height: 1.2;
+								}
+
+								h2 {
+									font-size: variable.rem(48);
+									line-height: 1.3;
+								}
+
+								h3 {
+									font-size: variable.rem(36);
+									line-height: 1.4;
+								}
+							}
+
+							.inputs {
+								gap: $gap + 2;
+
+								.wrapInput {
+									gap: $gap - 2;
+
+									label {
+										font-size: $font-size;
+
+										color: $primary-color-second;
+									}
+								}
+							}
+
+							.social {
+								display: flex;
+								flex-direction: column;
+								gap: $gap * 2;
+
+								.customFooter {
+									gap: $gap;
+								}
+
+								.signIn {
+									display: flex;
+									align-items: center;
+									justify-content: center;
+
+									.signInLink {
+										margin-left: $padding-local - 6;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/* Mode landscape*/
 @media (orientation: landscape) {
 	@media (max-height: 430px) {
 		/* iPhone & similar */
+		.container {
+			padding: 0 20px;
+
+			.wrapper {
+				padding: 0;
+				gap: $gap/2;
+			}
+
+			.title {
+				h1 {
+					font-size: 22px;
+				}
+
+				h3 {
+					font-size: $font-size-xl;
+				}
+			}
+
+			.inputs {
+				gap: $gap;
+			}
+
+			.wrapperInput {
+				label {
+					font-size: $md-font-size;
+				}
+			}
+		}
+
+		.backgroundSection {
+			display: none;
+		}
 	}
 
 	@media (max-height: 320px) {

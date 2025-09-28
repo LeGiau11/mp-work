@@ -1,20 +1,20 @@
 import {
-  CSSProperties,
-  FC,
-  ForwardRefExoticComponent,
-  PropsWithoutRef,
-  ReactNode,
-  RefAttributes,
-  RefObject,
-} from 'react';
+	CSSProperties,
+	FC,
+	ForwardRefExoticComponent,
+	PropsWithoutRef,
+	ReactNode,
+	RefAttributes,
+	RefObject,
+} from "react";
 
-import { MenuType as Menu } from '@/components';
+import { MenuType as Menu } from "@/components";
 
 export interface ContextMenuProps {
 	targetRef?: RefObject<HTMLElement>;
 	items?: Menu[];
 	children?: ReactNode;
-	anchor?: 'left' | 'right' | 'bottom' | 'top';
+	anchor?: "left" | "right" | "bottom" | "top";
 }
 export interface Position {
 	x?: number;
@@ -22,7 +22,7 @@ export interface Position {
 }
 
 export interface ContextMenuItemProps
-	extends Omit<ContextMenuProps, 'items' | 'targetRef' | 'anchor'> {
+	extends Omit<ContextMenuProps, "items" | "targetRef" | "anchor"> {
 	style?: CSSProperties;
 	className?: string;
 }

@@ -1,4 +1,4 @@
-import { CSSProperties, ReactNode } from 'react';
+import { CSSProperties, ReactNode } from "react";
 
 export interface ButtonProps {
 	label?: string;
@@ -7,13 +7,13 @@ export interface ButtonProps {
 	children?: ReactNode;
 	className?: string;
 	style?: CSSProperties;
-	type?: 'button' | 'reset' | 'submit';
+	type?: "button" | "reset" | "submit";
 	disabled?: boolean;
-	variant?: 'text' | 'contained' | 'outline' | 'danger';
+	variant?: "text" | "contained" | "outline" | "danger";
 	rounded?: boolean;
-	size?: 'Giant' | 'Large' | 'Medium' | 'Small' | 'Tiny';
+	size?: "Giant" | "Large" | "Medium" | "Small" | "Tiny";
 	onClick?: () => void;
 }
 
 export interface ButtonIconProps
-	extends Omit<ButtonProps, 'iconLeft' | 'iconRight'> {}
+	extends Omit<ButtonProps, "iconLeft" | "iconRight"> {}

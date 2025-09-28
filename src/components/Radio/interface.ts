@@ -1,6 +1,6 @@
-import { InputProps } from '@/common';
+import { InputProps } from "@/common";
 
-export interface RadioProps extends Omit<InputProps, 'type' | 'ref'> {
+export interface RadioProps extends Omit<InputProps, "type" | "ref"> {
 	classNameContainer?: string;
 	label?: string;
 	position?: string;

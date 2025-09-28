@@ -46,3 +46,182 @@ run with command:
 ```bash
 npm run storybook
 ```
+
+# 📌 MP-WORK
+
+Đây là ứng dụng phát triển
+
+---
+
+## 🗂️ Mục Lục
+
+- [Giới thiệu](#-giới-thiệu)
+- [Chức năng](#-chức-năng)
+- [Cài đặt](#%EF%B8%8F-cài-đặt)
+- [Hướng dẫn sử dụng](#-hướng-dẫn-sử-dụng)
+- [Hướng dẫn deploy npm](#-hướng-dẫn-deploy-npm)
+- [Cấu trúc thư mục](#-cấu-trúc-thư-mục)
+- [Công nghệ sử dụng](#%EF%B8%8F-công-nghệ-sử-dụng)
+- [Đóng góp](#-đóng-góp)
+- [License](#-license)
+
+---
+
+## 🔍 Giới Thiệu
+
+-
+- ***
+
+## ✅ Chức Năng
+
+- ✅ Tính năng 1
+- ✅ Tính năng 2
+- ✅ Tính năng 3
+- ⏳ Tính năng sắp triển khai...
+
+---
+
+## ⚙️ Cài Đặt
+
+```bash
+# Clone repo
+git clone https://github.com/LeGiau11/mp-work.git
+
+# Di chuyển vào thư mục
+cd mp-design
+
+# Cài đặt các phụ thuộc
+npm install
+
+# build
+npm run build
+```
+
+---
+
+## 📋 Hướng Dẫn Sử Dụng
+
+Tải bằng thư viện
+
+```bash
+
+npm install mp-design-ui
+
+```
+
+---
+
+## 📋 Hướng Dẫn Deploy
+
+```bash
+
+
+
+```
+
+---
+
+## 📁 Cấu Trúc Thư Mục
+
+```bash
+mp-work/
+│
+├── public/             # File tĩnh
+│   └── images/         # Chứa hình, ảnh
+├── src/                # Mã nguồn chính
+│   ├── common/
+│   │    ├── const.ts
+│   │    ├── index.ts
+│   │    └── interface.ts
+│   ├── components/
+│   │    ├── Avatar/
+│   │    │      ├── Avatar.module.scss
+│   │    │      ├── index.tsx
+│   │    │      └── interface.ts
+│   │    ├── Breadcrumb/
+│   │    │      ├── Breadcrumb.module.scss
+│   │    │      ├── index.tsx
+│   │    │      └── interface.ts
+│   ├── Breadcrumb/
+│   ├── Button/
+│   ├── Card/
+│   ├── Checkbox/
+│   ├── Chip/
+│   ├── common/         # Dùng chung cho những Component
+│   ├── ContextMenu/
+│   ├── ContextMenuConfigure/
+│   ├── Dropdown/
+│   ├── Input/
+│   ├── InputPassword/
+│   ├── List/
+│   ├── Loader/
+│   ├── Loading/
+│   ├── MultipleSelect/
+│   ├── Option/
+│   ├── ProgressBar/
+│   ├── Radio/
+│   ├── SearchSelect/
+│   ├── Select/
+│   ├── Stepper/
+│   ├── Steps/
+│   ├── styles/         # CSS cho các Component
+│   ├── Tabs/
+│   ├── Toggle/
+│   ├── Tooltip/
+│   ├── Typography/
+│   ├── global.d.ts     # Cấu hình CSS
+│   └── index.ts        # Export tất cả component
+│
+├── .eslintignore
+├── .gitignore
+├── .prettierignore
+├── .prettierrc         # Cấu hình prettier
+├── eslint.config.js    # Cấu hình eslint
+├── package-lock.json   # Cấu hình npm caching library
+├── package.json        # Cấu hình npm
+├── README.md
+├── tsconfig.app.json   # Cấu hình typescript app
+├── tsconfig.build.json # Cấu hình typescript build
+├── tsconfig.json       # Cấu hình typescript
+├── tsconfig.node.json  # Cấu hình typescript node
+└── vite.config.ts      # Cấu hình vite
+
+```
+
+---
+
+## 📁 Lưu đồ layer
+
+UI -> API -> Validator -> Service -> DAO -> Database
+
+---
+
+## 🛠️ Công Nghệ Sử Dụng
+
+- 💻 Ngôn ngữ: JavaScript.
+
+- 📦 Thư viện chính: NextJs.
+
+- 🗄️ Cơ sở dữ liệu: MongoDB.
+
+- ⚙️ Công cụ: Git, VSCode...
+
+---
+
+## 🤝 Đóng Góp
+
+1. Fork dự án
+
+2. Tạo nhánh (git checkout -b new-feature)
+
+3. Commit thay đổi (git commit -m 'Add new feature')
+
+4. Push lên branch (git push origin new-feature)
+
+5. Tạo Pull Request
+
+---
+
+## 📄 License
+
+Dự án này được cấp phép theo giấy phép MIT. Xem thêm chi tiết trong file LICENSE.
