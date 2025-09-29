@@ -25,7 +25,12 @@ const handler = async (
 	req: NextApiRequest,
 	res: NextApiResponse,
 ): Promise<void> => {
-	console.log("Request method:", req.method);
+	if (req.method !== "POST") {
+		return res.status(405).json({ message: "Method not allowed" });
+	}
+
+	console.warn("req.method", "========>");
+
 	try {
 		const { username, password } = req.body;
 
