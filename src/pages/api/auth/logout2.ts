@@ -14,6 +14,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 		}),
 	);
 
-	return sendOk(res, null, "OK");
+	return sendOk({}, "OK");
 };
 export default handler;

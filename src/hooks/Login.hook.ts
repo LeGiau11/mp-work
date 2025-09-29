@@ -89,11 +89,12 @@ export function useHook() {
 				body: JSON.stringify(data),
 			},
 		).then((res) => res.json());
+		console.log("res", res);
 		if (res.status === 201) {
 			localStorage.setItem(ACCESS_TOKEN, JSON.stringify(res.data?.access));
 			localStorage.setItem(REFRESH_TOKEN, JSON.stringify(res.data?.refresh));
 			//startSilentRefreshAuth();
-			router.push("/");
+			router.replace("/");
 			return;
 		}
 		return res;

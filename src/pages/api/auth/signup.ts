@@ -116,7 +116,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 			return throwBadRequest();
 		}
 
-		return sendCreated(res, { username }, "OK");
+		return sendCreated({ username }, "OK");
 	} catch (err) {
 		const status = err instanceof HttpError ? err.statusCode : 500;
 		const error = err instanceof HttpError ? err.error : "";

@@ -1,5 +1,5 @@
 import { ResponseData } from "@/common";
-import { NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 
 export class HttpError extends Error {
 	statusCode: number;
@@ -23,14 +23,13 @@ export class HttpError extends Error {
  * @param data T
  * @param message Success
  * @param error Success
- * @returns {NextApiResponse}
+ * @returns {NextResponse}
  */
 export const sendOk = <T>(
-	res: NextApiResponse,
 	data: T,
 	message = "Success",
 	error = "Success",
-) => {
+): NextResponse<ResponseData<T>> => {
 	const value: ResponseData<T> = {
 		status: 200,
 		data,
@@ -38,7 +37,7 @@ export const sendOk = <T>(
 		error,
 	};
 
-	return res.status(200).json(value);
+	return NextResponse.json(value);
 };
 
 /**
@@ -51,14 +50,13 @@ export const sendOk = <T>(
  * @param data T
  * @param message "Created"
  * @param error "Created"
- * @returns {NextApiResponse}
+ * @returns {NextResponse}
  */
 export const sendCreated = <T>(
-	res: NextApiResponse,
 	data: T,
 	message = "Created",
 	error = "Created",
-): void => {
+): NextResponse<ResponseData<T>> => {
 	const value: ResponseData<T> = {
 		status: 201,
 		data,
@@ -66,7 +64,7 @@ export const sendCreated = <T>(
 		error,
 	};
 
-	return res.status(201).json(value);
+	return NextResponse.json(value);
 };
 
 /**
@@ -79,8 +77,14 @@ export const sendCreated = <T>(
  * @param error  NoContent
  * @returns status {NextApiResponse}
  */
-export const sendNoContent = (res: NextApiResponse) => {
-	return res.status(204).end();
+export const sendNoContent = (
+	message = "Ok",
+): NextResponse<ResponseData<null>> => {
+	const value: ResponseData<null> = {
+		status: 204,
+		message,
+	};
+	return NextResponse.json(value);
 };
 
 export const throwBadRequest = (
@@ -142,7 +146,6 @@ export const throwInternalServerError = (
 };
 
 export const InternalServerError = <T>(
-	res: NextApiResponse,
 	message = "Internal Server Error",
 	error = "Internal Server Error",
 ) => {
@@ -151,6 +154,5 @@ export const InternalServerError = <T>(
 		message,
 		error,
 	};
-
-	return res.status(500).json(value);
+	return NextResponse.json(value, { status: 500 });
 };

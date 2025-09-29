@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import { IResUser, PRODUCTION, REFRESH_TOKEN } from "@/common";
 import GetUserService from "@/services/user/GetUserService";
 import { generateAccessToken, generateRefreshToken } from "@/helpers";
-import { HttpError, throwBadRequest } from "@/utils";
+import { HttpError, sendCreated, throwBadRequest } from "@/utils";
 
 export async function POST(req: Request) {
 	try {
@@ -25,10 +25,12 @@ export async function POST(req: Request) {
 		const refreshToken = await generateRefreshToken({ username });
 
 		// Tạo response JSON
-		const res = NextResponse.json(
-			{ success: true, access: accessToken, refresh: refreshToken },
-			{ status: 201 },
-		);
+		const res = NextResponse.json({
+			status: 201,
+			success: true,
+			access: accessToken,
+			refresh: refreshToken,
+		});
 
 		// Gắn refresh token vào cookie
 		res.headers.append(
@@ -42,7 +44,7 @@ export async function POST(req: Request) {
 			}),
 		);
 
-		return res;
+		return sendCreated({ access: accessToken, refresh: refreshToken });
 	} catch (err) {
 		const status = err instanceof HttpError ? err.statusCode : 500;
 		const error = err instanceof HttpError ? err.error : "";
