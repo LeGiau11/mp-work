@@ -4,8 +4,8 @@ import cookie from "cookie";
 
 import { IResUser, PRODUCTION, REFRESH_TOKEN } from "@/common";
 import GetUserService from "@/services/user/GetUserService";
-import { generateAccessToken, generateRefreshToken } from "@/helpers";
-import { HttpError, sendCreated, throwBadRequest } from "@/utils";
+import { generateRefreshToken } from "@/helpers";
+import { HttpError, throwBadRequest } from "@/utils";
 
 /**
  * Hàm  login
@@ -44,7 +44,7 @@ const handler = async (
 
 		if (!isValidPassword) throwBadRequest();
 
-		const accessToken = await generateAccessToken({ username });
+		//const accessToken = await generateAccessToken({ username });
 		const refreshToken = await generateRefreshToken({ username });
 
 		res.setHeader(
@@ -59,7 +59,7 @@ const handler = async (
 			}),
 		);
 
-		return sendCreated(res, { access: accessToken, refresh: refreshToken });
+		//return sendCreated(res, { access: accessToken, refresh: refreshToken });
 	} catch (err) {
 		const status = err instanceof HttpError ? err.statusCode : 500;
 		const error = err instanceof HttpError ? err.error : "";

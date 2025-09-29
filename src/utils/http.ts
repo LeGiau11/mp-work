@@ -37,7 +37,7 @@ export const sendOk = <T>(
 		error,
 	};
 
-	return NextResponse.json(value);
+	return NextResponse.json(value, { status: 200 });
 };
 
 /**
@@ -64,7 +64,7 @@ export const sendCreated = <T>(
 		error,
 	};
 
-	return NextResponse.json(value);
+	return NextResponse.json(value, { status: 201 });
 };
 
 /**
@@ -84,7 +84,7 @@ export const sendNoContent = (
 		status: 204,
 		message,
 	};
-	return NextResponse.json(value);
+	return NextResponse.json(value, { status: 204 });
 };
 
 export const throwBadRequest = (
@@ -146,11 +146,12 @@ export const throwInternalServerError = (
 };
 
 export const InternalServerError = <T>(
+	status = 500,
 	message = "Internal Server Error",
 	error = "Internal Server Error",
 ) => {
 	const value: ResponseData<T> = {
-		status: 500,
+		status,
 		message,
 		error,
 	};

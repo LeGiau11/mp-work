@@ -7,7 +7,7 @@ export interface Option {
 
 export interface ResponseData<T> {
 	success?: boolean;
-	data?: T;
+	data?: T | null;
 	error?: string;
 	message?: string;
 	status?: number;
