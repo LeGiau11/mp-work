@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 
 import { disconnect } from "@/libs/mongodb";
 import { DELETE, GET, PATCH, POST, PUT } from "@/common";
@@ -7,220 +7,315 @@ import { isNetworkError } from "./network";
 import {
 	HttpError,
 	throwNotFound,
-	throwNotAllowed,
-	sendOk,
-	sendCreated,
 	throwBadRequest,
 	InternalServerError,
-	sendNoContent,
+	sendOk,
 } from "@/utils";
 
 export const get = async <T, P = undefined>(
-	req: NextApiRequest,
-	res: NextApiResponse<ResponseData<T>>,
+	req: Request,
 	getDataFn: (params?: P) => Promise<T | null>,
-): Promise<void> => {
+): Promise<NextResponse> => {
 	if (req.method !== GET) {
-		res.setHeader("Allow", [GET]);
+		const response = NextResponse.json(
+			{
+				success: false,
+				message: "Method Not Allowed",
+				status: 405,
+			},
+			{ status: 405 },
+		);
 
-		throwNotAllowed(`Method ${req.method} Not Allowed`);
-
-		return;
+		response.headers.set("Allow", GET);
+		return response;
 	}
 
 	try {
-		const hasQuery = req.query && Object.keys(req.query).length > 0;
-		const data = hasQuery ? await getDataFn(req.query as P) : await getDataFn();
+		// Lấy query từ URL
+		const { searchParams } = new URL(req.url);
+
+		// Convert searchParams -> plain object (nếu cần)
+		const paramsObj = Object.fromEntries(searchParams.entries()) as P;
+
+		const data =
+			searchParams.size > 0 ? await getDataFn(paramsObj) : await getDataFn();
 
 		if (!data) throwNotFound();
 
-		return sendOk(res, data, "Successfully");
+		return sendOk(data);
 	} catch (error) {
 		const isErrNW = isNetworkError(error);
 
-		if (isErrNW.isError) return InternalServerError(res, isErrNW.message);
+		if (isErrNW.isError) {
+			return NextResponse.json(
+				{ success: false, message: isErrNW.message },
+				{ status: 500 },
+			);
+		}
 
 		const status = error instanceof HttpError ? error.statusCode : 500;
 		const err = error instanceof HttpError ? error.error : "";
 		const message = error instanceof Error ? error.message : "Đã có lỗi xảy ra";
+		return InternalServerError(status, message, err);
 
-		return res.status(status).json({
-			success: false,
-			error: err,
-			message,
-		});
-	} finally {
 		disconnect();
 	}
 };
 
 export const post = async <TBody, TResponse>(
-	req: NextApiRequest,
-	res: NextApiResponse<ResponseData<TResponse>>,
+	req: Request,
 	postDataFn: (body: TBody) => Promise<TResponse | null>,
-): Promise<ResponseData<TResponse>> => {
+): Promise<NextResponse<ResponseData<TResponse>>> => {
 	if (req.method !== POST) {
-		res.setHeader("Allow", [POST]);
-		throwNotAllowed(`Method ${req.method} Not Allowed`);
+		const res = NextResponse.json<ResponseData<TResponse>>(
+			{
+				success: false,
+				status: 405,
+				message: `Method ${req.method} Not Allowed`,
+			},
+			{ status: 405 },
+		);
+		res.headers.set("Allow", POST);
+		return res;
 	}
 
 	try {
-		const result = await postDataFn(req.body);
+		// Lấy body từ request
+		const body = (await req.json()) as TBody;
+
+		const result = await postDataFn(body);
 
 		if (!result) {
-			// throwBadRequest();
-			return {
-				success: false,
-				status: 400,
-				message: "OK",
-			};
+			return NextResponse.json(
+				{
+					success: false,
+					status: 400,
+					message: "Bad Request",
+				},
+				{ status: 400 },
+			);
 		}
 
-		return {
-			success: true,
-			data: result,
-			status: 200,
-			message: "OK",
-		};
+		return NextResponse.json(
+			{
+				success: true,
+				data: result,
+				status: 200,
+				message: "OK",
+			},
+			{ status: 200 },
+		);
 	} catch (error) {
 		let status = error instanceof HttpError ? error.statusCode : 500;
-
 		let message = error instanceof Error ? error.message : "Đã có lỗi xảy ra";
-		const isErrNW = isNetworkError(error);
 
+		const isErrNW = isNetworkError(error);
 		if (isErrNW.isError) {
 			status = 500;
 			message = isErrNW.message ?? "";
 		}
 
-		return {
-			status,
-			message,
-		};
+		return NextResponse.json(
+			{
+				status,
+				message,
+			},
+			{ status },
+		);
 	} finally {
 		disconnect();
 	}
 };
 
 export const put = async <TBody, TResponse>(
-	req: NextApiRequest,
-	res: NextApiResponse<ResponseData<TResponse>>,
+	req: Request,
 	putDataFn: (body: TBody) => Promise<TResponse | null>,
-): Promise<void> => {
+): Promise<NextResponse<ResponseData<TResponse>>> => {
 	if (req.method !== PUT) {
-		res.setHeader("Allow", [PUT]);
-
-		throwNotAllowed(`Method ${req.method} Not Allowed`);
-
-		return;
+		const response = NextResponse.json<ResponseData<TResponse>>(
+			{
+				success: false,
+				status: 405,
+				message: `Method ${req.method} Not Allowed`,
+			},
+			{ status: 405 },
+		);
+		response.headers.set("Allow", PUT);
+		return response;
 	}
 
 	try {
-		const result = await putDataFn(req.body);
+		const body = (await req.json()) as TBody;
+		const result = await putDataFn(body);
 
 		if (!result) {
 			throwBadRequest();
 		}
 
-		return sendCreated(res, result, "Updated successfully");
+		return NextResponse.json(
+			{
+				success: true,
+				data: result,
+				status: 200,
+				message: "Updated successfully",
+			},
+			{ status: 200 },
+		);
 	} catch (error) {
 		const isErrNW = isNetworkError(error);
 
 		if (isErrNW.isError) {
-			return InternalServerError(res, isErrNW.message);
+			return NextResponse.json(
+				{
+					success: false,
+					status: 500,
+					message: isErrNW.message ?? "Network error",
+				},
+				{ status: 500 },
+			);
 		}
 
 		const status = error instanceof HttpError ? error.statusCode : 500;
 		const err = error instanceof HttpError ? error.error : "";
 		const message = error instanceof Error ? error.message : "Đã có lỗi xảy ra";
 
-		return res.status(status).json({
-			success: false,
-			error: err,
-			message,
-		});
+		return NextResponse.json(
+			{
+				success: false,
+				error: err,
+				status,
+				message,
+			},
+			{ status },
+		);
 	} finally {
 		disconnect();
 	}
 };
 
 export const patch = async <TBody, TResponse>(
-	req: NextApiRequest,
-	res: NextApiResponse<ResponseData<TResponse>>,
+	req: Request,
 	patchDataFn: (body: TBody) => Promise<TResponse | null>,
-): Promise<void> => {
+): Promise<NextResponse<ResponseData<TResponse>>> => {
 	if (req.method !== PATCH) {
-		res.setHeader("Allow", [PATCH]);
-
-		throwNotAllowed(`Method ${req.method} Not Allowed`);
-		return;
+		const response = NextResponse.json<ResponseData<TResponse>>(
+			{
+				success: false,
+				status: 405,
+				message: `Method ${req.method} Not Allowed`,
+			},
+			{ status: 405 },
+		);
+		response.headers.set("Allow", PATCH);
+		return response;
 	}
 
 	try {
-		const result = await patchDataFn(req.body);
+		const body = (await req.json()) as TBody;
+		const result = await patchDataFn(body);
 
 		if (!result) {
 			throwBadRequest();
 		}
 
-		return sendCreated(res, result, "Updated successfully");
+		return NextResponse.json<ResponseData<TResponse>>(
+			{
+				success: true,
+				data: result,
+				status: 200,
+				message: "Updated successfully",
+			},
+			{ status: 200 },
+		);
 	} catch (error) {
 		const isErrNW = isNetworkError(error);
 
 		if (isErrNW.isError) {
-			return InternalServerError(res, isErrNW.message);
+			return NextResponse.json<ResponseData<TResponse>>(
+				{
+					success: false,
+					status: 500,
+					message: isErrNW.message ?? "Network error",
+				},
+				{ status: 500 },
+			);
 		}
 
 		const status = error instanceof HttpError ? error.statusCode : 500;
 		const err = error instanceof HttpError ? error.error : "";
 		const message = error instanceof Error ? error.message : "Đã có lỗi xảy ra";
 
-		return res.status(status).json({
-			success: false,
-			error: err,
-			message,
-		});
+		return NextResponse.json<ResponseData<TResponse>>(
+			{
+				success: false,
+				error: err,
+				status,
+				message,
+			},
+			{ status },
+		);
 	} finally {
 		disconnect();
 	}
 };
 
 export const deleted = async <P = undefined, T = null>(
-	req: NextApiRequest,
-	res: NextApiResponse,
+	req: Request,
 	deleteDataFn: (param: P) => Promise<T>,
-): Promise<void> => {
+): Promise<NextResponse<ResponseData<T>>> => {
 	if (req.method !== DELETE) {
-		res.setHeader("Allow", [DELETE]);
-		throwNotAllowed(`Method ${req.method} Not Allowed`);
-
-		return;
+		const response = NextResponse.json<ResponseData<T>>(
+			{
+				success: false,
+				status: 405,
+				message: `Method ${req.method} Not Allowed`,
+			},
+			{ status: 405 },
+		);
+		response.headers.set("Allow", DELETE);
+		return response;
 	}
 
 	try {
-		const result = await deleteDataFn(req.query as P);
+		// ✅ Lấy params từ URL
+		const url = new URL(req.url);
+		const params = Object.fromEntries(url.searchParams) as P;
+
+		const result = await deleteDataFn(params);
 
 		if (!result) {
 			throwBadRequest();
 		}
 
-		sendNoContent(res);
+		// ✅ Trả về 204 No Content
+		return new NextResponse(null, { status: 204 });
 	} catch (error) {
 		const isErrNW = isNetworkError(error);
 
 		if (isErrNW.isError) {
-			return InternalServerError(res, isErrNW.message);
+			return NextResponse.json<ResponseData<T>>(
+				{
+					success: false,
+					status: 500,
+					message: isErrNW.message ?? "Network error",
+				},
+				{ status: 500 },
+			);
 		}
 
 		const status = error instanceof HttpError ? error.statusCode : 500;
 		const err = error instanceof HttpError ? error.error : "";
 		const message = error instanceof Error ? error.message : "Đã có lỗi xảy ra";
 
-		return res.status(status).json({
-			success: false,
-			error: err,
-			message,
-		});
+		return NextResponse.json<ResponseData<T>>(
+			{
+				success: false,
+				error: err,
+				status,
+				message,
+			},
+			{ status },
+		);
 	} finally {
 		disconnect();
 	}

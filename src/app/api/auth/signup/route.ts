@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 
 import { generateAccessToken } from "@/helpers";
 import {
@@ -11,12 +11,13 @@ import {
 } from "@/utils";
 import { REGEX_PASSWORD } from "@/common";
 import CreateUserServices from "@/services/user/CreateUserService";
-import { RequestSignup } from "@/pages/signup/interface";
+import { RequestSignup } from "@/interface/Signup.interface";
 import smtpService from "@/libs/smtp";
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+export async function POST(req: Request) {
 	try {
-		const { username, password } = req.body as RequestSignup;
+		const body = (await req.json()) as RequestSignup;
+		const { username, password } = body;
 
 		if (!username || !password) throwBadRequest("Invalid input");
 
@@ -28,35 +29,34 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 				"The password must be at least 8 characters long, including uppercase letters, lowercase letters, numbers, and special characters.",
 			);
 
-		const createUser = await CreateUserServices(req.body);
-
+		const createUser = await CreateUserServices(body);
 		if (!createUser) return throwBadRequest();
 
 		const tokenVerify = await generateAccessToken({ username }, "24h");
 		const verifyUrl = `${process.env.PUBLIC_APP_URL}/api/auth/verify?token=${tokenVerify}`;
 
+		// load template
 		const templatePath = path.join(
 			process.cwd(),
 			"public",
 			"templates",
 			"template_mail_signup.html",
 		);
+
 		const createdAt = createUser?.createdAt;
 		const formattedDate = createdAt
-			? `${new Date(createdAt).getDate()}/${
-					new Date(createdAt).getMonth() + 1
-				}/${new Date(createdAt).getFullYear()}`
-			: null;
+			? `${new Date(createdAt).getDate()}/${new Date(createdAt).getMonth() + 1}/${new Date(createdAt).getFullYear()}`
+			: "";
 
 		let htmlTemplate = fs.readFileSync(templatePath, "utf8");
 		htmlTemplate = htmlTemplate
 			.replace("{{first_name}}", createUser?.firstName || "")
 			.replace("{{last_name}}", createUser?.lastName || "")
-			.replace("{{url}}", verifyUrl)
-			.replace("{{email}}", createUser.email || "")
-			.replace("{{url_href}}", verifyUrl)
+			.replace(/{{url}}/g, verifyUrl)
+			.replace(/{{url_href}}/g, verifyUrl)
+			.replace("{{email}}", createUser?.email || "")
 			.replace("{{username}}", createUser?.username || "")
-			.replace("{{register_date}}", formattedDate || "")
+			.replace("{{register_date}}", formattedDate)
 			.replace("{{div_url}}", verifyUrl);
 
 		const sendMail = await smtpService.sendMail({
@@ -66,47 +66,27 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 			attachments: [
 				{
 					filename: "logo_signup.png",
-					path: path.join(process.cwd(), "public", "images", "logo_signup.png"),
+					path: path.join(process.cwd(), "public/images/logo_signup.png"),
 					cid: "logo_cid",
 				},
 				{
 					filename: "logo_facebook.png",
-					path: path.join(
-						process.cwd(),
-						"public",
-						"images",
-						"logo_facebook.png",
-					),
+					path: path.join(process.cwd(), "public/images/logo_facebook.png"),
 					cid: "logo_facebook_cid",
 				},
 				{
 					filename: "logo_linkedin.png",
-					path: path.join(
-						process.cwd(),
-						"public",
-						"images",
-						"logo_linkedin.png",
-					),
+					path: path.join(process.cwd(), "public/images/logo_linkedin.png"),
 					cid: "logo_linkedin_cid",
 				},
 				{
 					filename: "logo_instagram.png",
-					path: path.join(
-						process.cwd(),
-						"public",
-						"images",
-						"logo_instagram.png",
-					),
+					path: path.join(process.cwd(), "public/images/logo_instagram.png"),
 					cid: "logo_instagram_cid",
 				},
 				{
 					filename: "logo_twitter.png",
-					path: path.join(
-						process.cwd(),
-						"public",
-						"images",
-						"logo_twitter.png",
-					),
+					path: path.join(process.cwd(), "public/images/logo_twitter.png"),
 					cid: "logo_twitter_cid",
 				},
 			],
@@ -116,16 +96,15 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 			return throwBadRequest();
 		}
 
-		return sendCreated(res, { username }, "OK");
+		return sendCreated({ username }, "OK");
 	} catch (err) {
 		const status = err instanceof HttpError ? err.statusCode : 500;
 		const error = err instanceof HttpError ? err.error : "";
 		const message = err instanceof Error ? err.message : "Đã có lỗi xảy ra";
 
-		return res
-			.status(status)
-			.json({ success: false, message, error, status, data: null });
+		return NextResponse.json(
+			{ success: false, message, error, status, data: null },
+			{ status },
+		);
 	}
-};
-
-export default handler;
+}

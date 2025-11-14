@@ -1,28 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { useHook } from "./Login.hook";
+import { useHook } from "@/hooks/Login.hook";
 import { FooterLogin } from "@/layout";
 import { Button, Checkbox, Input, InputPassword } from "@/components";
 
 import styles from "./Login.module.scss";
 
-// const loginErrorMessagesSchema = Yup.object({
-//   username: Yup.string()
-//     .email("Invalid email address")
-//     .required("Email address is required"),
-//   password: Yup.string()
-//     .max(24, "The password can have a maximum of 24 characters.")
-//     .matches(
-//       /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-//       "The password must be at least 8 characters long, including uppercase letters, lowercase letters, numbers, and special characters."
-//     )
-//     .required("Password is required"),
-//   remember: Yup.boolean(),
-// });
-
 export default function Login() {
-	const { isDisableSubmitBtn, initialUser, formik } = useHook();
+	const { isDisableSubmitBtn, formik } = useHook();
 
 	return (
 		<section className={styles.container}>

@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import clsx from "clsx";
 
-import { useHook } from "./Signup.hook";
+import { useHook } from "@/hooks/Signup.hook";
 import styles from "./Signup.module.scss";
 import { Input, Button, InputPassword, Typography } from "@/components";
 import { FooterLogin } from "@/layout";

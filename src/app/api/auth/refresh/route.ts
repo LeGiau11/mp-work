@@ -1,7 +1,12 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 import cookie from "cookie";
 
-import { HttpError, sendCreated, throwUnauthorized } from "@/utils";
+import {
+	HttpError,
+	InternalServerError,
+	sendCreated,
+	throwUnauthorized,
+} from "@/utils";
 import {
 	generateAccessToken,
 	generateRefreshToken,
@@ -9,8 +14,8 @@ import {
 } from "@/helpers";
 import { IDecode, PRODUCTION, REFRESH_TOKEN } from "@/common";
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-	const cookies = cookie.parse(req.headers.cookie || "");
+export async function POST(req: Request) {
+	const cookies = cookie.parse(req.headers.get("cookie") || "");
 	const token = cookies.refreshToken;
 
 	try {
@@ -27,7 +32,17 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 			username: decoded.username,
 		});
 
-		res.setHeader(
+		const response = NextResponse.json(
+			{
+				success: true,
+				data: newAccessToken,
+				status: 201,
+				message: "Created",
+			},
+			{ status: 201 },
+		);
+
+		response.headers.append(
 			"Set-Cookie",
 			cookie.serialize(REFRESH_TOKEN, newRefreshToken, {
 				httpOnly: true,
@@ -38,13 +53,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 			}),
 		);
 
-		return sendCreated(res, newAccessToken);
+		return sendCreated(newAccessToken);
 	} catch (error) {
 		const status = error instanceof HttpError ? error.statusCode : 500;
 		const message = error instanceof Error ? error.message : "Đã có lỗi xảy ra";
 
-		return res.status(status).json({ success: false, message, error });
+		return InternalServerError(status, message);
 	}
-};
-
-export default handler;
+}

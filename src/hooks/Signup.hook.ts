@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 
 import { ResponseData } from "@/common";
-import { RequestSignup } from "./interface";
+import { RequestSignup } from "@/interface/Signup.interface";
 
 export function useHook() {
 	const rules = [

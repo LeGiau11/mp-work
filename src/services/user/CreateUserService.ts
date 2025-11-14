@@ -1,5 +1,5 @@
 import { Crypt } from "@/utils/crypt";
-import { RequestSignup } from "@/pages/signup/interface";
+import { RequestSignup } from "@/interface/Signup.interface";
 import { userDAO } from "@/dao/userDAO";
 import { throwConflict } from "@/utils";
 import { User } from "@/models/User";

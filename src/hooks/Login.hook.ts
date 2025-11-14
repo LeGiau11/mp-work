@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import { ILogin, RequestLogin } from "./interface";
+import { ILogin, RequestLogin } from "@/interface/Login.interface";
 import { ACCESS_TOKEN, REFRESH_TOKEN, ResponseData } from "@/common";
 //import { startSilentRefreshAuth } from "@/utils";
 
@@ -89,11 +89,12 @@ export function useHook() {
 				body: JSON.stringify(data),
 			},
 		).then((res) => res.json());
+		console.log("res", res);
 		if (res.status === 201) {
 			localStorage.setItem(ACCESS_TOKEN, JSON.stringify(res.data?.access));
 			localStorage.setItem(REFRESH_TOKEN, JSON.stringify(res.data?.refresh));
 			//startSilentRefreshAuth();
-			router.push("/");
+			router.replace("/");
 			return;
 		}
 		return res;
